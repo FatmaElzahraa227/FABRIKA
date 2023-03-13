@@ -1,0 +1,14 @@
+require("dotenv").config();
+const express = require('express');
+const connect = require('./DB/connection');
+const app = express();
+const allRoutes=require('./modules/index.router')
+app.use(express.json());
+connect();
+app.get('/',(req,res)=>res.send("Hello World!"));
+app.use("/api/v1/auth", allRoutes.authRouter);
+app.use("/api/v1/user", allRoutes.userRouter);
+app.use("/api/v1/vehicle", allRoutes.vehicleRouter);
+const port = process.env.PORT;
+
+app.listen(port,()=>console.log("server is running on port " + port));

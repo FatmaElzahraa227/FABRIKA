@@ -1,0 +1,11 @@
+const { accessroles } = require("../../middleware/auth");
+
+const userAPI = {
+   getDetails:[accessroles.admin, accessroles.user],
+   deleteUser:[accessroles.admin, accessroles.user],
+   softDelete:[accessroles.admin],
+   updateEmail:[accessroles.admin, accessroles.user],
+   addVehicle:[accessroles.admin, accessroles.user]
+}
+
+module.exports = userAPI; 

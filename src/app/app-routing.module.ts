@@ -13,6 +13,7 @@ const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'contact-us', component:ContactUsComponent},
   {path:'car-info', component:CarInfoComponent},
+  {path:'*', redirectTo:'home'},
 ];
 
 @NgModule({

@@ -5,9 +5,9 @@
       <img src="../../assets/images/car.png" alt="" />
     </div>
     <div class="intro">
-      <h1>Welcome to FABRIKA</h1>
+      <h1>Welcome to FABRIKA<span class="err text-danger">{{errorMessageRegister}}</span></h1>
     </div>
-    <form action="">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
       <div
         class="parent d-flex flex-column justify-content-start align-items-start"
       >
@@ -18,9 +18,11 @@
                 type="email"
                 id="floatingEmail"
                 class="form-control"
+                formControlName="email"
                 placeholder=" "
               />
-              <label for="floatingEmail" class="form-label">E-mail </label>
+              <label for="floatingEmail">E-mail </label>
+              <p class="err text-danger">{{ errorMessageEmail }}</p>
             </div>
             <div class="password form-floating ch">
               <input
@@ -28,8 +30,10 @@
                 id="floatingPassword"
                 class="form-control"
                 placeholder=" "
+                formControlName="password"
               />
               <label for="floatingPassword" class="form-label">Password</label>
+              <p class="err text-danger">{{ errorMessagePassword }}</p>
             </div>
           </div>
         </div>
@@ -37,7 +41,9 @@
           <button class="btn btn-light">Login</button>
           <div class="txt">
             <p>
-              Don't have an account?<span><a routerLink="/signup"> SIGN UP</a></span>
+              Don't have an account?<span
+                ><a routerLink="/signup"> SIGN UP</a></span
+              >
             </p>
           </div>
         </div>

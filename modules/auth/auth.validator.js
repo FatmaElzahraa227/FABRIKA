@@ -7,6 +7,7 @@ const signUp = {
       firstName: Joi.string().required().min(3).max(15),
       lastName: Joi.string().required().min(3).max(15),
       email: Joi.string().email().required(),
+      phone: Joi.string().required().min(11).max(11),
       password: Joi.string().required(),
       cPassword: Joi.string().valid(Joi.ref("password")).required()
     }),

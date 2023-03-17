@@ -1,0 +1,114 @@
+<html>
+  <body>
+    <div class="circle"></div>
+    <div class="car">
+      <img src="../../assets/images/car.png" alt="" />
+    </div>
+    <div class="intro">
+      <h1>Welcome,<span>Let's get started !</span></h1>
+    </div>
+    <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+      <div
+        class="parent d-flex flex-column justify-content-center align-items-center"
+      >
+        <div class="form d-flex justify-content-between">
+          <div class="child child1">
+            <div class="child2 d-flex justify-content-between w-100">
+
+              <div class="fname form-floating ch">
+                <input
+                  type="text"
+                  formControlName="firstName"
+                  id="floatingFname"
+                  class="form-control"
+                  placeholder=" "
+                  required
+                />
+                <label for="floatingFname" class="form-label">First Name </label>
+                <p class="err text-danger">{{errorMessageFName}}</p>
+              </div>
+              <div class="lname form-floating ch">
+                <input
+                  type="text"
+                  formControlName="lastName"
+                  id="floatingLname"
+                  class="form-control"
+                  placeholder=" "
+                  required
+                />
+                <label for="floatingLname" class="form-label">Last Name</label>
+                <p class="err text-danger">{{errorMessageLName}}</p>
+              </div>
+            </div>
+            <div class="child2 d-flex justify-content-between w-100">
+
+              <div class="phone form-floating ch">
+                <input
+                  type="phone"
+                  id="floatingPhone"
+                  class="form-control"
+                  placeholder=" "
+                />
+                <label for="floatingPhone" class="form-label">Phone</label>
+              </div>
+              <div class="email form-floating ch">
+                <input
+                  formControlName="email"
+                  type="email"
+                  required
+                  id="floatingEmail"
+                  class="form-control"
+                  placeholder=" "
+                  required
+                />
+                <label for="floatingEmail" class="form-label">E-mail</label>
+                <p class="err text-danger">{{errorMessageEmail}}</p>
+              </div>
+            </div>
+            <div class="child2 d-flex justify-content-between w-100">
+
+              <div class="password form-floating ch">
+                <input
+                  formControlName="password"
+                  type="password"
+                  id="floatingPassword"
+                  class="form-control"
+                  placeholder=" "
+                  required
+                />
+                <label for="floatingPassword" class="form-label"
+                  >Create Password</label
+                >
+                <p class="err text-danger">{{errorMessagePassword}}</p>
+              </div>
+              <div class="cpassword form-floating ch">
+                <input
+                formControlName="cPassword"
+                type="password"
+                id="floatingCpassword"
+                class="form-control"
+                placeholder=" "
+                required
+                />
+                <label for="floatingCpassword" class="form-label"
+                >Confirm Password</label
+                >
+                <p class="err text-danger">{{errorMessageCPassword}}</p>
+              </div>
+            </div>
+          </div>
+                 </div>
+        <div class="text-center">
+          <button  type="submit" class="btn btn-light">Sign up</button>
+          <div class="txt">
+            <p>
+              Already have an account?<span
+                ><a routerLink="/login"> LOGIN</a></span
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>

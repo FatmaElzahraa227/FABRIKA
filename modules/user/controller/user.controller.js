@@ -1,4 +1,5 @@
 const userModel = require("../../../DB/model/user");
+const messageModel = require("../../../DB/model/message");
 // const QRCode = require('qrcode');
 // const sendEmail = require("../../../service/sendEmail");
 var jwt = require("jsonwebtoken");
@@ -135,6 +136,20 @@ const softDelete = async(req,res) => {
    }
 };
 
+const sendMessage = async(req,res) => {
+   
+   try {
+      const {full_name, email, message} = req.body;
+      const messageaya = new messageModel({ full_name, email, message });
+      const savedMessage = await messageaya.save();
+      res.json({message: "Sender:", full_name, email});
+      res.json({message: "Message:", message});
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+
+};
+
 
 module.exports = {
    getProfile,
@@ -143,5 +158,6 @@ module.exports = {
    // QR,
    updateEmail,
    deleteUser,
-   softDelete
+   softDelete,
+   sendMessage
 };

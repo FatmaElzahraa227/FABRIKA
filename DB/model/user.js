@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
    firstName: {type: String}, 
    lastName: {type: String},
    email: {type: String, required:true, unique:true},
+   phone: {type: Number, },
    // Confirmed: {type: Boolean, default: false},
    password: {type: String, required:true},
    owned_vehicles: [{type: mongoose.Schema.Types.ObjectId, ref: 'vehicles'}],

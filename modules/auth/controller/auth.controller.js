@@ -5,7 +5,7 @@ const userModel = require("../../../DB/model/user");
 
 const signUp = async (req, res) => {
    try {
-     const { firstName, lastName, email, password } = req.body;
+     const { firstName, lastName, email, password, cPassword } = req.body;
      const foundedUser = await userModel.findOne({ email });
      if (foundedUser) {
        res
@@ -105,7 +105,7 @@ const signIn = async (req, res) => {
 // };
 
 const resetPassword = async(req,res) => {
-  const {email, /*code,*/ newPassword, /*cnewPassword*/} = req.body;
+  const {email, /*code,*/ newPassword, cnewPassword} = req.body;
   const user = await userModel.findOne({email});
   if (!user) {
     res.status(404).json({message: "Email not found, please register first."})

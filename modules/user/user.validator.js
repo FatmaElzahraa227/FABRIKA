@@ -12,7 +12,19 @@ const updateEmail = {
      email: Joi.string().email().required(),}),
   };
 
+  const sendMessage = {
+   body: Joi.object().required()
+   .keys({
+
+     full_name: Joi.string().required(),
+     email: Joi.string().email().required(),
+     message: Joi.string().required()
+   
+   }),
+  };
+
 module.exports = {
    deleteUser,
-   updateEmail
+   updateEmail,
+   sendMessage
 };

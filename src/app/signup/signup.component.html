@@ -45,11 +45,13 @@
               <div class="phone form-floating ch">
                 <input
                   type="phone"
+                  formControlName="phone"
                   id="floatingPhone"
                   class="form-control"
                   placeholder=" "
                 />
                 <label for="floatingPhone" class="form-label">Phone</label>
+                <p class="err text-danger">{{errorMessageNumber}}</p>
               </div>
               <div class="email form-floating ch">
                 <input

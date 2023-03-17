@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -25,6 +24,7 @@ export class SignupComponent {
       password: '',
       cPassword: '',
       firstName: '',
+      phone: '',
       lastName: '',
     });
   }
@@ -34,6 +34,7 @@ export class SignupComponent {
   errorMessageLName: String = '';
   errorMessagePassword: String = '';
   errorMessageCPassword: String = '';
+  errorMessageNumber: String = '';
   signUp() {
     this.st = this.signUpForm.value;
     console.log(this.st);
@@ -47,6 +48,7 @@ export class SignupComponent {
               '"firstName" length must be at least 3 characters long'
           ) {
             {
+              this.errorMessageNumber = '';
               this.errorMessagePassword = '';
               this.errorMessageCPassword = '';
               this.errorMessageLName = '';
@@ -64,6 +66,7 @@ export class SignupComponent {
               this.errorMessageCPassword = '';
               this.errorMessageEmail = '';
               this.errorMessageFName = '';
+              this.errorMessageNumber = '';
               this.errorMessageLName =
                 'Please fill last name with 3 or more characters';
             }
@@ -74,6 +77,7 @@ export class SignupComponent {
             {
               this.errorMessagePassword = '';
               this.errorMessageCPassword = '';
+              this.errorMessageNumber = '';
               this.errorMessageFName = '';
               this.errorMessageLName = '';
               this.errorMessageEmail = 'Please type a valid email';
@@ -85,6 +89,7 @@ export class SignupComponent {
               this.errorMessageCPassword = '';
               this.errorMessageFName = '';
               this.errorMessageLName = '';
+              this.errorMessageNumber = '';
               this.errorMessageEmail = '';
               this.errorMessagePassword = 'Please type password';
             }
@@ -95,8 +100,22 @@ export class SignupComponent {
               this.errorMessagePassword = '';
               this.errorMessageFName = '';
               this.errorMessageLName = '';
+              this.errorMessageNumber = '';
               this.errorMessageEmail = '';
               this.errorMessageCPassword = "Password doesn't match";
+            }
+          } else if (
+            st.err[0][0].message == '"phone" is not allowed to be empty' ||
+            st.err[0][0].message ==
+              '"phone" length must be at least 11 characters long'||st.err[0][0].message =='"phone" length must be less than or equal to 11 characters long'
+          ) {
+            {
+              this.errorMessagePassword = '';
+              this.errorMessageFName = '';
+              this.errorMessageLName = '';
+              this.errorMessageNumber = 'Please type a valid phone number';
+              this.errorMessageEmail = '';
+              this.errorMessageCPassword = '';
             }
           } else {
             console.log(st.err);
@@ -108,12 +127,20 @@ export class SignupComponent {
         }
       },
       (err) => {
-        if (err.status == 400) {
+        if (err.error.message == 'Email already exists') {
+          this.errorMessagePassword = '';
+          this.errorMessageCPassword = '';
+          this.errorMessageFName = '';
+          this.errorMessageNumber = '';
+          this.errorMessageLName = '';
+          this.errorMessageEmail = 'Email already exists';
+        } else if (err.error.message == 'Phone number already exists') {
+          this.errorMessageNumber = 'Phone number already exists';
           this.errorMessagePassword = '';
           this.errorMessageCPassword = '';
           this.errorMessageFName = '';
           this.errorMessageLName = '';
-          this.errorMessageEmail = 'Email already exists';
+          this.errorMessageEmail = '';
         } else {
           console.log('err', err);
         }

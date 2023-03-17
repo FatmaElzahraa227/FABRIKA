@@ -39,7 +39,7 @@ const signIn = async (req, res) => {
   const foundedUser = await userModel.findOne({ email });
   if (foundedUser) {
     /*if(foundedUser.Confirmed != true){
-      res.json({message: "Please confirm your email first."})
+      res.json({message: "Please confirm your email first."})   blolom
     }else if(foundedUser.Blocked == true){
       res.json({message: "Your account is blocked."})
     }else */if(foundedUser.IsDeleted == true){

@@ -4,6 +4,8 @@ const connect = require('./DB/connection');
 const app = express();
 const allRoutes=require('./modules/index.router')
 app.use(express.json());
+let cors = require("cors");
+app.use(cors());
 connect();
 
 app.use(function (req, res, next) {

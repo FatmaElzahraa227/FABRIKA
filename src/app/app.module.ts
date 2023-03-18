@@ -11,7 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { CarInfoComponent } from './car-info/car-info.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { AuthGuard } from './auth.guard'
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

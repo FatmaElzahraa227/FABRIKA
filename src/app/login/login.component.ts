@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-
+import { AppComponent } from '../app.component';
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +16,8 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    public myService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -29,7 +31,6 @@ st: any;
   errorMessageEmail: String = '';
   errorMessagePassword: String = '';
   errorMessageRegister: String = '';
-  token: String = '';
 
 
   login(){
@@ -55,8 +56,9 @@ st: any;
         }}
         else{
           console.log("success",st.token);
-          this.token = st.token;
           this.loginForm.reset();
+          localStorage.setItem('userToken',st.token);
+          this.myService.saveUserData();
           this.router.navigate(['/home']);
         }
       },

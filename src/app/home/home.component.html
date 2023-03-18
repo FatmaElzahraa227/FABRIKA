@@ -5,15 +5,30 @@
         <div class="frame">
           <h1>Check your car by <span class="rd">VIN</span></h1>
           <form action="">
-            <div class="d-flex group align-items-center">
-              <input
-                type="text"
-                class="form-control"
-                id="VIN"
-                placeholder="Enter VIN Number"
-              />
-              <button type="button" class="btn btn-dark vn" routerLink="/car-info">Check VIN</button>
-            </div>
+            <fieldset [disabled]="!isLogin">
+              <div class="d-flex group align-items-center">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="VIN"
+                  placeholder="Enter VIN Number"
+                />
+                <button
+                  type="button"
+                  class="btn btn-dark vn"
+                  routerLink="/car-info"
+                >
+                  Check VIN
+                </button>
+              </div>
+            </fieldset>
+            <p class="text-danger px-3 my-1" *ngIf="!isLogin">
+              You have to
+              <a routerLink="/login" class="text-decoration-none text-light"
+                >Login</a
+              >
+              first
+            </p>
           </form>
         </div>
         <img src="../../assets/images/miniCooper.png" class="bmin" alt="" />
@@ -143,7 +158,9 @@
             </div>
           </div>
 
-          <div class="child d-flex flex-column align-items-center justify-content-start">
+          <div
+            class="child d-flex flex-column align-items-center justify-content-start"
+          >
             <div class="img">
               <img src="../../assets/images/customer3.png" alt="" />
             </div>

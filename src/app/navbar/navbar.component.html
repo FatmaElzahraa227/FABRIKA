@@ -19,19 +19,19 @@
       <div class="child child1 w-50 align-self-center" id="navbarNav">
         <ul class="navbar-nav d-flex justify-content-around align-items-center w-100">
           <li class="nav-item">
-            <a class="nav-link" routerLink="home">Home</a>
+            <a *ngIf="isLogin" class="nav-link" routerLink="home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="contact-us">Contact Us</a>
+            <a *ngIf="isLogin" class="nav-link" routerLink="contact-us">Contact Us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Help</a>
+            <a *ngIf="isLogin" class="nav-link" href="#">Help</a>
           </li>
         </ul>
       </div>
       <div class="child child2 d-flex align-items-center justify-content-around" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item">
+          <li *ngIf="!isLogin" class="nav-item">
             <button
               type="button"
               class="btn btn-primary lgnbtn text-center px-4"
@@ -40,13 +40,22 @@
               Login
             </button>
           </li>
-          <li class="nav-item">
+          <li *ngIf="!isLogin" class="nav-item">
             <button
               type="button"
               class="btn btn-primary lgnbtn text-center px-4"
               routerLink="signup"
             >
               Signup
+            </button>
+          </li>
+          <li (click)="logout()" *ngIf="isLogin" class="nav-item">
+            <button
+              type="button"
+              class="btn btn-primary lgnbtn text-center px-4"
+              routerLink=""
+            >
+              Logout
             </button>
           </li>
         </ul>

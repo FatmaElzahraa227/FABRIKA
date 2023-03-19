@@ -26,7 +26,7 @@ const addVehicle = async (req, res) => {
 
 const getVehicleData = async (req, res) => {
   const vehicleData = await vehicleModel.findOne({
-    vehicle_vin: req.body.vehicle_vin,
+    vehicle_vin: req.params.vehicle_vin,
   });
 
   var token = jwt.sign({ id: vehicleData._id }, process.env.verifyTokenKey);

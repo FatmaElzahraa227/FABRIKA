@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
@@ -28,6 +28,7 @@ export class SignupComponent {
       lastName: '',
     });
   }
+  data:any
   st: any;
   errorMessageEmail: String = '';
   errorMessageFName: String = '';
@@ -36,6 +37,9 @@ export class SignupComponent {
   errorMessageCPassword: String = '';
   errorMessageNumber: String = '';
   signUp() {
+    this.data={
+      vehicle_vin:"noinhoy7h"
+    }
     this.st = this.signUpForm.value;
     console.log(this.st);
     return this.http.post<any>(this.url, this.st).subscribe(
@@ -146,5 +150,20 @@ export class SignupComponent {
         }
       }
     );
+  }
+  
+  get(){
+    const auth_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MTI1MGZiY2NiYjg1Nzc5NjhlNTFlNCIsImlhdCI6MTY3OTE3NTEwMX0.wKVDSz3icqVUt_3hDTZkgdtMx3aiGxHovt7Aw6xfMiI'
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${auth_token}`,
+    });
+    return this.http.get<any>('http://localhost:5000/api/v1/vehicle/getVehicleData/noinhoy7h',{headers:headers}).subscribe((res=>{
+      console.log(res);
+      
+    }),(err)=>{
+      console.log(err);
+      
+    })
   }
 }

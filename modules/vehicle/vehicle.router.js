@@ -1,7 +1,8 @@
-const { addVehicle, getVehicleData, editVehicle, /*confirmEmail, sendCode, updateEmail*/ } = require('./controller/vehicle.controller');
+const { addVehicle, getVehicleData, editVehicle, updatePic, /*getimage,/*confirmEmail, sendCode, updateEmail*/ } = require('./controller/vehicle.controller');
 const vehicleValidation = require("./vehicle.validator");
-const {auth} = require("../../middleware/auth");
+const {auth, getvehicle} = require("../../middleware/auth");
 const userAPI = require("../user/userRoles.js");
+const {uploadData, handleMulterErr} = require("../../service/uploadFile");
 
 
 const validationFun = require("../../middleware/validation");

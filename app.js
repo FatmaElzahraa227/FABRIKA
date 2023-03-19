@@ -7,6 +7,7 @@ app.use(express.json());
 let cors = require("cors");
 app.use(cors());
 connect();
+const vehicleModel = require("./DB/model/vehicle");
 
 app.use(function (req, res, next) {
    res.setHeader("Access-Control-Allow-Origin", "*");
@@ -22,7 +23,15 @@ app.use(function (req, res, next) {
    next();
  });
 
+//  var bodyParser = require('body-parser')
+//  app.use(bodyParser.urlencoded({ extended: false }))
+//  app.use(bodyParser.json())
+  
+//  // Set EJS as templating engine
+//  app.set("view engine", "ejs");
+
 app.get('/',(req,res)=>res.send("Hello World!"));
+
 app.use("/api/v1/auth", allRoutes.authRouter);
 app.use("/api/v1/user", allRoutes.userRouter);
 app.use("/api/v1/vehicle", allRoutes.vehicleRouter);

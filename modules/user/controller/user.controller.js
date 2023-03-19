@@ -11,26 +11,6 @@ const getProfile = async (req,res) => {
    res.json({message: "he5a", userData});
 }
 
-// const updateProfilePic = async (req,res) => {
-//    console.log(req.files);
-   
-//    const user = await userModel.findById(req.userid)
-//    if(user){
-//       console.log(req.fileURL);
-//       let imagesURL = []
-//       for (let i = 0; i < req.files; i++) {
-//          let imgURL = `${req.protocol}://${req.headers.host}/${req.fileURL}/${req.files[i].filename}`;
-//          imagesURL.push(imgURL);
-//       }
-//       let updatedUser = await userModel.findByIdAndUpdate(user._id, {profilePic: imagesURL}, {new: true});
-//       console.log("done",updatedUser);
-//       res.json(updatedUser);
-
-//    }else{
-//       res.status(404).json({message: "updatedUser not found."})
-//    }
-// };
-
 // const updateCoverPic = async (req,res) => {
 //    console.log(req.files);
    

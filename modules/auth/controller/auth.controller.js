@@ -17,7 +17,7 @@ const signUp = async (req, res) => {
          .status(400)
          .json({ message: "Phone number already exists" });
      } else {
-       const user = new userModel({ firstName, lastName, email, password,phone });
+       const user = new userModel({ firstName, lastName, email, password, phone });
        const savedUser = await user.save();
       //  var token = jwt.sign({ id: savedUser._id }, process.env.verifyTokenKey);
       //  let URL = `${req.protocol}://${req.headers.host}/api/v1/auth/confirm/${token}`;

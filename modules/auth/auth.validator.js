@@ -23,13 +23,24 @@ const signIn = {
  };
 
  const forgetPassword = {
+   params: Joi.object().required().keys({
+    useremail: Joi.string().email().required(),
+   }),
    body: Joi.object().required()
    .keys({
-     email: Joi.string().email().required(),
      newPassword: Joi.string().required(),
-      //   code: Joi.number().required(),
+     code: Joi.number().required(),
      cnewPassword: Joi.string().valid(Joi.ref("newPassword")).required()
    }),
+ };
+
+ const verifyCode = {
+  params: Joi.object().required().keys({
+    useremail: Joi.string().email().required()
+   }),
+   body: Joi.object().required().keys({
+    userCode: Joi.number().required().min(4).max(4)
+   })
  };
 
  const sendCode = {
@@ -42,5 +53,6 @@ module.exports = {
     signUp,
     signIn,
     sendCode,
+    verifyCode,
     forgetPassword
     };

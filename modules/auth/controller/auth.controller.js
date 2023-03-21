@@ -1,7 +1,7 @@
 var jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const userModel = require("../../../DB/model/user");
-// const sendEmail = require("../../../service/sendEmail");
+const sendEmail = require("../../../service/sendEmail");
 
 const signUp = async (req, res) => {
    try {
@@ -109,28 +109,80 @@ const signIn = async (req, res) => {
 //   }
 // };
 
-const resetPassword = async(req,res) => {
-  const {email, /*code,*/ newPassword, cnewPassword} = req.body;
+
+
+const sendCode = async(req,res) => {
+  const {email} = req.body;
   const user = await userModel.findOne({email});
   if (!user) {
     res.status(404).json({message: "Email not found, please register first."})
   }else{
-   //  if (user.code != code) {
-   //    res.status(409).json({message: "Code doesn't match."})
-   //  } 
-   //  else {
-      const hashedPassword = await bcrypt.hash(newPassword, parseInt(process.env.saltRounds))
-    await userModel.findByIdAndUpdate(user._id, {password: hashedPassword, /*code:""*/})
-    res.json({message: "Password reset."})
-   //  }
+    const code = Math.floor(Math.random()*(9999-1000+1)+100)
+    msg = `<p>Use this 4-digit code to reset your password : ${code} </p>`
+    await userModel.findByIdAndUpdate(user._id, {code})
+    sendEmail(email, msg, "Account Password Reset.", "If you're not trying to reset your password, Ignore this email.")
+    res.json({message: "Code sent."})
   }
 };
 
+
+// const verifyCode = async(req,res, next) => {
+
+//   const {userCode} = req.body;
+//   const {email} = req.params.useremail;
+//   const user = await userModel.findOne({email});
+//   if (user.code != userCode) {
+//     res.status(409).json({message: "Code doesn't match."})
+//   } else if(userCode == user.code){
+//     next();
+//   }
+
+// };
+
+
+const resetPassword = async (req, res) => {
+  try {
+    const { code, newPassword } = req.body;
+    const {email} = req.params.useremail;
+    const user = await userModel.findOne({email: req.params.useremail});
+    console.log(user);
+      if (user.code != code) {
+        res.status(409).json({ message: "Code is incorrect!" });
+      } else {
+        const hashedPassword = await bcrypt.hash(
+          newPassword,
+          parseInt(process.env.saltRound)
+        );
+        const updatedUser = await userModel.findByIdAndUpdate(
+          user.id,
+          { password: hashedPassword, code: " ", $inc: { v: 1 } },
+          { new: true }
+        );
+        res
+          .status(200)
+          .json({ message: "Password reset!", updatedUser });
+      }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+// const resetPassword = async(req,res) => {
+//   const { newPassword } = req.body;
+//   const {email} = req.params.useremail;
+//   const user = await userModel.findOne({email});
+  
+//   const hashedPassword = await bcrypt.hash(newPassword, parseInt(process.env.saltRounds))
+//   await userModel.findByIdAndUpdate(user._id, {password: hashedPassword, code:""})
+//   res.json({message: "Password reset."})
+// };
 
 module.exports = {
   signUp,
   signIn,
 //   confirmEmail,
-//   sendCode,
+  sendCode,
+  // verifyCode,
   resetPassword
 };

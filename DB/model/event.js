@@ -12,7 +12,7 @@ const eventSchema = new mongoose.Schema({
    event_date: {type: Date, required:true},
    event_damages: {type: Date, required:false},
    insurance_agency: {type: mongoose.Schema.Types.ObjectId, ref: 'insurance'},
-   
+   pics:[String],
    
 }, {
    timestamps: true

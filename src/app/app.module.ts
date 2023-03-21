@@ -11,7 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { CarInfoComponent } from './car-info/car-info.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthGuard } from './auth.guard'
+import { AuthGuard } from './auth.guard';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { AuthGuard } from './auth.guard'
     ContactUsComponent,
     HomeComponent,
     FooterComponent,
-    CarInfoComponent
+    CarInfoComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,7 @@ body {
   img {
     width: 40%;
     margin-right: 5%;
-    margin-bottom: 90px;
+    margin-bottom: 5%;
   }
   h1 {
     font-weight: 700;
@@ -77,12 +77,14 @@ body {
     color: white;
     border-radius: 30px;
     padding: 20px;
+    border-color: #242526;
     position: relative;
     bottom: 0;
     box-shadow: 5px 5px 10px #242526;
     margin-left: 70px;
     margin-right: 70px;
-
+    margin-top: 60px;
+    
     &:hover {
       filter: brightness(110%);
       bottom: 2px;
@@ -102,7 +104,7 @@ body {
     width: fit-content;
     height: fit-content;
     // margin-bottom: 60px;
-    margin-top: 60px;
+    
     border-radius: 30px;
     text-decoration: none;
   }

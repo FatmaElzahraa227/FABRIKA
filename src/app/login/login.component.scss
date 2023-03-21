@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: "Manuale", serif;
+  font-family: 'Averia Libre', cursive;
 }
 html,
 body {
@@ -73,6 +73,7 @@ form {
       // padding: 0;
       width: 350px;
       color: white !important;
+      margin-bottom: 15px;
 
       &:focus {
         background-color: transparent;
@@ -88,13 +89,22 @@ form {
 
     label {
       color: white !important;
-      font-size: 16px;
+      font-size: 18px;
     }
     .child {
       width: fit-content;
 
       .ch {
         margin-bottom: 50px;
+      }
+      .forgot{
+        text-decoration: none;
+        color: #d0e1fd;
+        font-size: 18px;
+
+        &:hover{
+          filter: brightness(110%);
+        }
       }
     }
     .btn {
@@ -140,11 +150,10 @@ form {
 .err{
   font-weight: 500;
   width: 300px;
-  font-size: 16px ;
+  font-size: 17px ;
   padding: 0;
   margin: 0;
   padding-top: 5px;
-
 }
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 

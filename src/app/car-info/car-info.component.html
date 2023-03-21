@@ -4,8 +4,8 @@
       <div
         class="container-fluid d-flex flex-column justify-content-center align-items-center"
       >
-        <img src="../../assets/images/oldCar.png" alt="" />
-        <h1>Duesenberg Model J</h1>
+        <img [src]="vehicleData.pic" />
+        <h1>{{ vehicleData.vehicle_make }} {{ vehicleData.vehicle_model }}</h1>
       </div>
     </section>
     <section
@@ -20,17 +20,12 @@
         </div>
         <div class="paragraph my-5">
           <p>
-            Manufacturer :
-            <u
-              ><a
-                target="_blank"
-                href="https://en.wikipedia.org/wiki/Duesenberg"
-                >Duesenberg.</a
-              ></u
-            >
+            Vehicle Model :
+            {{ vehicleData.vehicle_make }} {{ vehicleData.vehicle_model }}
           </p>
+          <p>Model Year : {{ vehicleData.model_year }}</p>
 
-          <p class="no-margin">Also called</p>
+          <!-- <p class="no-margin">Also called</p>
           <ul>
             <li>
               <a>Duesenberg J</a>
@@ -66,17 +61,20 @@
                 >United States</a
               ></u
             >
-          </p>
+          </p> -->
         </div>
       </div>
       <div
         class="container d-flex flex-column justify-content-center align-items-start"
       >
         <div class="title">
-          <h2>Body</h2>
+          <h2>Specifications</h2>
         </div>
         <div class="paragraph my-5">
-          <p>
+          <p>Displacement: {{ vehicleData.displacement }}</p>
+          <p>Color: {{ vehicleData.color }}</p>
+          <p>Extra Features: {{ vehicleData.extra_features }}</p>
+          <!-- <p>
             Class : Full-size
             <u
               ><a
@@ -98,17 +96,34 @@
                 Front mid-engine, rear-wheel-drive
               </a></u
             >
-          </p>
+          </p> -->
         </div>
       </div>
       <div
         class="container d-flex flex-column justify-content-center align-items-start"
       >
         <div class="title">
-          <h2>Powertain</h2>
+          <h2>Status</h2>
         </div>
         <div class="paragraph my-5">
           <p>
+            Was Stolen Before?
+            <span *ngIf="vehicleData.is_stolen"> Yes</span>
+            <span *ngIf="!vehicleData.is_stolen"> No</span>
+          </p>
+          <p>
+            Was Wrecked Before?
+            <span *ngIf="vehicleData.is_salvaged"> Yes</span>
+            <span *ngIf="!vehicleData.is_salvaged"> No</span>
+          </p>
+          <p>
+            Insurance Company:
+            <span *ngIf="vehicleData.is_insured">
+              {{ vehicleData.insured_by }}</span
+            >
+            <span *ngIf="!vehicleData.is_insured"> None</span>
+          </p>
+          <!-- <p>
             Engine : 7 L (420 cu in)
             <a
               target="_blank"
@@ -130,65 +145,64 @@
               href="https://en.wikipedia.org/wiki/Manual_transmission"
               ><u>manual[2]</u></a
             >
-          </p>
+          </p> -->
         </div>
       </div>
     </section>
     <section id="p3" class="d-flex justify-content-center">
-      <div class="container text-center">
-        <div class="row justify-content-center">
-          <a routerLink="/car-info" fragment="p5">
-            <div
-              class="col-6 col-sm-4 child d-flex flex-column justify-content-around align-items-center"
+      <form>
+        <div class="container text-center">
+          <div class="row justify-content-center">
+            <button
+              [disabled]="!vehicleData.has_mileage"
+              class="col-6 col-sm-4 child d-flex flex-column justify-content-around align-items-center btn"
             >
               <img src="../../assets/images/speedometer.png" alt="" />
               <p>Mileage</p>
               <p class="details">50km</p>
-            </div>
-          </a>
-          <a routerLink="/car-info" fragment="p4">
-            <div
-              class="col-6 col-sm-4 child d-flex flex-column justify-content-around align-items-center"
+            </button>
+            <button
+              [disabled]="!vehicleData.has_accidents"
+              class="col-6 col-sm-4 child d-flex flex-column justify-content-around align-items-center btn"
             >
               <img src="../../assets/images/accident.png" alt="" />
               <p>Accidents</p>
               <p class="details text-danger">3 problems</p>
-            </div> </a
-          ><a routerLink="/car-info" fragment="">
-            <div
-              class="col-6 col-sm-4 child d-flex flex-column justify-content-around align-items-center"
+            </button>
+            <button
+              [disabled]="!vehicleData.has_sales_history"
+              class="col-6 col-sm-4 child d-flex flex-column justify-content-around align-items-center btn"
             >
               <img class="w-50" src="../../assets/images/history.png" alt="" />
               <p>Sales History</p>
-              <p class="details">No records found</p>
-            </div>
-          </a>
-        </div>
-        <div class="row my-5 justify-content-center">
-          <a routerLink="/car-info" fragment="">
-            <div
-              class="col-6 col-sm-4 child d-flex flex-column justify-content-around align-items-center"
+              <!-- <p class="details">No records found</p> -->
+            </button>
+          </div>
+          <div class="row my-5 justify-content-center">
+            <button
+              [disabled]="!vehicleData.has_service_history"
+              class="col-6 col-sm-4 child d-flex flex-column justify-content-around align-items-center btn"
             >
               <img src="../../assets/images/repair.png" alt="" />
               <p>Service History</p>
-            </div> </a
-          ><a routerLink="/car-info" fragment="">
-            <div
-              class="col-6 col-sm-4 child d-flex flex-column justify-content-around align-items-center"
+            </button>
+            <button
+              [disabled]="!vehicleData.has_theft_history"
+              class="col-6 col-sm-4 child d-flex flex-column justify-content-around align-items-center btn"
             >
               <img src="../../assets/images/thief.png" alt="" />
               <p>Theft & Legal History</p>
-            </div> </a
-          ><a routerLink="/car-info" fragment="">
-            <div
-              class="col-6 col-sm-4 child d-flex flex-column justify-content-around align-items-center"
+            </button>
+            <button
+              [disabled]="!vehicleData.has_financial_history"
+              class="col-6 col-sm-4 child d-flex flex-column justify-content-around align-items-center btn"
             >
               <img src="../../assets/images/salary.png" alt="" />
               <p>Financial History</p>
-            </div>
-          </a>
+            </button>
+          </div>
         </div>
-      </div>
+      </form>
     </section>
     <section id="p4">
       <div class="container">
@@ -242,15 +256,15 @@
       </div>
     </section>
     <section id="p5">
-        <div class="container">
-            <div class="title d-flex justify-content-center align-items-center">
-                <img src="../../assets/images/speedometer.png" alt="" />
-                <p>Average Mileage by year</p>
-              </div>
-            <div class="image d-flex justify-content-center align-items-center">
-                <img src="../../assets/images/graph.png" alt="">
-            </div>
+      <div class="container">
+        <div class="title d-flex justify-content-center align-items-center">
+          <img src="../../assets/images/speedometer.png" alt="" />
+          <p>Average Mileage by year</p>
         </div>
+        <div class="image d-flex justify-content-center align-items-center">
+          <img src="../../assets/images/graph.png" alt="" />
+        </div>
+      </div>
     </section>
     <app-footer></app-footer>
   </body>

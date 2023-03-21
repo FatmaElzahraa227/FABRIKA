@@ -4,24 +4,25 @@
       <div class="container-fluid c1">
         <div class="frame">
           <h1>Check your car by <span class="rd">VIN</span></h1>
-          <form action="">
+          <form [formGroup]="VINForm" (ngSubmit)="VIN()">
             <fieldset [disabled]="!isLogin">
               <div class="d-flex group align-items-center">
                 <input
                   type="text"
                   class="form-control"
+                  formControlName="VIN"
                   id="VIN"
                   placeholder="Enter VIN Number"
                 />
                 <button
-                  type="button"
+                  type="submit"
                   class="btn btn-dark vn"
-                  routerLink="/car-info"
                 >
                   Check VIN
                 </button>
               </div>
             </fieldset>
+            <p class="text-danger px-3 my-1">{{errorMessage}}</p>
             <p class="text-danger px-3 my-1" *ngIf="!isLogin">
               You have to
               <a routerLink="/login" class="text-decoration-none text-light"

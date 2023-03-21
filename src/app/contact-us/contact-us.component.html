@@ -2,26 +2,37 @@
   <body>
     <div class="circle"></div>
     <div class="floatingBox">
-      <form action="">
+      <p class="text-success text-center">{{successMessage}}</p>
+      <form [formGroup]="messageayaForm" (ngSubmit)="sendMessage()">
         <h3>Send a Message</h3>
         <div class="inputField">
-          <div class="fullname form-floating child">
-            <input
-              type="text"
-              id="floatingFullname"
-              class="form-control"
-              placeholder=" "
-            />
-            <label for="floatingFullname" class="form-label">Full Name </label>
+          <div class="in d-flex flex-column align-items-start justify-content-start">
+            <div class="fullname form-floating child">
+              <input
+                type="name"
+                id="floatingFullname"
+                class="form-control"
+                placeholder=" "
+                formControlName="full_name"
+              />
+              <label for="floatingFullname" class="form-label"
+                >Full Name
+              </label>
+            </div>
+            <p class="err text-danger">{{errorMessageName}}</p>
           </div>
+          <div class="in d-flex flex-column align-items-start justify-content-start">
           <div class="email form-floating child">
             <input
               type="email"
               id="floatingEmail"
+              formControlName="email"
               class="form-control"
               placeholder=" "
             />
             <label for="floatingEmail" class="form-label">E-mail</label>
+          </div>
+          <p class="err text-danger px-3 pt-1">{{errorMessageEmail}}</p>
           </div>
         </div>
         <div class="form-floating">
@@ -29,12 +40,14 @@
             class="form-control msg"
             placeholder="message"
             id="floatingTextarea2"
+            formControlName="message"
             style="height: 120px"
           ></textarea>
           <label for="floatingTextarea2" class="messageLabel"
             >Type your Message.....</label
           >
         </div>
+        <p class="err text-danger px-3 pt-1">{{errorMessageMessage}}</p>
         <button class="btn btn-dark">Send</button>
       </form>
     </div>

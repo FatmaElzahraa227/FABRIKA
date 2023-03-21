@@ -49,7 +49,7 @@ st: any;
           st.err[0][0].message == '"password" is not allowed to be empty'
           ) {
           this.errorMessageEmail = '';
-          this.errorMessagePassword= 'Please type your password';
+          this.errorMessagePassword= 'Please type your password,';
           this.errorMessageRegister = '';
           
         }}

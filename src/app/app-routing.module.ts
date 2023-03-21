@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { CarInfoComponent } from './car-info/car-info.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path:'login' ,component:LoginComponent},
   {path:'contact-us',canActivate:[AuthGuard], component:ContactUsComponent},
   {path:'car-info',canActivate:[AuthGuard], component:CarInfoComponent},
+  {path:'forgot-password', component:ForgotPasswordComponent},
   {path:'**', component:HomeComponent},
 ];
 

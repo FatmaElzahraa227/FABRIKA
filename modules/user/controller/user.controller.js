@@ -122,8 +122,7 @@ const sendMessage = async(req,res) => {
       const {full_name, email, message} = req.body;
       const messageaya = new messageModel({ full_name, email, message });
       const savedMessage = await messageaya.save();
-      res.json({message: "Sender:", full_name, email});
-      res.json({message: "Message:", message});
+      return res.json({message: "Sender:", full_name, email});
     } catch (error) {
       res.status(400).json({ message: error.message });
     }

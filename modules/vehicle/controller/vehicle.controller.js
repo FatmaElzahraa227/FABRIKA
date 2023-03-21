@@ -28,11 +28,14 @@ const getVehicleData = async (req, res) => {
   const vehicleData = await vehicleModel.findOne({
     vehicle_vin: req.params.vehicle_vin,
   });
+  if (!vehicleData) {
+    res.status(400).json({ message: "Vehicle doesn't exist" });
+  } else {
+    var token = jwt.sign({ vehicle:vehicleData}, process.env.verifyTokenKey);
+    console.log(vehicleData.id);
 
-  var token = jwt.sign({ id: vehicleData._id }, process.env.verifyTokenKey);
-  console.log(vehicleData.id);
-
-  res.json({ message: "Here you go", token, vehicleData });
+    res.json({ message: "Here you go", token, vehicleData });
+  }
 };
 
 // const updatePic = async (req, res) => {
@@ -69,7 +72,7 @@ const updatePic = async (req, res) => {
   try {
     // console.log(req.files);
     const vehicle_vin = req.body.VIN;
-    const vehicle = await vehicleModel.findOne({vehicle_vin});
+    const vehicle = await vehicleModel.findOne({ vehicle_vin });
     //  console.log(vehicle);
     if (vehicle) {
       console.log(req.fileURL);
@@ -96,9 +99,9 @@ const updatePic = async (req, res) => {
 };
 
 const getimage = async (req, res) => {
-  try{
+  try {
     const yarabngeebelimages = await vehicleModel.find({});
-    res.json({yarabngeebelimages});
+    res.json({ yarabngeebelimages });
     // vehicleModel.find({}, (err, items) => {
     //   if (err) {
     //     console.log(err);
@@ -107,8 +110,7 @@ const getimage = async (req, res) => {
     //     res.render("imagesPage", { items: items });
     //   }
     // });
-  }
-  catch(error){
+  } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
@@ -122,7 +124,6 @@ const getimage = async (req, res) => {
 //     console.log(err);
 //   }
 // });
-
 
 const editVehicle = async (req, res) => {
   // const { vehicle_vin, vehicle_make, vehicle_model } = req.body;
@@ -149,5 +150,5 @@ module.exports = {
   getVehicleData,
   updatePic,
   editVehicle,
-  getimage
+  getimage,
 };

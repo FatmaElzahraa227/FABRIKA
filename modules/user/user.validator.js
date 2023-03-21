@@ -16,9 +16,9 @@ const updateEmail = {
    body: Joi.object().required()
    .keys({
 
-     full_name: Joi.string().required(),
+     full_name: Joi.string().required().min(6),
      email: Joi.string().email().required(),
-     message: Joi.string().required()
+     message: Joi.string().required().min(10),
    
    }),
   };

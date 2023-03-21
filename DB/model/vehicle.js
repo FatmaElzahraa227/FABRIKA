@@ -10,7 +10,8 @@ const vehicleSchema = new mongoose.Schema({
    vehicle_make: {type:String, required:true}, 
    vehicle_model: {type:String, required:true},
    model_year: {type:Number, required:false},
-   displacement: {type:Number, default: false},
+   displacement: {type:String},
+   color:{type:String},
    extra_features: {type:String, required:false},
    owner_id: [{ type: mongoose.Schema.Types.ObjectId, ref: "user",  required:true }],
    insured_by: {type: mongoose.Schema.Types.ObjectId, ref: 'insurance'},
@@ -18,7 +19,13 @@ const vehicleSchema = new mongoose.Schema({
    is_salvaged: {type:Boolean, default: false},
    is_insured: {type:Boolean, default: false},
    events: {type: mongoose.Schema.Types.ObjectId, ref: 'event'},
-   pics:[String],
+   pic:{type:String},
+   has_mileage: {type:Boolean},
+   has_accidents: {type:Boolean},
+   has_sales_history: {type:Boolean},
+   has_service_history: {type:Boolean},
+   has_theft_history: {type:Boolean},
+   has_financial_history: {type:Boolean},
 
    
 }, {

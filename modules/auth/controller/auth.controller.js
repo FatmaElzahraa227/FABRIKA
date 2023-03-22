@@ -143,7 +143,7 @@ const sendCode = async(req,res) => {
 const resetPassword = async (req, res) => {
   try {
     const { code, newPassword } = req.body;
-    const {email} = req.params.useremail;
+    
     const user = await userModel.findOne({email: req.params.useremail});
     console.log(user);
       if (user.code != code) {

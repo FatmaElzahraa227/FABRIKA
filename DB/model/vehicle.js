@@ -1,7 +1,5 @@
 
 const mongoose = require('mongoose');
-const  Joi  = require('joi');
-
 
 
 const vehicleSchema = new mongoose.Schema({

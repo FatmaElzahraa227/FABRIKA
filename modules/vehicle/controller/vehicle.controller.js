@@ -37,11 +37,11 @@ const getVehicleData = async (req, res) => {
   if (!vehicleData) {
     res.status(400).json({ message: "Vehicle doesn't exist" });
   } else {
-    var token = jwt.sign({ vehicle:vehicleData}, process.env.verifyTokenKey);
+    
     console.log(vehicleData.id);
     const getevents = await eventModel.find({affected_vehicle: vehicleData.id});
     console.log(getevents);
-    
+    var token = jwt.sign({ vehicle:vehicleData, event: getevents}, process.env.verifyTokenKey);
     res.json({ message: "Here you go", token, vehicleData, getevents });
   }
 };

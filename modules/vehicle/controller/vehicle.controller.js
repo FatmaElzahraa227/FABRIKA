@@ -1,5 +1,6 @@
 const vehicleModel = require("../../../DB/model/vehicle");
 const userModel = require("../../../DB/model/user");
+const eventModel = require("../../../DB/model/event");
 var jwt = require("jsonwebtoken");
 
 const addVehicle = async (req, res) => {
@@ -38,8 +39,10 @@ const getVehicleData = async (req, res) => {
   } else {
     var token = jwt.sign({ vehicle:vehicleData}, process.env.verifyTokenKey);
     console.log(vehicleData.id);
-
-    res.json({ message: "Here you go", token, vehicleData });
+    const getevents = await eventModel.find({affected_vehicle: vehicleData.id});
+    console.log(getevents);
+    
+    res.json({ message: "Here you go", token, vehicleData, getevents });
   }
 };
 

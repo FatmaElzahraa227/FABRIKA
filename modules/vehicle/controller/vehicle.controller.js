@@ -19,7 +19,12 @@ const addVehicle = async (req, res) => {
       owner_id,
     });
     const savedVehicle = await vehicle.save();
-    res.json({ message: "Added.", savedVehicle });
+    const updatedUser = await userModel.findByIdAndUpdate(
+      user._id,
+      { owned_vehicles: savedVehicle._id},
+      { new: true }
+    );
+    res.json({ message: "Added.", savedVehicle, updatedUser });
     console.log(savedVehicle);
   }
 };

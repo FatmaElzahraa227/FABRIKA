@@ -9,10 +9,12 @@ const eventSchema = new mongoose.Schema({
    event_type: {type: String, required:true},
    event_title: {type: String, required:true},
    event_desc: {type: String, required:false},
-   event_date: {type: Date, required:true},
-   event_damages: {type: Date, required:false},
+   event_date: {type: String, required:true},
+   event_media: [String],
+   event_damages: [String],
+   affected_vehicle: {type: mongoose.Schema.Types.ObjectId, ref: 'vehicle'},
    insurance_agency: {type: mongoose.Schema.Types.ObjectId, ref: 'insurance'},
-   pics:[String],
+   
    
 }, {
    timestamps: true

@@ -18,7 +18,7 @@ const vehicleSchema = new mongoose.Schema({
    is_stolen: {type:Boolean, default: false},
    is_salvaged: {type:Boolean, default: false},
    is_insured: {type:Boolean, default: false},
-   events: {type: mongoose.Schema.Types.ObjectId, ref: 'event'},
+   events: [{type: mongoose.Schema.Types.ObjectId, ref: 'event'}],
    pic:{type:String},
    has_mileage: {type:Boolean},
    has_accidents: {type:Boolean},

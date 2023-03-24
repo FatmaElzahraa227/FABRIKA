@@ -34,6 +34,9 @@ const getVehicleData = async (req, res) => {
   const vehicleData = await vehicleModel.findOne({
     vehicle_vin: req.params.vehicle_vin,
   });
+  const user = await userModel.findById(req.userid);
+  var arr = user.search_history;
+  
   if (!vehicleData) {
     res.status(400).json({ message: "Vehicle doesn't exist" });
   } else {
@@ -41,6 +44,12 @@ const getVehicleData = async (req, res) => {
     console.log(vehicleData.id);
     const getevents = await eventModel.find({affected_vehicle: vehicleData.id});
     console.log(getevents);
+    arr.push(vehicleData);
+    const updatedUser = await userModel.findByIdAndUpdate(
+      user._id,
+      { search_history: arr},
+      { new: true }
+    );
     var token = jwt.sign({ vehicle:vehicleData, event: getevents}, process.env.verifyTokenKey);
     res.json({ message: "Here you go", token, vehicleData, getevents });
   }

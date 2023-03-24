@@ -14,7 +14,8 @@ const userSchema = new mongoose.Schema({
    password: {type: String, required:true},
    owned_vehicles: [{type: mongoose.Schema.Types.ObjectId, ref: 'vehicles'}],
    role: {type: String, default: 'user'},
-   code: {type: Number,}
+   code: {type: Number,},
+   search_history: [{type: mongoose.Schema.Types.ObjectId, ref: 'vehicles'}]
    
    
 }, {

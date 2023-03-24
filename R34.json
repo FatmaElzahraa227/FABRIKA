@@ -1,0 +1,23 @@
+{
+   "vehicle_vin":"R34",
+   "vehicle_make": "Nissan", 
+   "vehicle_model":"Skyline GT-R",
+   "model_year": "1999",
+   "displacement": "3000cc",
+   "color":"Violet",
+   "mileage_years_x": ["2018","2019","2020","2021","2022","2023"],
+   "mileage_miles_y": ["70000","85000","95000","100000","111000","120000"],
+   "extra_features": "AWD, RB26, GODZILLA BABYYYY.",
+   "owner_id": {"$oid": "641cb79c9052bed94d7680e3"},
+   "is_stolen": "true",
+   "is_salvaged": "true",
+   "is_insured": "False",
+   "events": [{"$oid": "641ddcc6b919c93972726a13"}, {"$oid": "641dda6ab919c93972726a0d"}],
+   "pic":"./vehiclepics/r34.jpg",
+   "has_mileage": "True",
+   "has_accidents": "true",
+   "has_sales_history": "False",
+   "has_service_history": "False",
+   "has_theft_history": "True",
+   "has_financial_history": "False"
+}

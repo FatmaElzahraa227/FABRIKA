@@ -1,0 +1,23 @@
+{
+   "vehicle_vin":"VK00",
+   "vehicle_make": "Opel", 
+   "vehicle_model":"Vectra",
+   "model_year": "2008",
+   "displacement": "1600cc",
+   "color":"Black",
+   "mileage_years_x": "[2008,2009,2010]",
+   "mileage_miles_y": "[10000,15000,20000]",
+   "extra_features": "Sunroof, heated seats, Cruise control.",
+   "owner_id": {"$oid": "641cb79c9052bed94d7680e3"},
+   "is_stolen": "False",
+   "is_salvaged": "False",
+   "is_insured": "False",
+   "events": [{"$oid": "641dc91fb919c939727269f4"}],
+   "pic":"../vectrablack3.jpg",
+   "has_mileage": "True",
+   "has_accidents": "False",
+   "has_sales_history": "False",
+   "has_service_history": "True",
+   "has_theft_history": "False",
+   "has_financial_history": "False"
+}

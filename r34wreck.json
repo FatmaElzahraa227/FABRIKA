@@ -1,0 +1,9 @@
+{
+   "event_type": "Accident",
+   "event_title": "Vehicle wrecked",
+   "event_desc": "Car was wrecked on highway 26 this afternoon, it suffered major frontend damage. Vehicle Status: Total loss.",
+   "event_date":  "Fri March 24 2023 01:00:00",
+   "event_damages": ["Front bumper", "Headlights", "Structural Damage"],
+   "event_media": "./uploads/eventpics/r34crashed.jpg"
+   
+}

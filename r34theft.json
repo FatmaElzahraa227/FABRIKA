@@ -1,0 +1,8 @@
+{
+   "event_type": "Theft",
+   "event_title": "Vehicle Stolen",
+   "event_desc": "Car was stolen from owner's driveway last Thursday.",
+   "event_date":  "Thu March 23 2023 22:00:00",
+   "event_media": "./uploads/eventpics/r34stolen.jpg"
+   
+}

@@ -15,7 +15,7 @@ const getVehicleData = {
   params: Joi.object()
     .required()
     .keys({
-      vehicle_vin: Joi.string().required().min(1).max(20)
+      vehicle_vin: Joi.string().required().min(1)
     }),
 };
 

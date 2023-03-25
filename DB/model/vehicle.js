@@ -7,7 +7,7 @@ const vehicleSchema = new mongoose.Schema({
    vehicle_vin: {type: String, required:true, unique:true},
    vehicle_make: {type:String, required:true}, 
    vehicle_model: {type:String, required:true},
-   model_year: {type:Number, required:false},
+   model_year: {type:String, required:false},
    displacement: {type:String},
    color:{type:String},
    mileage_years_x: [Number],

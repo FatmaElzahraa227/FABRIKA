@@ -120,6 +120,8 @@ export class ForgotPasswordComponent {
        }
        else{
         this.newPasswordForm.reset();
+        this.errorMessageNewPassword='';
+        this.errorMessageCNewPassword='';
         this.successMessage="Password reset successfully, "
        }
       },(err)=>{

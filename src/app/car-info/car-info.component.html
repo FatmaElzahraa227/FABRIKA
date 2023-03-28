@@ -154,14 +154,16 @@
         <div class="container text-center">
           <div class="row justify-content-center">
             <button
+            (click)="scroll(p5)"
               [disabled]="!vehicleData.has_mileage"
               class="col-6 col-sm-4 child d-flex flex-column justify-content-around align-items-center btn"
             >
-              <img src="../../assets/images/speedometer.png" alt="" />
+              <img src="assets/images/speedometer.png" alt="" />
               <p>Mileage</p>
               <p class="details">50km</p>
             </button>
             <button
+            (click)="scroll(p4)"
               [disabled]="!vehicleData.has_accidents"
               class="col-6 col-sm-4 child d-flex flex-column justify-content-around align-items-center btn"
             >
@@ -204,7 +206,7 @@
         </div>
       </form>
     </section>
-    <section id="p4">
+    <section id="p4" #p4>
       <div class="container">
         <div class="title d-flex justify-content-center align-items-center">
           <img src="../../assets/images/accident.png" alt="" />
@@ -252,17 +254,21 @@
             <p class="date">10-2020</p>
             <p class="info info3">Side Glass</p>
           </div>
-        </div>
+        </div> 
       </div>
     </section>
-    <section id="p5">
+    <section id="p5" #p5>
       <div class="container">
         <div class="title d-flex justify-content-center align-items-center">
           <img src="../../assets/images/speedometer.png" alt="" />
           <p>Average Mileage by year</p>
         </div>
-        <div class="image d-flex justify-content-center align-items-center">
-          <img src="../../assets/images/graph.png" alt="" />
+        <div class="chart d-flex justify-content-center align-items-center">
+          <!-- <img src="../../assets/images/graph.png" alt="" /> -->
+          <canvas
+            id="myChart"
+            style="width: 100%; background-color: rgba(29, 29, 29, 0.906)"
+          ></canvas>
         </div>
       </div>
     </section>

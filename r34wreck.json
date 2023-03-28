@@ -1,9 +1,10 @@
 {
    "event_type": "Accident",
-   "event_title": "Vehicle wrecked",
-   "event_desc": "Car was wrecked on highway 26 this afternoon, it suffered major frontend damage. Vehicle Status: Total loss.",
+   "event_title": "Vehicle damaged",
+   "event_desc": "A bird flew through the front window. Vehicle Status: Repairable.",
    "event_date":  "Fri March 24 2023 01:00:00",
-   "event_damages": ["Front bumper", "Headlights", "Structural Damage"],
-   "event_media": "./uploads/eventpics/r34crashed.jpg"
-   
+   "event_damages": ["Front glass"],
+   "event_media": "./uploads/eventpics/r34crashed.jpg",
+   "cover_icon":"/bla/bla/blala",
+   "affected_vehicle": {"$oid":"641ddd4bb919c93972726a17"}
 }

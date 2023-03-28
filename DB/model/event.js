@@ -14,7 +14,7 @@ const eventSchema = new mongoose.Schema({
    event_damages: [String],
    affected_vehicle: {type: mongoose.Schema.Types.ObjectId, ref: 'vehicle'},
    insurance_agency: {type: mongoose.Schema.Types.ObjectId, ref: 'insurance'},
-   
+   cover_icon:{type:String}, 
    
 }, {
    timestamps: true

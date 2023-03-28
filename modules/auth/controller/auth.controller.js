@@ -35,6 +35,32 @@ const signUp = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+const signUpMobile = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const foundedUser = await userModel.findOne({ email });
+    if (foundedUser) {
+      res.status(400).json({ message: "Email already exists" });
+    } else {
+      const user = new userModel({
+        email,
+        password,
+      });
+      const savedUser = await user.save();
+      //  var token = jwt.sign({ id: savedUser._id }, process.env.verifyTokenKey);
+      //  let URL = `${req.protocol}://${req.headers.host}/api/v1/auth/confirm/${token}`;
+      //  await sendEmail(
+      //    email,
+      //    `<a href=${URL}>Please click here to confirm your email</a>`
+      //  );
+      res
+        //.status(StatusCodes.CREATED)
+        .json({ message: "Added Done", savedUser });
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
 
 const signIn = async (req, res) => {
   const { email, password } = req.body;
@@ -213,4 +239,5 @@ module.exports = {
   // verifyCode,
   resetPassword,
   codeVerification,
+  signUpMobile
 };

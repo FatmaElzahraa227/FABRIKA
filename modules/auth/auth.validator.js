@@ -12,6 +12,15 @@ const signUp = {
       cPassword: Joi.string().valid(Joi.ref("password")).required(),
     }),
 };
+const signUpMobile = {
+  body: Joi.object()
+    .required()
+    .keys({
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+      cPassword: Joi.string().valid(Joi.ref("password")).required(),
+    }),
+};
 
 const signIn = {
   body: Joi.object().required().keys({
@@ -61,4 +70,5 @@ module.exports = {
   verifyCode,
   resetPassword,
   codeVerification,
+  signUpMobile
 };

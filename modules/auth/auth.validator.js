@@ -65,10 +65,10 @@ const forgotPassword = {
 
 module.exports = {
   signUp,
-  signIn,
+  signIn, 
   forgotPassword,
   verifyCode,
   resetPassword,
   codeVerification,
-  signUpMobile
-};
+  signUpMobile 
+};  

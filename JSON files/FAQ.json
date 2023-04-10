@@ -1,0 +1,18 @@
+[
+{
+   "question":"What is a VIN?",
+   "answer": "VIN is an abbreviation for 'Vehicle Identification Number' - a unique set of characters that car manufacturers assign individually to every single vehicle. You can find the VIN on various parts of the vehicle or in registration documents."
+},
+{
+   "question":"What information may appear in my report?",
+   "answer": "Various data about the vehicle you're inquiring about may appear in its report, such as -but not limited to- : Technical specifications, Previous sales history, Previous service history, Previous accident history, Previous theft and legal history, Mileage, Photo of this make and model, Miscellaneous data from insurance companies."
+},
+{
+   "question":"How do I get a FABRIKA report?",
+   "answer":"You either enter a VIN in the home page or you scan it using your in-app camera scanner."
+},
+{
+   "question":"What format are your reports available in?",
+   "answer":"You can get a vehicle report presented in the app or download it in PDF format."
+}
+]

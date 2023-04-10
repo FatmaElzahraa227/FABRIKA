@@ -2,8 +2,6 @@
 const mongoose = require('mongoose');
 
 
-
-
 const messageSchema = new mongoose.Schema({
    
    full_name: {type:String, required:true},

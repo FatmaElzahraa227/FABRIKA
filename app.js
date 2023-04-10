@@ -35,6 +35,7 @@ app.get('/',(req,res)=>res.send("Hello World!"));
 app.use("/api/v1/auth", allRoutes.authRouter);
 app.use("/api/v1/user", allRoutes.userRouter);
 app.use("/api/v1/vehicle", allRoutes.vehicleRouter);
+app.use("/api/v1/admin", allRoutes.adminRouter);
 const port = process.env.PORT;
 
 app.listen(port,()=>console.log("server is running on port " + port));

@@ -1,51 +1,20 @@
 const userModel = require("../../../DB/model/user");
 const messageModel = require("../../../DB/model/message");
-// const QRCode = require('qrcode');
-// const sendEmail = require("../../../service/sendEmail");
 var jwt = require("jsonwebtoken");
 const vehicleModel = require("../../../DB/model/vehicle");
 const eventModel = require("../../../DB/model/event");
+// const QRCode = require('qrcode');
+// const sendEmail = require("../../../service/sendEmail");
 
 const getProfile = async (req, res) => {
   const userData = await userModel.findById(req.userid);
   const searchHistory = userData.search_history; // The array of ids you're searching for.
   const vehicle = await vehicleModel.find({_id:{ $in: searchHistory }});
 //   console.log(getHistory);
-  res.json({ message: "he5a", userData,vehicle });
+  res.json({ message: "he5a", userData, vehicle });
 };
 
-// const updateCoverPic = async (req,res) => {
-//    console.log(req.files);
 
-//    const user = await userModel.findById(req.userid)
-//    if(user){
-//       console.log(req.fileURL);
-//       let imagesURL = []
-//       for (let i = 0; i < req.files; i++) {
-//          let imgURL = `${req.protocol}://${req.headers.host}/${req.fileURL}/${req.files[i].filename}`;
-//          imagesURL.push(imgURL);
-//       }
-//       //let imgURL = req.fileURL + '/' + req.file.filename;
-//       // let imgURL = `${req.protocol}://${req.headers.host}/${req.fileURL}/${req.file.filename}`;
-//       let updatedUser = await userModel.findByIdAndUpdate(user._id, {coverPic: imagesURL}, {new: true});
-//       console.log("done",updatedUser);
-//       res.json(updatedUser);
-
-//    }else{
-//       res.status(404).json({message: "updatedUser not found."})
-//    }
-// };
-
-// const QR = async(req,res) => {
-//    const user = await userModel.findOne({_id: req.userid}).select("email firstName lastName Confirmed");
-//    QRCode.toDataURL(`${req.protocol}://${req.headers.host}/user/${user._id}`,function (err, url){
-//       if (err) {
-//          res.json({message: "error", err})
-//       }else{
-//          res.json({message: "Okay", url})
-//       }
-//    })
-// };
 
 const updateEmail = async (req, res) => {
   const user = await userModel.findById(req.userid);
@@ -139,25 +108,49 @@ const sendMessage = async (req, res) => {
   }
 };
 
-// const sendOrder = async(req,res) => {
 
-//    const {customer_name, email, phone_no, order_body} = req.body;
-//    const order = new messageModel({ customer_name, email, phone_no, order_body });
-//    const savedMessage = await order.save();
-//    msg = `<p> ${order_body} </p>`
-
-//    sendEmail('kikohi18@gmail.com', msg)
-//    res.json({message: "Order sent."})
-
-// };
 
 module.exports = {
   getProfile,
-  // updateProfilePic,
-  // updateCoverPic,
-  // QR,
   updateEmail,
   deleteUser,
   softDelete,
   sendMessage,
+  // updateProfilePic,
+  // updateCoverPic,
+  // QR,
 };
+
+
+// const updateCoverPic = async (req,res) => {
+//    console.log(req.files);
+
+//    const user = await userModel.findById(req.userid)
+//    if(user){
+//       console.log(req.fileURL);
+//       let imagesURL = []
+//       for (let i = 0; i < req.files; i++) {
+//          let imgURL = `${req.protocol}://${req.headers.host}/${req.fileURL}/${req.files[i].filename}`;
+//          imagesURL.push(imgURL);
+//       }
+//       //let imgURL = req.fileURL + '/' + req.file.filename;
+//       // let imgURL = `${req.protocol}://${req.headers.host}/${req.fileURL}/${req.file.filename}`;
+//       let updatedUser = await userModel.findByIdAndUpdate(user._id, {coverPic: imagesURL}, {new: true});
+//       console.log("done",updatedUser);
+//       res.json(updatedUser);
+
+//    }else{
+//       res.status(404).json({message: "updatedUser not found."})
+//    }
+// };
+
+// const QR = async(req,res) => {
+//    const user = await userModel.findOne({_id: req.userid}).select("email firstName lastName Confirmed");
+//    QRCode.toDataURL(`${req.protocol}://${req.headers.host}/user/${user._id}`,function (err, url){
+//       if (err) {
+//          res.json({message: "error", err})
+//       }else{
+//          res.json({message: "Okay", url})
+//       }
+//    })
+// };

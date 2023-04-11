@@ -1,6 +1,9 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import jwtDecode from 'jwt-decode';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
 import Chart from 'chart.js/auto';
+
 @Component({
   selector: 'app-car-info',
   templateUrl: './car-info.component.html',
@@ -9,25 +12,25 @@ import Chart from 'chart.js/auto';
 export class CarInfoComponent implements OnInit {
   vehicleData2: any = {};
   vehicleData: any = {};
-  event: any = {};
+  events: any = {};
   xValues = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
   yValues = [7, 8, 8, 9, 9, 9, 10, 11, 14, 14, 15];
-  constructor(private elementRef: ElementRef) {
-    if (localStorage.getItem('vehicleToken') != null) {
-      let encodedVehicleData = JSON.stringify(
-        localStorage.getItem('vehicleToken')
-      );
-      this.vehicleData2 = jwtDecode(encodedVehicleData);
-    }
+  constructor(private elementRef: ElementRef,private router: Router,private http: HttpClient) {
+    // if (localStorage.getItem('vehicleToken') != null) {
+    //   let encodedVehicleData = JSON.stringify(
+    //     localStorage.getItem('vehicleToken')
+    //   );
+    //   this.vehicleData2 = jwtDecode(encodedVehicleData);
+    // }
     let encodedVehicleData = JSON.stringify(
       localStorage.getItem('vehicleToken')
     );
     this.vehicleData2 = jwtDecode(encodedVehicleData);
     this.vehicleData = this.vehicleData2.vehicle;
-    this.event = this.vehicleData2.event;
-    console.log(localStorage.getItem('vehicleToken'));
+    this.events = this.vehicleData2.event;
+    // console.log(localStorage.getItem('vehicleToken'));
     
-    console.log(this.vehicleData);
+    // console.log(this.events);
   }
   ngOnInit() {
     let htmlRef = this.elementRef.nativeElement.querySelector(`#myChart`);
@@ -58,5 +61,25 @@ export class CarInfoComponent implements OnInit {
   }
   scroll(el: HTMLElement) {
     el.scrollIntoView();
+}
+goToEventDetails(event: any) {
+  const token=localStorage.getItem('userToken');
+ const url  = 'http://localhost:5000/api/v1/vehicle/getEvent/';
+ const headers=new HttpHeaders({
+  'Content-Type': 'application/json',
+  Authorization: `Bearer ${token}`,
+})
+
+ return this.http.get<any>(url+event,{headers:headers}).subscribe(
+  (data)=>{
+    // console.log(data);
+    localStorage.setItem('event', data);
+    this.router.navigate(['/event-details'], { fragment: 'top' });
+  },(err)=>{
+    console.log(err);
+    
+  }
+ )
+  
 }
 }

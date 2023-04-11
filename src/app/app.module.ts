@@ -14,6 +14,10 @@ import { NgApexchartsModule } from "ng-apexcharts";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './auth.guard';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { EventDetailsComponent } from './event-details/event-details.component';
+import { ProfileComponent } from './profile/profile.component';
+import { HelpPageComponent } from './help-page/help-page.component';
+import { PreloaderComponent } from './preloader/preloader.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +28,11 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     HomeComponent,
     FooterComponent,
     CarInfoComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    EventDetailsComponent,
+    ProfileComponent,
+    HelpPageComponent,
+    PreloaderComponent
   ],
   imports: [
     BrowserModule,

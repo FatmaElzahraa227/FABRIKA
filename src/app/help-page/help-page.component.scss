@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+  }
+  html,
+  body {
+    width: 100%;
+    background-color: black;
+    position: relative;
+    padding-top: 75px;
+  }
+ .parent{
+    .head{
+        width: 80%;
+        p{
+            color: white;
+            font-size: 40px;
+            font-weight: 700;
+        }
+    }
+    .head2{
+        width: 45%;
+        p{
+            color: white;
+            font-size: 17px;
+            font-weight: 400;
+        }
+        span{
+            color: #ff0000;
+        }
+    }
+ }

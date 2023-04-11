@@ -25,29 +25,48 @@
       color: #ffffff;
       font-weight: 600;
       font-size: 22px;
+      &:hover {
+        color: #878684;
+      }
     }
-    .nav-link:hover {
+    li.active a.nav-link {
       color: #878684;
     }
+    
   }
 
-  
   .child2 {
     .btn-primary {
       background-color: #242526;
       border-color: #242526;
       border-radius: 20px;
+      box-shadow:#242526 2px 2px 5px ;
       color: rgba(255, 255, 255, 0.99);
       font-size: 18px;
       font-weight: 500;
       padding-top: 3px;
       padding-bottom: 3px;
       margin-left: 6px;
+
+      &:hover {
+        background-color: #ff0000;
+        border-color: #ff0000;
+        box-shadow: #ff0000 2px 2px 5px;
+      }
     }
-    .btn-primary:hover {
-      background-color: #ff0000;
-      border-color: #ff0000;
-      box-shadow: #ff0000 2px 2px 5px;
+    .image {
+      width: 60px;
+      margin: 0px 0px 0px 25px;
+      cursor: pointer;
+
+      &:hover {
+        filter: brightness(102%);
+      }
+
+      img {
+        border-radius: 200px;
+        filter: drop-shadow(2px 2px 5px rgba(148, 148, 148, 0.85));
+      }
     }
   }
 }

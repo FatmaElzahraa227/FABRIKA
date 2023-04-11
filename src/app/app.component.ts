@@ -1,4 +1,5 @@
 import { Component, Injectable } from '@angular/core';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,5 +10,16 @@ import { Component, Injectable } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
- 
+  showPreloader: boolean = true;
+
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        this.showPreloader = true;
+      }
+      else if (event instanceof NavigationEnd) {
+        this.showPreloader = false;
+      }
+    });
+  }
 }

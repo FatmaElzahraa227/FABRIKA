@@ -3,7 +3,9 @@
   [ngClass]="{ scroll: isScrolled }"
 >
   <div class="container-fluid">
-    <div class="mainParent d-flex justify-content-between align-items-center w-100 px-5">
+    <div
+      class="mainParent d-flex justify-content-between align-items-center w-100 px-5"
+    >
       <div class="child child0 logo d-flex align-items-center">
         <a routerLink="home">
           <img
@@ -17,20 +19,29 @@
         <span class="navbar-toggler-icon"></span>
       </button> -->
       <div class="child child1 w-50 align-self-center" id="navbarNav">
-        <ul class="navbar-nav d-flex justify-content-around align-items-center w-100">
-          <li class="nav-item">
+        <ul
+          class="navbar-nav d-flex justify-content-around align-items-center w-100"
+        >
+          <li routerLinkActive="active" class="nav-item">
             <a *ngIf="isLogin" class="nav-link" routerLink="home">Home</a>
           </li>
-          <li class="nav-item">
-            <a *ngIf="isLogin" class="nav-link" routerLink="contact-us">Contact Us</a>
+          <li routerLinkActive="active" class="nav-item">
+            <a *ngIf="isLogin" class="nav-link" routerLink="contact-us"
+              >Contact Us</a
+            >
           </li>
-          <li class="nav-item">
-            <a *ngIf="isLogin" class="nav-link" href="#">Help</a>
+          <li routerLinkActive="active" class="nav-item">
+            <a *ngIf="isLogin" class="nav-link" routerLink="/help">Help</a>
           </li>
         </ul>
       </div>
-      <div class="child child2 d-flex align-items-center justify-content-around" id="navbarNav">
-        <ul class="navbar-nav">
+      <div
+        class="child child2 d-flex align-items-center justify-content-around"
+        id="navbarNav"
+      >
+        <ul
+          class="navbar-nav d-flex align-items-center justify-content-between"
+        >
           <li *ngIf="!isLogin" class="nav-item">
             <button
               type="button"
@@ -49,15 +60,27 @@
               Signup
             </button>
           </li>
-          <li (click)="logout()" *ngIf="isLogin" class="nav-item">
-            <button
-              type="button"
-              class="btn btn-primary lgnbtn text-center px-4"
-              routerLink=""
-            >
-              Logout
-            </button>
-          </li>
+          <ul
+          [ngClass]="{'d-none': isProfilePage}" 
+            class="navbar-nav d-flex align-items-center justify-content-between" >
+            <li *ngIf="isLogin" (click)="logout()" class="nav-item">
+              <button
+                type="button"
+                class="btn btn-primary lgoutbtn text-center px-4"
+                routerLink=""
+              >
+                Logout
+              </button>
+            </li>
+            <li *ngIf="isLogin" class="nav-item image" routerLinkActive="active">
+              <a routerLink="/profile" class="image">
+                <img src="assets/images/femaleUser.png" width="100%" alt="" />
+              </a>
+            </li>
+          </ul>
+          <div *ngIf="isProfilePage" class="profile-div" style="width: 194px;">
+            <!-- Content of the profile div -->
+          </div>
         </ul>
       </div>
       <!-- <div class="collapse navbar-collapse" id="navbarNav">

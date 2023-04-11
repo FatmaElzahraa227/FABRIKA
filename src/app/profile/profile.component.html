@@ -1,0 +1,96 @@
+<html>
+  <body>
+    <div class="circle"></div>
+    <div class="container-fluid w-100 h-100">
+      <div
+        class="parent w-100 h-100 d-flex justify-content-between align-items-center"
+      >
+        <div
+          class="left my-0 h-50 d-flex flex-column justify-content-around align-items-start"
+        >
+          <button
+            class="btn button"
+            (click)="setDashboard()"
+            [class.button1]="dashboard"
+            [class.button2]="!dashboard"
+          >
+            My Dashboard
+          </button>
+          <button
+            class="btn button"
+            (click)="setReport()"
+            [class.button1]="report"
+            [class.button2]="!report"
+          >
+            Reports
+          </button>
+        </div>
+        <div
+          class="right w-100 d-flex justify-content-center align-items-center"
+        >
+          <div
+            class="floatingBox d-flex flex-column justify-content-start align-items-center"
+          >
+            <img class="user" src="assets/images/femaleUser.png" alt="" />
+            <div class="child w-100">
+              <div
+                class="name w-100 text-center d-flex justify-content-center align-items-center"
+                *ngIf="data?.userData.firstName != null"
+              >
+                <p class="w-100">{{ data?.userData.firstName }} {{ data?.userData.lastName }}</p>
+                <!-- <p class="w-100"></p> -->
+              </div>
+            </div>
+            <div
+              class="dashboard d-flex flex-column align-items-center justify-content-around h-100"
+              *ngIf="dashboard"
+            >
+              <p class="blueText">{{ data?.userData.email }}</p>
+              <div
+                class="down d-flex flex-column justify-content-center align-items-center"
+              >
+                <button class="btn dashButton">Change Password?</button>
+                <button (click)="logout()" class="btn dashButton lgout">
+                  <i class="fa-solid fa-arrow-right-from-bracket px-2"></i
+                  >Logout
+                </button>
+              </div>
+            </div>
+            <div
+              class="report w-100 h-100 d-flex flex-column justify-content-start align-items-center"
+              *ngIf="report"
+            >
+            <div class="list">Report List</div>
+            <div *ngIf="data?.vehicle.length>0">
+
+                <div class="scroll w-100">
+                  <button 
+                    class="s w-100 d-flex justify-content-between align-items-center"
+                    *ngFor="let vehicle of data?.vehicle"
+                    (click)="carInfo(vehicle.vehicle_vin)"
+                  >
+                    <div class="right text-start">
+                      <div class="d d-flex justify-content-start">
+                        <p>{{ vehicle.vehicle_make }}</p>
+                        <div class="px-1"></div>
+                        <p>{{ vehicle.vehicle_model }}</p>
+                      </div>
+                      <p class="vin">{{ vehicle.vehicle_vin }}</p>
+                    </div>
+                    <div class="left">
+                      <img [src]="vehicle.pic" width="100%" alt="">
+                    </div>
+                  </button>
+                </div>
+            </div>
+            <div *ngIf="data?.vehicle.length==0" class="d-flex justify-content-center flex-column align-items-center text-center w-100 h-75 search">
+                <p>You didn't Search for any car yet,</p>
+                <a routerLink="/home">Search Now</a>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

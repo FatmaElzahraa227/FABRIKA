@@ -1,10 +1,10 @@
-<html>
+<html #try>
   <body>
     <section id="p1">
       <div class="container-fluid c1">
         <div class="frame">
           <h1>Check your car by <span class="rd">VIN</span></h1>
-          <form [formGroup]="VINForm" (ngSubmit)="VIN()">
+          <form [formGroup]="VINForm" (ngSubmit)="VIN()" >
             <fieldset [disabled]="!isLogin">
               <div class="d-flex group align-items-center">
                 <input
@@ -112,7 +112,7 @@
           already own.
         </h2>
         <div class="b d-flex justify-content-end">
-          <button class="btn btn-dark">Try FABRIKA Today</button>
+          <button class="btn btn-dark" (click)="scroll(try)">Try FABRIKA Today</button>
         </div>
       </div>
     </section>

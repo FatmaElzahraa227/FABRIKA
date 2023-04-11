@@ -12,4 +12,4 @@ router.get("/getFAQ",  getQA );
 
 
 
-module.exports = router; 
+module.exports = router;  

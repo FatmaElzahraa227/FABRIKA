@@ -18,6 +18,7 @@ import { EventDetailsComponent } from './event-details/event-details.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HelpPageComponent } from './help-page/help-page.component';
 import { PreloaderComponent } from './preloader/preloader.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { PreloaderComponent } from './preloader/preloader.component';
     EventDetailsComponent,
     ProfileComponent,
     HelpPageComponent,
-    PreloaderComponent
+    PreloaderComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

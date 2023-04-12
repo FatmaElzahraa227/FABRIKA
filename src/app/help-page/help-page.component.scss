@@ -1,32 +1,90 @@
 * {
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-  }
-  html,
-  body {
-    width: 100%;
-    background-color: black;
-    position: relative;
-    padding-top: 75px;
-  }
- .parent{
-    .head{
-        width: 80%;
-        p{
-            color: white;
-            font-size: 40px;
-            font-weight: 700;
-        }
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+html,
+body {
+  width: 100%;
+  background-color: black;
+  position: relative;
+  padding-top: 75px;
+}
+.parent {
+  .head {
+    width: 80%;
+    p {
+      color: white;
+      font-size: 40px;
+      font-weight: 700;
     }
-    .head2{
-        width: 45%;
-        p{
-            color: white;
-            font-size: 17px;
-            font-weight: 400;
-        }
-        span{
-            color: #ff0000;
-        }
+  }
+  .head2 {
+    width: 45%;
+    p {
+      color: white;
+      font-size: 17px;
+      font-weight: 400;
     }
- }
+    span {
+      color: #ff0000;
+    }
+  }
+  .child {
+    margin-top: 50px;
+    .left {
+      height: 160px;
+      h2 {
+        color: white;
+        font-weight: bold;
+
+        span {
+          color: #ff0000;
+        }
+      }
+      p {
+        color: white;
+
+        a {
+          color: #ff0000;
+          text-decoration: none;
+          font-weight: 500;
+
+          &:hover {
+            filter: brightness(85%);
+          }
+        }
+      }
+    }
+    .right {
+      // height: 300px;
+      .accordion {
+        // border: #242526 2px solid;
+        border: none;
+        button {
+          background-color: #242526;
+          color: white;
+          border: none !important;
+
+          &::after {
+            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+          }
+          &:focus,&:active{
+            box-shadow: none;
+            outline: none !important;
+          }
+        }
+        .accordion-item{
+            background-color: black;
+            color: #bbbbbb;
+            border-color: black;
+            margin-bottom: 5px;
+            border:2px #242526 solid;
+
+          
+        }
+       
+
+      }
+    }
+  }
+}

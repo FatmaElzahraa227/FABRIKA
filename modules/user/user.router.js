@@ -1,4 +1,4 @@
-const { getProfile, deleteUser, updateEmail, softDelete, sendMessage } = require("./controller/user.controller");
+const { getProfile, deleteUser, updateEmail, softDelete, sendMessage, safeResetPassword } = require("./controller/user.controller");
 const {auth} = require("../../middleware/auth");
 const userAPI = require("./userRoles");
 // const {uploadData, handleMulterErr} = require("../../service/uploadFile");
@@ -17,6 +17,6 @@ router.patch("/updateEmail", auth(userAPI.updateEmail), validationFun(userVal.up
 router.delete("/deleteUser", auth(userAPI.deleteUser), deleteUser);
 router.patch("/softDelete", auth(userAPI.softDelete), softDelete);
 router.post("/contactUs", validationFun(userVal.sendMessage), sendMessage);
-
+router.patch("/safeResetPassword", auth(userAPI.getDetails),validationFun(userVal.safeResetPassword), safeResetPassword);
 
 module.exports = router; 

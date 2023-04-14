@@ -18,6 +18,13 @@ const getVehicleData = {
       vehicle_vin: Joi.string().required().min(1)
     }),
 };
+const getEvent = {
+  params: Joi.object()
+    .required()
+    .keys({
+      eventID: Joi.string().required().min(1)
+    }),
+};
 
 const editVehicle = {
   body: Joi.object()

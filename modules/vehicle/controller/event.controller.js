@@ -7,8 +7,9 @@ var jwt = require("jsonwebtoken");
 const getEvent = async (req,res) => {
    try{
    const eventaya = await eventModel.findById(req.params.eventID);
-   console.log(eventaya);
-   res.json(eventaya);
+   var token = jwt.sign({ event: eventaya}, process.env.verifyTokenKey);
+   console.log(token);
+   res.json(token);
    }catch (error) {
       res.status(400).json({ message: error.message });
    }

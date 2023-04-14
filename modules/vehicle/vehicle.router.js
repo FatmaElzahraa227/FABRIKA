@@ -13,7 +13,7 @@ const router = require("express").Router();
 router.post("/addVehicle",auth(userAPI.addVehicle),validationFun(vehicleValidation.addVehicle), addVehicle);
 router.get("/getVehicleData/:vehicle_vin",auth(userAPI.addVehicle),validationFun(vehicleValidation.getVehicleData), getVehicleData);
 router.patch("/updateVehicle",auth(userAPI.addVehicle),validationFun(vehicleValidation.editVehicle), editVehicle);
-router.get("/getEvent/:eventID"/*,auth(userAPI.addVehicle),validationFun(vehicleValidation.getVehicleData)*/, getEvent);
+router.get("/getEvent/:eventID",auth(userAPI.getEvent), getEvent);
 
 
 

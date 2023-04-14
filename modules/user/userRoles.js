@@ -6,6 +6,7 @@ const userAPI = {
    softDelete:[accessroles.admin],
    updateEmail:[accessroles.admin, accessroles.user],
    addVehicle:[accessroles.admin, accessroles.user],
+   getEvent:[accessroles.admin, accessroles.user],
 }
 
 module.exports = userAPI; 

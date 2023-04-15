@@ -23,8 +23,16 @@ const updateEmail = {
    }),
   };
 
+  const safeResetPassword = {
+    body: Joi.object().required()
+   .keys({
+    newPassword: Joi.string().required()
+   }),
+  };
+
 module.exports = {
    deleteUser,
    updateEmail,
-   sendMessage
+   sendMessage,
+   safeResetPassword
 };

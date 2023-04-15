@@ -1,6 +1,8 @@
 const userModel = require("../../../DB/model/user");
 const messageModel = require("../../../DB/model/message");
 var jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+require("dotenv").config();
 const vehicleModel = require("../../../DB/model/vehicle");
 const eventModel = require("../../../DB/model/event");
 // const QRCode = require('qrcode');
@@ -108,6 +110,36 @@ const sendMessage = async (req, res) => {
   }
 };
 
+safeResetPassword = async (req, res) => {
+  try{
+    const { newPassword } = req.body;
+    const user = await userModel.findById(req.userid);
+    console.log(user);
+    const hashedPassword = await bcrypt.hash(
+      newPassword,
+      parseInt(process.env.saltRound)
+    );
+    const updatedUser = await userModel.findByIdAndUpdate(
+      user._id,
+      { password: hashedPassword},
+      { new: true }
+    );
+    // await userModel.findByIdAndUpdate(user._id, { password: pass});
+    res.json({ message: "Done yaba.", updatedUser});
+  } catch(error){
+    res.status(400).json({ message: error.message });
+  }
+};
+// const hashedPassword = await bcrypt.hash(
+//   newPassword,
+//   parseInt(process.env.saltRound)
+// );
+// const updatedUser = await userModel.findByIdAndUpdate(
+//   user._id,
+//   { password: hashedPassword},
+//   { new: true }
+// );
+
 
 
 module.exports = {
@@ -116,6 +148,7 @@ module.exports = {
   deleteUser,
   softDelete,
   sendMessage,
+  safeResetPassword,
   // updateProfilePic,
   // updateCoverPic,
   // QR,

@@ -30,7 +30,7 @@ app.use(function (req, res, next) {
 //  // Set EJS as templating engine
 //  app.set("view engine", "ejs");
 
-app.get("/", (req, res) => res.send("Hello World!"));
+app.get("/api", (req, res) => res.send("Hello World!"));
 
 app.use("/api/v1/auth", allRoutes.authRouter);
 app.use("/api/v1/user", allRoutes.userRouter);

@@ -40,7 +40,7 @@ const signUpMobile = async (req, res) => {
     const { email, password } = req.body;
     const foundedUser = await userModel.findOne({ email }, { maxTimeMS: 30000 });
     if (foundedUser) {
-      res.status(400).json({ message: "Email already exisvfsjmts" });
+      res.status(400).json({ message: "Email already exists" });
     } else {
       const user = new userModel({
         email,

@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
    search_history: [{type: mongoose.Schema.Types.ObjectId, ref: 'vehicles'}]
    
    
-}, { 
+}, {  
    timestamps: true
 })
 userSchema.pre("save", async function (next) {

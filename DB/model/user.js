@@ -23,7 +23,9 @@ const userSchema = new mongoose.Schema({
 })
 userSchema.pre("save", async function (next) {
    this.password = await bcrypt.hashSync(this.password,parseInt(process.env.saltRounds))
- })
+ }, {
+   collection: 'users' // specify the collection name
+ });
 const userModel = mongoose.model('user', userSchema)
 
 module.exports = userModel

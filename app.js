@@ -15,7 +15,9 @@ const client = new MongoClient(uri, {
     version: ServerApiVersion.v1,
     strict: true,
     deprecationErrors: true,
-  }
+  },
+  connectTimeoutMS: 30000, // 30 seconds
+  socketTimeoutMS: 30000, 
 });
 async function run() {
   try {
@@ -53,7 +55,7 @@ app.use(function (req, res, next) {
 //  // Set EJS as templating engine
 //  app.set("view engine", "ejs"); 
  
-app.get("/api", (req, res) => res.send("Hello World!"));
+app.get("/", (req, res) => res.send("Hello World!"));
 
 app.use("/api/v1/auth", allRoutes.authRouter);
 app.use("/api/v1/user", allRoutes.userRouter);

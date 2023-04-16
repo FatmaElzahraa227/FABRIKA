@@ -38,10 +38,10 @@ const signUp = async (req, res) => {
 const signUpMobile = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const foundedUser = await userModel.find({ email }, { maxTimeMS: 30000 });
-    if (foundedUser) {
-      res.status(400).json({ message: "Email already exists" });
-    } else {
+    // const foundedUser = await userModel.find({ email }, { maxTimeMS: 30000 });
+    // if (foundedUser) {
+    //   res.status(400).json({ message: "Email already exists" });
+    // } else {
       const user = new userModel({
         email,
         password,
@@ -56,7 +56,7 @@ const signUpMobile = async (req, res) => {
       res
         //.status(StatusCodes.CREATED)
         .json({ message: "Added Done", savedUser });
-    }
+    // }
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

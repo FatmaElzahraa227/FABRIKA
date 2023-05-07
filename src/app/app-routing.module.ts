@@ -18,7 +18,7 @@ const routes: Routes = [
   {path:'login' ,component:LoginComponent},
   {path:'contact-us',canActivate:[AuthGuard], component:ContactUsComponent},
   {path:'car-info',canActivate:[AuthGuard], component:CarInfoComponent},
-  {path:'forgot-password',canActivate:[AuthGuard], component:ForgotPasswordComponent},
+  {path:'forgot-password', component:ForgotPasswordComponent},
   {path:'event-details',canActivate:[AuthGuard], component:EventDetailsComponent},
   {path:'profile',canActivate:[AuthGuard], component:ProfileComponent},
   {path:'help',canActivate:[AuthGuard], component:HelpPageComponent},

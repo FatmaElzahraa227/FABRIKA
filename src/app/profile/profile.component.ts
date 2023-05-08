@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class ProfileComponent {
   dashboard = true;
   report = false;
-  url: string = 'http://localhost:5000/api/v1/user/getProfile/';
+  url: string = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/user/getProfile/';
   constructor(
     public myService: AuthService,
     private http: HttpClient,
@@ -44,7 +44,7 @@ export class ProfileComponent {
     this.myService.logout();
   }
   carInfo(vin: string) {
-    const url = 'http://localhost:5000/api/v1/vehicle/getVehicleData/';
+    const url = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/vehicle/getVehicleData/';
     const token = localStorage.getItem('userToken');
     var data;
     const headers = new HttpHeaders({

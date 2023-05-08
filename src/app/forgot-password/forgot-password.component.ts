@@ -18,9 +18,9 @@ export class ForgotPasswordComponent {
   public verificationForm!: FormGroup;
   public newPasswordForm!: FormGroup;
 
-  url: string = 'http://localhost:5000/api/v1/auth/forgotPassword/';
-  url2: string = 'http://localhost:5000/api/v1/auth/codeVerification/';
-  url3: string = 'http://localhost:5000/api/v1/auth/resetPassword/';
+  url: string = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/auth/forgotPassword/';
+  url2: string = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/auth/codeVerification/';
+  url3: string = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/auth/resetPassword/';
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,

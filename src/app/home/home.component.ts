@@ -30,7 +30,7 @@ export class HomeComponent {
       VIN: '',
     });
   }
-  url: string = 'http://localhost:5000/api/v1/vehicle/getVehicleData/';
+  url: string = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/vehicle/getVehicleData/';
   data: any;
   errorMessage: string = '';
 

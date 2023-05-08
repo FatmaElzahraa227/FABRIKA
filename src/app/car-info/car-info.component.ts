@@ -64,7 +64,7 @@ export class CarInfoComponent implements OnInit {
 }
 goToEventDetails(event: any) {
   const token=localStorage.getItem('userToken');
- const url  = 'http://localhost:5000/api/v1/vehicle/getEvent/';
+ const url  = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/vehicle/getEvent/';
  const headers=new HttpHeaders({
   'Content-Type': 'application/json',
   Authorization: `Bearer ${token}`,

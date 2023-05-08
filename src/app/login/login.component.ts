@@ -11,7 +11,7 @@ import { AuthService } from '../auth.service';
 export class LoginComponent {
   public loginForm!: FormGroup;
 
-  url: string = 'http://localhost:5000/api/v1/auth/signIn/';
+  url: string = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/auth/signIn/';
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,

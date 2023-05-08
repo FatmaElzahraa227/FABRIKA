@@ -18,10 +18,10 @@ export class AppComponent {
         this.showPreloader = true;
       }
       else if (event instanceof NavigationEnd) {
-        setTimeout(() => {
+        // setTimeout(() => {
+        //   this.showPreloader = false;
+        // }, 2000);
           this.showPreloader = false;
-        }, 2000);
-          // this.showPreloader = false;
       }
     });
   }

@@ -12,6 +12,7 @@ phases:
     commands:
         - echo Installing source NPM dependencies...
         - npm install
+        - npm install apexcharts --save
         - npm install -g @angular/cli@11.2.2
   build:
     commands:

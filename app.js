@@ -1,12 +1,12 @@
 require("dotenv").config();
 const express = require("express");
-const connect = require("./DB/connection");
+const client = require("./DB/connection");
 const app = express();
 const allRoutes = require("./modules/index.router");
 app.use(express.json());
 let cors = require("cors");
 app.use(cors());
-connect();
+client();
 const vehicleModel = require("./DB/model/vehicle");
 
 app.use(function (req, res, next) {

@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
    lastName: {type: String},
    email: {type: String, required:true, unique:true},
    phone: {type: String,unique:true},
-   // Confirmed: {type: Boolean, default: false},
+   Confirmed: {type: Boolean, default: false},
    password: {type: String, required:true},
    owned_vehicles: [{type: mongoose.Schema.Types.ObjectId, ref: 'vehicles'}],
    role: {type: String, default: 'user'},

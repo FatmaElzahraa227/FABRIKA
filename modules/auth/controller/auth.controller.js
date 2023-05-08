@@ -81,7 +81,7 @@ const signIn = async (req, res) => {
           );
           res.json({ message: "ya welcome ya welcome", token });
         } else {
-          res.status(422).json({ message: "Ektb el password sa7." });
+          res.status(422).json({ message: "Ektb el password sab7." });
         }
       });
     }

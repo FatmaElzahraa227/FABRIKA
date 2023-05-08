@@ -29,7 +29,7 @@ const signUp = async (req, res) => {
         );
       res
         //.status(StatusCodes.CREATED)
-        .json({ message: "Added Done", savedUser });
+        .json({ message: "Added Done", savedUser, token });
     }
   } catch (error) {
     res.status(400).json({ message: error.message });

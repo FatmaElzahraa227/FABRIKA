@@ -60,7 +60,7 @@ const confirmEmail = async (req, res) => {
              );
              res
                .status(200)
-               .json({ message: "Email confirmed successfully", updateUser });
+               .json({ message: "Email confirmed successfully" /*,updateUser*/ });
            }
          } else {
            res.status(400).json({ message: "invalid email" });

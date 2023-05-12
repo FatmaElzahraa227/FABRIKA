@@ -26,6 +26,7 @@ export class ProfileComponent {
     this.dashboard = false;
     this.report = true;
   }
+  showPreloader=true;
   data: any;
   token = localStorage.getItem('userToken');
   headers = new HttpHeaders({
@@ -33,11 +34,15 @@ export class ProfileComponent {
     Authorization: `Bearer ${this.token}`,
   });
   ngOnInit(): void {
+    this.showPreloader=true;
     this.http
       .get<any>(this.url, { headers: this.headers })
       .subscribe((response) => {
         this.data = response;
         console.log(this.data);
+        setTimeout(() => {
+          this.showPreloader = false;
+        }, 1500);
       });
   }
   logout() {

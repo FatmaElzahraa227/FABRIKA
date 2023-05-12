@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
+  showPreloader=false;
   public VINForm!: FormGroup;
   isLogin: boolean = false;
   constructor(
@@ -19,6 +20,7 @@ export class HomeComponent {
     private router: Router
   ) {}
   ngOnInit(): void {
+   
     this.myService.userData.subscribe(() => {
       if (this.myService.userData.getValue() != null) {
         this.isLogin = true;
@@ -35,6 +37,7 @@ export class HomeComponent {
   errorMessage: string = '';
 
   VIN(){
+    this.showPreloader=true;
     const token=localStorage.getItem('userToken');
     this.data=this.VINForm.value;
     console.log(this.data);
@@ -59,8 +62,10 @@ export class HomeComponent {
           
         }else{
           localStorage.setItem('vehicleToken',data.token);
-          
-          this.router.navigate(['/car-info']);
+          setTimeout(() => {
+            this.showPreloader = false;
+            this.router.navigate(['/car-info']);
+          }, 1500);
         }
       },(err)=>{
         console.log(err);

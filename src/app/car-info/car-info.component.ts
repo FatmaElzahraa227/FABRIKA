@@ -10,6 +10,7 @@ import Chart from 'chart.js/auto';
   styleUrls: ['./car-info.component.scss'],
 })
 export class CarInfoComponent implements OnInit {
+  showPreloader=false;
   vehicleData2: any = {};
   vehicleData: any = {};
   events: any = {};
@@ -62,7 +63,9 @@ export class CarInfoComponent implements OnInit {
   scroll(el: HTMLElement) {
     el.scrollIntoView();
 }
+
 goToEventDetails(event: any) {
+  this.showPreloader=true;
   const token=localStorage.getItem('userToken');
  const url  = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/vehicle/getEvent/';
  const headers=new HttpHeaders({
@@ -74,7 +77,10 @@ goToEventDetails(event: any) {
   (data)=>{
     // console.log(data);
     localStorage.setItem('event', data);
-    this.router.navigate(['/event-details'], { fragment: 'top' });
+    setTimeout(() => {
+      this.router.navigate(['/event-details'], { fragment: 'top' });
+      this.showPreloader = false;
+    }, 1500);
   },(err)=>{
     console.log(err);
     

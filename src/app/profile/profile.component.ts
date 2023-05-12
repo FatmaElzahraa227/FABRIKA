@@ -49,6 +49,7 @@ export class ProfileComponent {
     this.myService.logout();
   }
   carInfo(vin: string) {
+    this.showPreloader=true;
     const url = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/vehicle/getVehicleData/';
     const token = localStorage.getItem('userToken');
     var data;
@@ -67,8 +68,11 @@ export class ProfileComponent {
             console.log(data.err);
           } else {
             localStorage.setItem('vehicleToken', data.token);
+            setTimeout(() => {
+              this.showPreloader = false;
+              this.router.navigate(['/car-info']);
+            }, 1500);
 
-            this.router.navigate(['/car-info']);
           }
         },
         (err) => {

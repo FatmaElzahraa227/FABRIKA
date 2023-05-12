@@ -10,19 +10,25 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
+import { UserAuthGuard } from './user-auth.guard';
+import { LoggedInGuard } from './logged-in.guard';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'home',pathMatch:'full'},
-  {path:'home', component:HomeComponent},
-  {path:'signup', component:SignupComponent},
-  {path:'login' ,component:LoginComponent},
-  {path:'contact-us',canActivate:[AuthGuard], component:ContactUsComponent},
-  {path:'car-info',canActivate:[AuthGuard], component:CarInfoComponent},
-  {path:'forgot-password', component:ForgotPasswordComponent},
-  {path:'event-details',canActivate:[AuthGuard], component:EventDetailsComponent},
-  {path:'profile',canActivate:[AuthGuard], component:ProfileComponent},
-  {path:'help',canActivate:[AuthGuard], component:HelpPageComponent},
-  {path:'**', component:HomeComponent},
+  {path:'home',canActivate:[UserAuthGuard], component:HomeComponent},
+  {path:'signup',canActivate:[LoggedInGuard], component:SignupComponent},
+  {path:'login',canActivate:[LoggedInGuard] ,component:LoginComponent},
+  {path:'contact-us',canActivate:[AuthGuard,UserAuthGuard], component:ContactUsComponent},
+  {path:'car-info',canActivate:[AuthGuard,UserAuthGuard], component:CarInfoComponent},
+  {path:'forgot-password',canActivate:[LoggedInGuard], component:ForgotPasswordComponent},
+  {path:'event-details',canActivate:[AuthGuard,UserAuthGuard], component:EventDetailsComponent},
+  {path:'profile',canActivate:[AuthGuard,UserAuthGuard], component:ProfileComponent},
+  {path:'help',canActivate:[AuthGuard,UserAuthGuard], component:HelpPageComponent},
+  {path:'change-password',canActivate:[AuthGuard], component:ChangePasswordComponent},
+  {path:'dash-board',canActivate:[AuthGuard], component:DashboardComponent},
+  {path:'**', redirectTo:'home',pathMatch:'full'},
 ];
 
 @NgModule({

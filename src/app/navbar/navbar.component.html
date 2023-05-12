@@ -1,4 +1,4 @@
-<nav
+<nav *ngIf="show"
   class="navbar navbar-expand-lg navbar-fixed-top n navbar-default"
   [ngClass]="{ scroll: isScrolled }"
 >
@@ -23,10 +23,10 @@
           class="navbar-nav d-flex justify-content-around align-items-center w-100"
         >
           <li routerLinkActive="active" class="nav-item">
-            <a *ngIf="isLogin" class="nav-link" routerLink="home">Home</a>
+            <a *ngIf="isLogin" class="nav-link" routerLink="/home">Home</a>
           </li>
           <li routerLinkActive="active" class="nav-item">
-            <a *ngIf="isLogin" class="nav-link" routerLink="contact-us"
+            <a *ngIf="isLogin" class="nav-link" routerLink="/contact-us"
               >Contact Us</a
             >
           </li>
@@ -46,7 +46,7 @@
             <button
               type="button"
               class="btn btn-primary lgnbtn text-center px-4"
-              routerLink="login"
+              routerLink="/login"
             >
               Login
             </button>
@@ -55,7 +55,7 @@
             <button
               type="button"
               class="btn btn-primary lgnbtn text-center px-4"
-              routerLink="signup"
+              routerLink="/signup"
             >
               Signup
             </button>
@@ -63,8 +63,8 @@
           <ul
           [ngClass]="{'d-none': isProfilePage}" 
             class="navbar-nav d-flex align-items-center justify-content-between" >
-            <li *ngIf="isLogin" (click)="logout()" class="nav-item">
-              <button
+            <li *ngIf="isLogin"  class="nav-item">
+              <button (click)="logout()"
                 type="button"
                 class="btn btn-primary lgoutbtn text-center px-4"
                 routerLink=""

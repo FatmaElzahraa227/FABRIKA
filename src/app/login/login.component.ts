@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-login',
@@ -11,7 +11,8 @@ import { AuthService } from '../auth.service';
 export class LoginComponent {
   public loginForm!: FormGroup;
 
-  url: string = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/auth/signIn/';
+  url: string =
+    'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/auth/signIn/';
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -56,8 +57,24 @@ export class LoginComponent {
           console.log('success', st.token);
           this.loginForm.reset();
           localStorage.setItem('userToken', st.token);
+          const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${st.token}`,
+          });
+          this.http
+            .get<any>('http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/user/getProfile/', { headers: headers })
+            .subscribe((response) => {
+              const data = response;
+              console.log(data);
+              if(data.userData.role=='user'){
+                this.router.navigate(['/home']);
+                localStorage.setItem('role','user')
+              }else{
+                localStorage.setItem('role','admin')
+                this.router.navigate(['/dash-board']);
+              }
+            });
           this.myService.saveUserData();
-          this.router.navigate(['/home']);
         }
       },
       (err) => {

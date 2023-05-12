@@ -19,6 +19,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { HelpPageComponent } from './help-page/help-page.component';
 import { PreloaderComponent } from './preloader/preloader.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     ProfileComponent,
     HelpPageComponent,
     PreloaderComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

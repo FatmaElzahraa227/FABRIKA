@@ -4,7 +4,8 @@ const userAPI = require("./userRoles");
 // const {uploadData, handleMulterErr} = require("../../service/uploadFile");
 const validationFun = require("../../middleware/validation");
 const userVal = require("./user.validator");
-
+const sendEventReq = require("../vehicle/controller/event.controller")
+const { multerFun } = require("../../service/multer")
 
 const router = require("express").Router();
 
@@ -18,5 +19,6 @@ router.delete("/deleteUser", auth(userAPI.deleteUser), deleteUser);
 router.patch("/softDelete", auth(userAPI.softDelete), softDelete);
 router.post("/contactUs", validationFun(userVal.sendMessage), sendMessage);
 router.patch("/safeResetPassword", auth(userAPI.getDetails),validationFun(userVal.safeResetPassword), safeResetPassword);
+router.post("/sendEventReq", multerFun().single('image'), sendEventReq);
 
 module.exports = router; 

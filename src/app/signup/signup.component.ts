@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent {
+  showPreloader=false;
   public signUpForm!: FormGroup;
 
   url: string = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/auth/signUp/';
@@ -125,9 +126,13 @@ export class SignupComponent {
             console.log(st.err);
           }
         } else {
+          this.showPreloader=true;
           console.log('Successful');
           this.signUpForm.reset();
-          this.router.navigate(['/login']);
+          setTimeout(() => {
+            this.showPreloader = false;
+            this.router.navigate(['/login']);
+          }, 1500);
         }
       },
       (err) => {

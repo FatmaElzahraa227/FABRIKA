@@ -1,0 +1,149 @@
+* {
+    font-family: "Manuale", serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+  //   min-height: 100vh;
+  //   width: 100%;
+  //   overflow-x: hidden;
+  //   background-color: black;
+    color: aliceblue;
+    // height: 100vh;
+  //   width: calc(100% - 16.5rem);
+  z-index: 0;
+  position: relative;
+  top: 0;
+  transition: all 0.5 ease;
+  background-color: #000;
+  padding: 3rem;
+  padding-left: 20rem;
+  }
+  
+  
+
+.head-text{    
+    margin-left: 40px;
+    width: 345px;
+    height: 66px;
+    font-weight: 800;
+    font-size: 34px;
+    line-height: 69px;
+    letter-spacing: -0.015em;
+    background: radial-gradient(137.88% 137.88% at 44.93% 50%, #FFFFFF 0%, rgba(202, 212, 225, 0) 100%) ;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0px;
+
+}
+.container{
+width: 600px;
+margin-left: 200px;
+}
+.container h3{
+    text-align: center;
+    padding-top: 10px;
+}
+.styleImage{
+    width: 100%;
+  
+}
+.containerr{
+    color:white; 
+    margin-top: 20px;
+    margin-left: 200px;
+    width :70%;
+  }
+  .containerr td{
+
+   padding-right: 10px;
+   padding-bottom: 10px;
+   font-family: 'Manuale';
+font-style: normal;
+font-weight: 500;
+font-size: 23px;
+
+color: #FFFFFF;
+  }
+  .containerr .rectanglr{
+
+width: 350px;
+border-radius: 4px;
+background-color: #000;
+border: #000;
+color: #FFFFFF;
+
+   }
+
+  .col2 {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+
+    
+  }
+
+  
+input[type="file"]{
+  display: none;
+ 
+}
+.filee{
+  background-color: #fff;
+  width: 120px;
+  height: 34px;
+  color: black;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-left: 60px;
+}
+
+
+
+.containerr .color{
+    width: 100px;
+    border-radius: 4px;
+    background-color: transparent;
+    
+       }
+.button{
+  background-color: #fff;
+  width: 120px;
+  height: 34px;
+  color: black;
+  border-radius: 8px;
+  text-align: center;
+  justify-content: center;
+  margin-left: 60px;
+  position: relative;
+  left: 500px;
+  margin-bottom: 30px;
+  font-family: 'Manuale';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 23px;
+  padding-bottom: 40px;
+  margin-top: 50px;
+}
+.button-reset{
+  background-color: #636262;
+  width: 120px;
+  height: 34px;
+  color: #fff;
+  border-radius: 8px;
+  text-align: center;
+  justify-content: center;
+  margin-left: 60px;
+  position: relative;
+  left: 500px;
+  margin-bottom: 30px;
+  font-family: 'Manuale';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 23px;
+  padding-bottom: 40px;
+}

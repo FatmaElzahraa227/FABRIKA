@@ -9,6 +9,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  showPreloader=false;
   public loginForm!: FormGroup;
 
   url: string =
@@ -33,6 +34,7 @@ export class LoginComponent {
   errorMessageRegister: String = '';
 
   login() {
+    
     this.st = this.loginForm.value;
     console.log(this.st);
     return this.http.post<any>(this.url, this.st).subscribe(
@@ -55,6 +57,7 @@ export class LoginComponent {
           }
         } else {
           console.log('success', st.token);
+          this.showPreloader=true;
           this.loginForm.reset();
           localStorage.setItem('userToken', st.token);
           const headers = new HttpHeaders({
@@ -67,11 +70,17 @@ export class LoginComponent {
               const data = response;
               console.log(data);
               if(data.userData.role=='user'){
-                this.router.navigate(['/home']);
                 localStorage.setItem('role','user')
+                setTimeout(() => {
+                  this.router.navigate(['/home']);
+                  this.showPreloader = false;
+                }, 1500);
               }else{
                 localStorage.setItem('role','admin')
-                this.router.navigate(['/dash-board']);
+                setTimeout(() => {
+                  this.router.navigate(['/dash-board']);
+                  this.showPreloader = false;
+                }, 1500);
               }
             });
           this.myService.saveUserData();

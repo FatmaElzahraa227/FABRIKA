@@ -14,6 +14,20 @@ import { UserAuthGuard } from './user-auth.guard';
 import { LoggedInGuard } from './logged-in.guard';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+// import { EditvehicleComponent } from './editvehicle/editvehicle.component';
+// import { AddvehicleComponent } from './addvehicle/addvehicle.component';
+// import { InboxComponent } from './inbox/inbox.component';
+// import { NotificationsComponent } from './notifications/notifications.component';
+// import { ResetPasswordComponent } from './reset-password/reset-password.component';
+// import { MydashboardComponent } from './mydashboard/mydashboard.component';
+// import { ReportsComponent } from './reports/reports.component';
+import { AdminAuthGuard } from './admin-auth.guard';
+import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
+import { EditVehicleComponent } from './edit-vehicle/edit-vehicle.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { InboxComponent } from './inbox/inbox.component';
+import { MydashboardComponent } from './mydashboard/mydashboard.component';
+import { ReportsComponent } from './reports/reports.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'home',pathMatch:'full'},
@@ -27,7 +41,14 @@ const routes: Routes = [
   {path:'profile',canActivate:[AuthGuard,UserAuthGuard], component:ProfileComponent},
   {path:'help',canActivate:[AuthGuard,UserAuthGuard], component:HelpPageComponent},
   {path:'change-password',canActivate:[AuthGuard], component:ChangePasswordComponent},
-  {path:'dash-board',canActivate:[AuthGuard], component:DashboardComponent},
+  {path:'dash-board',canActivate:[AuthGuard,AdminAuthGuard], component:DashboardComponent},
+  {path:'addvehicle',canActivate:[AuthGuard,AdminAuthGuard], component:AddVehicleComponent},
+  {path:'editvehicle',canActivate:[AuthGuard,AdminAuthGuard], component:EditVehicleComponent},
+  {path:'inbox',canActivate:[AuthGuard,AdminAuthGuard], component:InboxComponent},
+  {path:'notifications',canActivate:[AuthGuard,AdminAuthGuard], component:NotificationsComponent},
+  // {path:'reset-password', component:ResetPasswordComponent},
+  {path:'reports',canActivate:[AuthGuard,AdminAuthGuard],component:ReportsComponent},
+  {path:'mydashboard',canActivate:[AuthGuard,AdminAuthGuard], component:MydashboardComponent},
   {path:'**', redirectTo:'home',pathMatch:'full'},
 ];
 

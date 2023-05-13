@@ -20,6 +20,13 @@ import { HelpPageComponent } from './help-page/help-page.component';
 import { PreloaderComponent } from './preloader/preloader.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SideNavbarComponent } from './side-navbar/side-navbar.component';
+import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
+import { EditVehicleComponent } from './edit-vehicle/edit-vehicle.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { InboxComponent } from './inbox/inbox.component';
+import { MydashboardComponent } from './mydashboard/mydashboard.component';
+import { ReportsComponent } from './reports/reports.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +43,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HelpPageComponent,
     PreloaderComponent,
     ChangePasswordComponent,
-    DashboardComponent
+    DashboardComponent,
+    SideNavbarComponent,
+    AddVehicleComponent,
+    EditVehicleComponent,
+    NotificationsComponent,
+    InboxComponent,
+    MydashboardComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,

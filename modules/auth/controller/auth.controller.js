@@ -105,17 +105,40 @@ const signUpMobile = async (req, res) => {
 
 
 
+// const signIn = async (req, res) => {
+//   const { email, password } = req.body;
+//   const foundedUser = await userModel.findOne({ email });
+//   if (foundedUser) {
+//     if(foundedUser.Confirmed != true){
+//       res.json({message: "Please confirm your email first."})
+//     }/*else if(foundedUser.Blocked == true){
+//       res.json({message: "Your account is blocked."})
+//     }*/else if (foundedUser.IsDeleted == true) {
+//       res.json({ message: "Your account is deleted." });
+//     } else if (foundedUser.Confirmed && !foundedUser.IsDeleted) {
+//       bcrypt.compare(password, foundedUser.password, function (err, result) {
+//         if (result) {
+//           var token = jwt.sign(
+//             { id: foundedUser._id },
+//             process.env.verifyTokenKey
+//           );
+//           res.json({ message: "ya welcome ya welcome", token });
+//         } else {
+//           res.status(422).json({ message: "Ektb el password sa7." });
+//         }
+//       });
+//     }
+//   } else {
+//     res.status(404).json({ message: "Please register first." });
+//   }
+// };
 const signIn = async (req, res) => {
   const { email, password } = req.body;
   const foundedUser = await userModel.findOne({ email });
   if (foundedUser) {
-    if(foundedUser.Confirmed != true){
-      res.json({message: "Please confirm your email first."})
-    }/*else if(foundedUser.Blocked == true){
-      res.json({message: "Your account is blocked."})
-    }*/else if (foundedUser.IsDeleted == true) {
+   if (foundedUser.IsDeleted == true) {
       res.json({ message: "Your account is deleted." });
-    } else if (foundedUser.Confirmed && !foundedUser.IsDeleted) {
+    } else if ( !foundedUser.IsDeleted) {
       bcrypt.compare(password, foundedUser.password, function (err, result) {
         if (result) {
           var token = jwt.sign(

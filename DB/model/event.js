@@ -18,7 +18,7 @@ const eventSchema = new mongoose.Schema({
    affected_vehicle: { type: mongoose.Schema.Types.ObjectId, ref: 'vehicle' },
    insurance_agency: { type: mongoose.Schema.Types.ObjectId, ref: 'insurance' },
    cover_icon:{ type: String },
-   status: { type: String , default: Pending },
+   status: { type: String , default: 'Pending' }, 
    
 }, {
    timestamps: true

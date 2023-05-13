@@ -1,6 +1,7 @@
+const { time } = require("console");
 const multer = require("multer");
 const path = require("path");
-const nanoid = require("nanoid");
+// const nanoid = require("nanoid");
 
 function multerFun(){
    const storage = multer.diskStorage({
@@ -9,7 +10,7 @@ function multerFun(){
          CB(null, path.join(__dirname, '../uploads/testfolder'));
       },
       filename: function (req, file,CB){
-         const fullName = nanoid()+'-'+file.originalname;
+         const fullName = time()+'-'+file.originalname;
          CB(null, fullName);
       }
    })

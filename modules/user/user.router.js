@@ -19,6 +19,6 @@ router.delete("/deleteUser", auth(userAPI.deleteUser), deleteUser);
 router.patch("/softDelete", auth(userAPI.softDelete), softDelete);
 router.post("/contactUs", validationFun(userVal.sendMessage), sendMessage);
 router.patch("/safeResetPassword", auth(userAPI.getDetails),validationFun(userVal.safeResetPassword), safeResetPassword);
-router.post("/sendEventReq", multerFun().single('image'), sendEventReq);
+// router.post("/sendEventReq", multerFun().single('image'), sendEventReq);
 
 module.exports = router; 

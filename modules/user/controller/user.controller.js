@@ -130,6 +130,8 @@ safeResetPassword = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+
 // const hashedPassword = await bcrypt.hash(
 //   newPassword,
 //   parseInt(process.env.saltRound)

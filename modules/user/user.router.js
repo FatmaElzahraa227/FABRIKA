@@ -9,7 +9,6 @@ const { multerFun } = require("../../service/multer")
 
 const router = require("express").Router();
 
-
 router.get("/getProfile", auth(userAPI.getDetails), getProfile);
 // router.patch("/updateProfilePic", auth(userAPI.getDetails),uploadData("/profilePics").array("image",3),handleMulterErr, updateProfilePic);
 // router.patch("/updateCoverPic", auth(userAPI.getDetails),uploadData("/coverPics").array("image",3),handleMulterErr, updateCoverPic);

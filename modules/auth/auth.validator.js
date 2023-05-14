@@ -63,6 +63,18 @@ const forgotPassword = {
   }),
 };
 
+const changePassword = {
+  body: Joi.object().required().keys({
+    oldPassword: Joi.string().required(),
+    newPassword: Joi.string().required(),
+    cnewPassword: Joi.string().valid(Joi.ref("newPassword")),
+  }),
+  params: Joi.object().required().keys({
+    email: Joi.string().email().required()
+  })
+  };
+
+
 module.exports = {
   signUp,
   signIn, 
@@ -70,5 +82,6 @@ module.exports = {
   verifyCode,
   resetPassword,
   codeVerification,
-  signUpMobile 
+  signUpMobile,
+  changePassword
 };  

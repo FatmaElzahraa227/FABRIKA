@@ -1,4 +1,17 @@
-
+*{
+  font-family: "Manuale", cursive;
+}
+.bt2{
+  font-size: 1.3rem;
+  font-weight: 790;
+}
+.bt2:focus {
+  outline: none;
+  border: none; /* Remove the outline from the button when focused */
+}
+.bttt{
+  margin-top: 10px;
+}
 .sidenav{
     position: fixed;
     top: 0;

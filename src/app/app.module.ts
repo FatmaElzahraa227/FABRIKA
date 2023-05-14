@@ -27,6 +27,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { InboxComponent } from './inbox/inbox.component';
 import { MydashboardComponent } from './mydashboard/mydashboard.component';
 import { ReportsComponent } from './reports/reports.component';
+import { UploadImageComponent } from './upload-image/upload-image.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,8 @@ import { ReportsComponent } from './reports/reports.component';
     NotificationsComponent,
     InboxComponent,
     MydashboardComponent,
-    ReportsComponent
+    ReportsComponent,
+    UploadImageComponent
   ],
   imports: [
     BrowserModule,

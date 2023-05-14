@@ -249,7 +249,7 @@ const changePassword = async (req, res) => {
             user._id,
             { password: hashedPassword },
             { new: true }
-          );
+          ); 
           const blabla = "I Love Fatouma."
           res.json({message: "Password changed!", blabla })
         } else {

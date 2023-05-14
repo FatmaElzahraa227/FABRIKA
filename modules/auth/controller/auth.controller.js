@@ -250,6 +250,8 @@ const changePassword = async (req, res) => {
             { password: hashedPassword },
             { new: true }
           );
+          const blabla = "I Love Fatouma."
+          res.json({message: "Password changed!", blabla })
         } else {
           res.status(422).json({ message: "Old password is incorrect, try to reset your password instead." });
         }});

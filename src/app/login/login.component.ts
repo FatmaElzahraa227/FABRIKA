@@ -7,7 +7,7 @@ import { AuthService } from '../auth.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-})
+}) 
 export class LoginComponent {
   showPreloader=false;
   public loginForm!: FormGroup;

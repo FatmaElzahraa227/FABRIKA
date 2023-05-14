@@ -21,7 +21,7 @@ const eventSchema = new mongoose.Schema({
    status: { type: String , default: 'Pending' },
    
 }, {
-   timestamps: true
+   timestamps: true 
 })
 
 const eventModel = mongoose.model( 'event', eventSchema )

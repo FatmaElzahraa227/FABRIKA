@@ -132,6 +132,8 @@ const signUpMobile = async (req, res) => {
 //     res.status(404).json({ message: "Please register first." });
 //   }
 // };
+
+
 const signIn = async (req, res) => {
   const { email, password } = req.body;
   const foundedUser = await userModel.findOne({ email });
@@ -230,6 +232,33 @@ const resetPassword = async (req, res) => {
   }
 };
 
+const changePassword = async (req, res) => {
+  try {
+    const { oldPassword, newPassword } = req.body;
+    const { email } = req.params;
+    const user = await userModel.findOne({ email });
+    console.log(user);
+    if ( oldPassword ){
+      bcrypt.compare( oldPassword, user.password, async function (err, result) {
+        if (result) {
+          const hashedPassword = await bcrypt.hash(
+            newPassword,
+            parseInt(process.env.saltRound)
+          );
+          const updatedUser = await userModel.findByIdAndUpdate(
+            user._id,
+            { password: hashedPassword },
+            { new: true }
+          );
+        } else {
+          res.status(422).json({ message: "Old password is incorrect, try to reset your password insted." });
+        }});
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 
 
 module.exports = {
@@ -240,6 +269,7 @@ module.exports = {
   codeVerification,
   signUpMobile,
   confirmEmail,
+  changePassword,
   // verifyCode,
 };
 

@@ -251,7 +251,7 @@ const changePassword = async (req, res) => {
             { new: true }
           );
         } else {
-          res.status(422).json({ message: "Old password is incorrect, try to reset your password insted." });
+          res.status(422).json({ message: "Old password is incorrect, try to reset your password instead." });
         }});
     }
   } catch (error) {

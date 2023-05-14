@@ -241,17 +241,22 @@ const changePassword = async (req, res) => {
     if ( oldPassword ){
       bcrypt.compare( oldPassword, user.password, async function (err, result) {
         if (result) {
-          const hashedPassword = await bcrypt.hash(
-            newPassword,
-            parseInt(process.env.saltRound)
-          );
-          const updatedUser = await userModel.findByIdAndUpdate(
-            user._id,
-            { password: hashedPassword },
-            { new: true }
-          ); 
-          const blabla = "I Love Fatouma."
-          res.json({message: "Password changed!", blabla })
+          if(oldPassword==newPassword){
+            res.status(422).json({ message: "new password cannot be your old password" });
+          }else{
+            const hashedPassword = await bcrypt.hash(
+              newPassword,
+              parseInt(process.env.saltRound)
+            );
+            const updatedUser = await userModel.findByIdAndUpdate(
+              user._id,
+              { password: hashedPassword },
+              { new: true }
+            ); 
+            const blabla = "I Love Fatouma."
+            res.json({message: "Password changed!", blabla })
+          }
+          
         } else {
           res.status(422).json({ message: "Old password is incorrect, try to reset your password instead." });
         }});

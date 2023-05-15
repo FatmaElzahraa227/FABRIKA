@@ -2,6 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const client = require("./DB/connection");
 const app = express();
+const path = require ("path");
+app.use('/uploads', express.static(path.join(__dirname, './uploads')));
 const allRoutes = require("./modules/index.router");
 app.use(express.json());
 let cors = require("cors");

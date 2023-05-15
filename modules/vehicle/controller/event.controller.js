@@ -4,7 +4,8 @@ const eventModel = require("../../../DB/model/event");
 var jwt = require("jsonwebtoken");
 
 const sendEventReq = async (req, res) => { 
-   // let fileName = `${req.protocol}://${req.headers.host}/${}`
+   let fileName = `${req.protocol}://${req.headers.host}/${req.destFile}/${req.file.fullname}`
+   res.json({message: "all good", fileName})
 }
 
 const addEvent = async (req, res) => {

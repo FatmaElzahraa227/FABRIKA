@@ -4,6 +4,7 @@ const eventModel = require("../../../DB/model/event");
 var jwt = require("jsonwebtoken");
 
 const sendEventReq = async (req, res) => { 
+   try{
    if (req.fileUploadError) {
       res.json({message: "Invalid file type."})
    } else {
@@ -12,6 +13,9 @@ const sendEventReq = async (req, res) => {
    // console.log(req.path)
    res.json({message: "all good", fileName})
 }
+} catch(error){
+   res.status(400).json({ message: error.message });
+ }
 }
 
 const addEvent = async (req, res) => {

@@ -2,6 +2,7 @@
 const multer = require ("multer");
 const path = require ("path");
 const fs = require ("fs");
+const { log } = require("console");
 // const nanoid = require("nanoid");
 // import { nanoid } from 'nanoid'
 // import { nanoid } from 'nanoid';
@@ -14,37 +15,38 @@ function multerFun(customDest) {
    // }
    const storage = multer.diskStorage({
       destination: function (req,file,CB){
-         console.log(req)
+         // console.log(req)
          if ( file.fieldname == "Images" ) {
             customDest = "generalimages";
-            // req.destFile = `uploads/eventmedia/generalimages`;
+            req.destFile = `uploads/eventmedia/generalimages`;
          } else if ( file.fieldname == "numPlates" ) {
             customDest = "numplateimages";
-            // req.destFile = `uploads/eventmedia/numplateimages`;
+            req.destFile = `uploads/eventmedia/numplateimages`;
          } else if ( file.fieldname == "walkaround" ) {
             customDest = "walkaroundvideos";
-            // req.destFile = `uploads/eventmedia/walkaroundvideos`;
+            req.destFile = `uploads/eventmedia/walkaroundvideos`;
          } else if ( file.fieldname == "VIN" ) {
             customDest = "VINpics";
-            // req.destFile = `uploads/eventmedia/VINpics`;
+            req.destFile = `uploads/eventmedia/VINpics`;
          } else {
             res.json({ message: "Invalid field" });
          }
 
-         req.destFile = `../uploads/eventmedia/${customDest}`;
+         // req.destFile = `../uploads/eventmedia/${customDest}`;
          
          CB(null, path.join(__dirname, `../uploads/eventmedia/${customDest}`));
       },
       filename: function (req, file, CB){
          const fullName = Date.now() +'-'+ file.originalname;
-         req.destFile = path.join(__dirname, `../uploads/eventmedia/${customDest}`);
-         console.log(__dirname)
+         // req.destFile = path.join(__dirname, `../uploads/eventmedia/${customDest}`);
+         // console.log(req.destFile)
+         // console.log(fullName);
          CB(null, fullName);
       }
    });
 
    const fileFilter = function (req, file, CB) {
-      console.log(req.file)
+      // console.log(req)
       if ( 
          file.fieldname == "Images" ||
          file.fieldname == "numPlates" ||
@@ -72,15 +74,17 @@ function multerFun(customDest) {
             CB( null, false );
          }
       } else {
-         res.json({ message: "Invalid field" })
+         // res.json({ message: "Invalid field" })
+         console.log('joj')
       }
       req.destFile = `uploads/eventmedia/${customDest}`;
    }
 
-   // const upload = multer({ destination: path.join(__dirname, `../uploads/eventmedia/${customDest}`), fileFilter, storage });
-   // console.log(req);
-   // return upload;
-   return multer({ destination: path.join(__dirname, `../uploads/eventmedia/${customDest}`), fileFilter, /*storage:*/ storage });;
+   const upload = multer({ destination: path.join(__dirname, `../uploads/eventmedia/${customDest}`), fileFilter, storage });
+   // console.log(upload);
+   return upload;
+   // return multer({ destination: path.join(__dirname, `../uploads/eventmedia/${customDest}`), fileFilter, /*storage:*/ storage });
+ 
 };
 
 module.exports = {

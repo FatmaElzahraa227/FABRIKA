@@ -4,7 +4,24 @@ const eventModel = require("../../../DB/model/event");
 var jwt = require("jsonwebtoken");
 
 const addVehicle = async (req, res) => {
-  const { vehicle_vin, vehicle_make, vehicle_model } = req.body;
+  const {
+    vehicle_vin,
+    vehicle_make,
+    vehicle_model,
+    model_year,
+    displacement,
+    color,
+    mileage_years_x,
+    mileage_miles_y,
+    extra_features,
+    // ownerid,
+    is_stolen,
+    is_salvaged,
+    is_insured,
+    has_mileage,
+    has_sales_history,
+    has_service_history,
+  } = req.body;
   const user = await userModel.findById(req.userid);
   const owner_id = user._id;
 
@@ -17,16 +34,28 @@ const addVehicle = async (req, res) => {
       vehicle_vin,
       vehicle_make,
       vehicle_model,
+      model_year,
+      displacement,
+      color,
+      mileage_years_x,
+      mileage_miles_y,
+      extra_features,
       owner_id,
+      is_stolen,
+      is_salvaged,
+      is_insured,
+      has_mileage,
+      has_sales_history,
+      has_service_history,
     });
     const savedVehicle = await vehicle.save();
     const updatedUser = await userModel.findByIdAndUpdate(
       user._id,
-      { owned_vehicles: savedVehicle._id},
+      { owned_vehicles: savedVehicle._id },
       { new: true }
     );
     res.json({ message: "Added.", savedVehicle, updatedUser });
-    console.log(savedVehicle);
+    
   }
 };
 
@@ -36,23 +65,47 @@ const getVehicleData = async (req, res) => {
   });
   const user = await userModel.findById(req.userid);
   var arr = user.search_history;
-  
+
   if (!vehicleData) {
     res.status(400).json({ message: "Vehicle doesn't exist" });
   } else {
-    
     console.log(vehicleData.id);
-    const getevents = await eventModel.find({affected_vehicle: vehicleData.id});
+    const getevents = await eventModel.find({
+      affected_vehicle: vehicleData.id,
+    });
     console.log(getevents);
     arr.push(vehicleData);
     const updatedUser = await userModel.findByIdAndUpdate(
       user._id,
-      { search_history: arr},
+      { search_history: arr },
       { new: true }
     );
-    var token = jwt.sign({ vehicle:vehicleData, event: getevents}, process.env.verifyTokenKey);
+    var token = jwt.sign(
+      { vehicle: vehicleData, event: getevents },
+      process.env.verifyTokenKey
+    );
     res.json({ message: "Here you go", token, vehicleData, getevents });
   }
+};
+
+const getDataToEdit = async (req, res) => {
+  const vehicleData = await vehicleModel.findOne({
+    vehicle_vin: req.params.vehicle_vin,
+  });
+  if (!vehicleData) {
+    res.status(400).json({ message: "Vehicle doesn't exist" });
+  } else {
+    console.log(vehicleData.id);
+    const getevents = await eventModel.find({
+      affected_vehicle: vehicleData.id,
+    });
+    console.log(getevents);
+    var token = jwt.sign(
+      { vehicle: vehicleData, event: getevents },
+      process.env.verifyTokenKey
+    );
+    res.json({ message: "Edit This Shit.", token, vehicleData, getevents });
+ }
 };
 
 // const updatePic = async (req, res) => {
@@ -168,4 +221,5 @@ module.exports = {
   updatePic,
   editVehicle,
   getimage,
+  getDataToEdit,
 };

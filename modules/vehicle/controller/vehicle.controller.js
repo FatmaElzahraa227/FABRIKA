@@ -96,16 +96,76 @@ const getDataToEdit = async (req, res) => {
     res.status(400).json({ message: "Vehicle doesn't exist" });
   } else {
     console.log(vehicleData.id);
-    const getevents = await eventModel.find({
-      affected_vehicle: vehicleData.id,
-    });
-    console.log(getevents);
+    
     var token = jwt.sign(
-      { vehicle: vehicleData, event: getevents },
+      { vehicle: vehicleData },
       process.env.verifyTokenKey
     );
-    res.json({ message: "Edit This Shit.", token, vehicleData, getevents });
+    res.json({ message: "Edit This Shit.", token, vehicleData });
  }
+};
+
+const editVehicle = async (req, res) => {
+  const { vehicle_make,
+          vehicle_model,
+          model_year,
+          displacement,
+          color,
+          mileage_years_x,
+          mileage_miles_y,
+          extra_features,
+          // owner_id,
+          is_stolen,
+          is_salvaged,
+          is_insured,
+          has_mileage,
+          has_sales_history,
+          has_service_history } = req.body;
+          
+  // const currentUserID = await userModel.findById(req.userid);
+  const saidVehicle = await vehicleModel.findById(req.vehicleid);
+  console.log(saidVehicle);
+  if(saidVehicle){
+    const updatedVehicle = await vehicleModel.findByIdAndUpdate(
+      saidVehicle._id,
+      { vehicle_make,
+        vehicle_model,
+        model_year,
+        displacement,
+        color,
+        mileage_years_x,
+        mileage_miles_y,
+        extra_features,
+        // owner_id,
+        is_stolen,
+        is_salvaged,
+        is_insured,
+        has_mileage,
+        has_sales_history,
+        has_service_history },
+      { new: true }
+    );
+    
+  res.status(200).json({message: "Vehicle Updated.", updatedVehicle});
+  }else{
+    res.json({message: "Create Vehicle First."})
+  }
+/*641f291c72b4535afc216326*/
+/*641f291c72b4535afc216326*/ 
+  // console.log(currentUserID);
+  // console.log(updatedVehicle);
+  // res.json({message: "Vehicle Updated."}, updatedVehicle );
+
+  // console.log(owner_id);
+  // const foundVehicle = await vehicleModel.findOne({ vehicle_vin });
+  //   if (foundVehicle) {
+  //     res.status(400).json({ message: "Vehicle already exists." });
+  //   }else{
+  //    const vehicle = new vehicleModel({ vehicle_vin, vehicle_make, vehicle_model, owner_id });
+  //    const savedVehicle = await vehicle.save();
+  //    res.json({message: "Added.", savedVehicle})
+  //    console.log(savedVehicle);
+  //   }
 };
 
 // const updatePic = async (req, res) => {
@@ -195,25 +255,7 @@ const getimage = async (req, res) => {
 //   }
 // });
 
-const editVehicle = async (req, res) => {
-  // const { vehicle_vin, vehicle_make, vehicle_model } = req.body;
-  const currentUserID = await userModel.findById(req.userid);
-  const saidVehicle = await vehicleModel.findById(req.vehicleid);
 
-  console.log(currentUserID);
-  console.log(saidVehicle);
-
-  // console.log(owner_id);
-  // const foundVehicle = await vehicleModel.findOne({ vehicle_vin });
-  //   if (foundVehicle) {
-  //     res.status(400).json({ message: "Vehicle already exists." });
-  //   }else{
-  //    const vehicle = new vehicleModel({ vehicle_vin, vehicle_make, vehicle_model, owner_id });
-  //    const savedVehicle = await vehicle.save();
-  //    res.json({message: "Added.", savedVehicle})
-  //    console.log(savedVehicle);
-  //   }
-};
 
 module.exports = {
   addVehicle,

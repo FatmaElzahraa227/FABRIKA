@@ -42,9 +42,21 @@ const editVehicle = {
   body: Joi.object()
     .required()
     .keys({
-      vehicle_vin: Joi.string().min(1).max(20),
       vehicle_make: Joi.string().min(2).max(20),
-      vehicle_model: Joi.string()
+      vehicle_model: Joi.string(),
+      model_year: Joi.string(),
+      displacement: Joi.string(),
+      color: Joi.string(),
+      mileage_years_x: Joi.array(),
+      mileage_miles_y: Joi.array(),
+      extra_features: Joi.string(),
+      is_stolen: Joi.boolean(),
+      is_salvaged: Joi.boolean(),
+      is_insured: Joi.boolean(),
+      has_mileage: Joi.boolean(),
+      has_sales_history: Joi.boolean(),
+      has_service_history: Joi.boolean(),
+      pictures: Joi.array()
     })
 }
 

@@ -150,22 +150,6 @@ const editVehicle = async (req, res) => {
   }else{
     res.json({message: "Create Vehicle First."})
   }
-/*641f291c72b4535afc216326*/
-/*641f291c72b4535afc216326*/ 
-  // console.log(currentUserID);
-  // console.log(updatedVehicle);
-  // res.json({message: "Vehicle Updated."}, updatedVehicle );
-
-  // console.log(owner_id);
-  // const foundVehicle = await vehicleModel.findOne({ vehicle_vin });
-  //   if (foundVehicle) {
-  //     res.status(400).json({ message: "Vehicle already exists." });
-  //   }else{
-  //    const vehicle = new vehicleModel({ vehicle_vin, vehicle_make, vehicle_model, owner_id });
-  //    const savedVehicle = await vehicle.save();
-  //    res.json({message: "Added.", savedVehicle})
-  //    console.log(savedVehicle);
-  //   }
 };
 
 // const updatePic = async (req, res) => {

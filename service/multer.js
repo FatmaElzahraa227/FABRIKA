@@ -3,9 +3,6 @@ const multer = require ("multer");
 const path = require ("path");
 const fs = require ("fs");
 const { log } = require("console");
-// const nanoid = require("nanoid");
-// import { nanoid } from 'nanoid'
-// import { nanoid } from 'nanoid';
 
 function multerFun(customDest) {
    // let customDest = "generalimages";

@@ -5,7 +5,7 @@ var jwt = require("jsonwebtoken");
 
 const sendEventReq = async (req, res) => {
   try {
-    // console.log(req.files.walkaround[0].filename);
+    console.log(req.files);
     if (req.fileUploadError) {
       res.json({ message: "Invalid file type." });
     } else {

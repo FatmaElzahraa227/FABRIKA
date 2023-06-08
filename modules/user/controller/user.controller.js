@@ -5,17 +5,22 @@ const bcrypt = require("bcrypt");
 require("dotenv").config();
 const vehicleModel = require("../../../DB/model/vehicle");
 const eventModel = require("../../../DB/model/event");
+const { sendNotification } = require("../../../service/notification");
 // const QRCode = require('qrcode');
 // const sendEmail = require("../../../service/sendEmail");
 
 const getProfile = async (req, res) => {
-  const userData = await userModel.findById(req.userid);
-  const searchHistory = userData.search_history; // The array of ids you're searching for.
-  const vehicle = await vehicleModel.find({_id:{ $in: searchHistory }});
-//   console.log(getHistory);
-  res.json({ message: "he5a", userData, vehicle });
+  try {
+    const userData = await userModel.findById(req.userid);
+    const searchHistory = userData.search_history; // The array of ids you're searching for.
+    const vehicle = await vehicleModel.find({_id:{ $in: searchHistory }});
+    sendNotification(userData._id, "Viewed his profile.")
+    res.json({ message: "he5a", userData, vehicle });
+    // sendNotification(userData._id, "Viewed his profile.")
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 };
-
 
 
 const updateEmail = async (req, res) => {
@@ -34,6 +39,7 @@ const updateEmail = async (req, res) => {
       { email: req.body.email /*Confirmed: false*/ },
       { new: true }
     );
+    sendNotification(user._id, "Updated their e-mail.")
     res.json({ message: "DONE.", user });
     var token = jwt.sign({ id: user._id }, process.env.verifyTokenKey);
     //  let URL = `${req.protocol}://${req.headers.host}/api/v1/auth/confirm/${token}`;
@@ -43,7 +49,7 @@ const updateEmail = async (req, res) => {
     //  );
   }
   // res.json({user});
-  console.log(user);
+  // console.log(user);
 };
 
 const deleteUser = async (req, res) => {
@@ -124,24 +130,11 @@ safeResetPassword = async (req, res) => {
       { password: hashedPassword},
       { new: true }
     );
-    // await userModel.findByIdAndUpdate(user._id, { password: pass});
     res.json({ message: "Done yaba.", updatedUser});
   } catch(error){
     res.status(400).json({ message: error.message });
   }
 };
-
-
-// const hashedPassword = await bcrypt.hash(
-//   newPassword,
-//   parseInt(process.env.saltRound)
-// );
-// const updatedUser = await userModel.findByIdAndUpdate(
-//   user._id,
-//   { password: hashedPassword},
-//   { new: true }
-// );
-
 
 
 module.exports = {
@@ -155,6 +148,17 @@ module.exports = {
   // updateCoverPic,
   // QR,
 };
+
+
+// const hashedPassword = await bcrypt.hash(
+//   newPassword,
+//   parseInt(process.env.saltRound)
+// );
+// const updatedUser = await userModel.findByIdAndUpdate(
+//   user._id,
+//   { password: hashedPassword},
+//   { new: true }
+// );
 
 
 // const updateCoverPic = async (req,res) => {

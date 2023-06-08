@@ -2,6 +2,7 @@ var jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const userModel = require("../../../DB/model/user");
 const sendEmail = require("../../../service/sendEmail");
+const { sendNotification } = require("../../../service/notification");
 
 const signUp = async (req, res) => {
   try {
@@ -27,6 +28,7 @@ const signUp = async (req, res) => {
           email,
           `<a href=${URL}>Please click here to confirm your email</a>`
         );
+        sendNotification(savedUser._id, "is new to fabrika!.")
       res
         //.status(StatusCodes.CREATED)
         .json({ message: "Added Done", savedUser, token });
@@ -94,6 +96,7 @@ const signUpMobile = async (req, res) => {
          email,
          `<a href=${URL}>Please click here to confirm your email</a>`
        );
+       sendNotification(savedUser._id, "is new to fabrika!.")
       res
         //.status(StatusCodes.CREATED)
         .json({ message: "Added Done", savedUser });
@@ -103,35 +106,6 @@ const signUpMobile = async (req, res) => {
   }
 };
 
-
-
-// const signIn = async (req, res) => {
-//   const { email, password } = req.body;
-//   const foundedUser = await userModel.findOne({ email });
-//   if (foundedUser) {
-//     if(foundedUser.Confirmed != true){
-//       res.json({message: "Please confirm your email first."})
-//     }/*else if(foundedUser.Blocked == true){
-//       res.json({message: "Your account is blocked."})
-//     }*/else if (foundedUser.IsDeleted == true) {
-//       res.json({ message: "Your account is deleted." });
-//     } else if (foundedUser.Confirmed && !foundedUser.IsDeleted) {
-//       bcrypt.compare(password, foundedUser.password, function (err, result) {
-//         if (result) {
-//           var token = jwt.sign(
-//             { id: foundedUser._id },
-//             process.env.verifyTokenKey
-//           );
-//           res.json({ message: "ya welcome ya welcome", token });
-//         } else {
-//           res.status(422).json({ message: "Ektb el password sa7." });
-//         }
-//       });
-//     }
-//   } else {
-//     res.status(404).json({ message: "Please register first." });
-//   }
-// };
 
 
 const signIn = async (req, res) => {
@@ -182,6 +156,7 @@ const forgotPassword = async (req, res) => {
 };
 
 
+
 const codeVerification = async (req, res) => {
   try {
     const { code } = req.body;
@@ -207,6 +182,7 @@ const codeVerification = async (req, res) => {
 };
 
 
+
 const resetPassword = async (req, res) => {
   try {
     const { newPassword } = req.body;
@@ -225,12 +201,15 @@ const resetPassword = async (req, res) => {
         { password: hashedPassword},
         { new: true }
       );
+      sendNotification(updatedUser._id, "has reset their password.")
       res.status(200).json({ message: "Password reset!", updatedUser });
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
+
 
 const changePassword = async (req, res) => {
   try {
@@ -291,6 +270,35 @@ module.exports = {
 //     next();
 //   }
 
+// };
+
+
+// const signIn = async (req, res) => {
+//   const { email, password } = req.body;
+//   const foundedUser = await userModel.findOne({ email });
+//   if (foundedUser) {
+//     if(foundedUser.Confirmed != true){
+//       res.json({message: "Please confirm your email first."})
+//     }/*else if(foundedUser.Blocked == true){
+//       res.json({message: "Your account is blocked."})
+//     }*/else if (foundedUser.IsDeleted == true) {
+//       res.json({ message: "Your account is deleted." });
+//     } else if (foundedUser.Confirmed && !foundedUser.IsDeleted) {
+//       bcrypt.compare(password, foundedUser.password, function (err, result) {
+//         if (result) {
+//           var token = jwt.sign(
+//             { id: foundedUser._id },
+//             process.env.verifyTokenKey
+//           );
+//           res.json({ message: "ya welcome ya welcome", token });
+//         } else {
+//           res.status(422).json({ message: "Ektb el password sa7." });
+//         }
+//       });
+//     }
+//   } else {
+//     res.status(404).json({ message: "Please register first." });
+//   }
 // };
 
 

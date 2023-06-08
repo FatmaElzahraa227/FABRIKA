@@ -2,6 +2,8 @@ const vehicleModel = require("../../../DB/model/vehicle");
 const userModel = require("../../../DB/model/user");
 const eventModel = require("../../../DB/model/event");
 var jwt = require("jsonwebtoken");
+const { sendNotification } = require("../../../service/notification");
+
 
 const addVehicle = async (req, res) => {
   const {
@@ -59,6 +61,8 @@ const addVehicle = async (req, res) => {
   }
 };
 
+
+
 const getVehicleData = async (req, res) => {
   const vehicleData = await vehicleModel.findOne({
     vehicle_vin: req.params.vehicle_vin,
@@ -88,6 +92,8 @@ const getVehicleData = async (req, res) => {
   }
 };
 
+
+
 const getDataToEdit = async (req, res) => {
   const vehicleData = await vehicleModel.findOne({
     vehicle_vin: req.params.vehicle_vin,
@@ -104,6 +110,8 @@ const getDataToEdit = async (req, res) => {
     res.json({ message: "Edit This Shit.", token, vehicleData });
  }
 };
+
+
 
 const editVehicle = async (req, res) => {
   const { vehicle_make,
@@ -152,35 +160,7 @@ const editVehicle = async (req, res) => {
   }
 };
 
-// const updatePic = async (req, res) => {
-//   try {
-//     if (req.fileUploadError) {
-//       res.status(422).json({ message: "Invalid file" });
-//     } else {
-//       const vehicleaya = await vehicleModel.findById(req.vehicleId);
-//       if (vehicleaya) {
-//         let imagesURLS = [];
-//         for (let i = 0; i < req.files.length; i++) {
-//           let imgURL = `${req.protocol}://${req.headers.host}/${req.fileURL}/${req.files[i].filename}`;
-//           imagesURLS.push(imgURL);
-//         }
-//         let updatedUser = await vehicleModel.findByIdAndUpdate(
-//           user._id,
-//           { coverPictures: imagesURLS , $inc: { __v: 1 }},
-//           { new: true }
-//         );
-//         res.status(200).json({
-//           message: "Cover pictures updated successfully",
-//           updatedUser,
-//         });
-//       } else {
-//         res.status(404).json({ message: "Invalid user" });
-//       }
-//     }
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
+
 
 const updatePic = async (req, res) => {
   try {
@@ -212,6 +192,8 @@ const updatePic = async (req, res) => {
   }
 };
 
+
+
 const getimage = async (req, res) => {
   try {
     const yarabngeebelimages = await vehicleModel.find({});
@@ -229,15 +211,7 @@ const getimage = async (req, res) => {
   }
 };
 
-// app.get("/articles", async (req, res) => {
-//   try {
-//     const articles = await Article.find({ });
-//     res.send(articles);
-//     console.log(articles);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
+
 
 
 
@@ -249,3 +223,46 @@ module.exports = {
   getimage,
   getDataToEdit,
 };
+
+
+
+// const updatePic = async (req, res) => {
+//   try {
+//     if (req.fileUploadError) {
+//       res.status(422).json({ message: "Invalid file" });
+//     } else {
+//       const vehicleaya = await vehicleModel.findById(req.vehicleId);
+//       if (vehicleaya) {
+//         let imagesURLS = [];
+//         for (let i = 0; i < req.files.length; i++) {
+//           let imgURL = `${req.protocol}://${req.headers.host}/${req.fileURL}/${req.files[i].filename}`;
+//           imagesURLS.push(imgURL);
+//         }
+//         let updatedUser = await vehicleModel.findByIdAndUpdate(
+//           user._id,
+//           { coverPictures: imagesURLS , $inc: { __v: 1 }},
+//           { new: true }
+//         );
+//         res.status(200).json({
+//           message: "Cover pictures updated successfully",
+//           updatedUser,
+//         });
+//       } else {
+//         res.status(404).json({ message: "Invalid user" });
+//       }
+//     }
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
+
+
+// app.get("/articles", async (req, res) => {
+//   try {
+//     const articles = await Article.find({ });
+//     res.send(articles);
+//     console.log(articles);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });

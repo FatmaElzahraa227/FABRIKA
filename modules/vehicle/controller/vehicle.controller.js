@@ -214,7 +214,6 @@ const getimage = async (req, res) => {
 
 
 
-
 module.exports = {
   addVehicle,
   getVehicleData,

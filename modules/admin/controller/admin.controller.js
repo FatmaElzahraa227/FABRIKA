@@ -29,13 +29,23 @@ try {
   res.json({ message: "You have new notifications.", newNotis });
 } catch (error) {
   res.json({message: error.message});
-}
-  
-  
-  
+} 
 };
+
+
+const retrieveMessages = async (req, res) => {
+  try {
+    console.log("hi");
+    const newMsg = await messageModel.find().exec();
+    res.json({ message: "New Messages!.", newMsg });
+  } catch (error) {
+    res.json({message: error.message});
+  }
+}
+
 
 module.exports = {
   getQA,
-  getNotifications
+  getNotifications,
+  retrieveMessages,
 };

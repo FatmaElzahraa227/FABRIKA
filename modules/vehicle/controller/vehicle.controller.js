@@ -56,6 +56,7 @@ const addVehicle = async (req, res) => {
       { owned_vehicles: savedVehicle._id },
       { new: true }
     );
+    sendNotification(updatedUser._id, "Has added a new vehicle.")
     res.json({ message: "Added.", savedVehicle, updatedUser });
     
   }
@@ -153,7 +154,7 @@ const editVehicle = async (req, res) => {
         has_service_history },
       { new: true }
     );
-    
+    sendNotification(req.userid, "Has updated a vehicle.")
   res.status(200).json({message: "Vehicle Updated.", updatedVehicle});
   }else{
     res.json({message: "Create Vehicle First."})

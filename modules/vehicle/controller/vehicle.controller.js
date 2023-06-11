@@ -58,7 +58,6 @@ const addVehicle = async (req, res) => {
     );
     sendNotification(updatedUser._id, "Has added a new vehicle.")
     res.json({ message: "Added.", savedVehicle, updatedUser });
-    
   }
 };
 

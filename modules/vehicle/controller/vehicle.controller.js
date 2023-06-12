@@ -54,7 +54,7 @@ const addVehicle = async (req, res) => {
       { owned_vehicles: savedVehicle._id },
       { new: true }
     );
-    res.json({ message: "Added.", savedVehicle, updatedUser });
+   return res.json({ message: "Added.", savedVehicle, updatedUser });
     
   }
 };
@@ -100,13 +100,13 @@ const getDataToEdit = async (req, res) => {
     var token = jwt.sign(
       { vehicle: vehicleData },
       process.env.verifyTokenKey
-    );
+    ); 
     res.json({ message: "Edit This Shit.", token, vehicleData });
  }
 };
 
-const editVehicle = async (req, res) => {
-  const { vehicle_make,
+const editVehicle = async (req, res) => { 
+  const { vehicle_make, 
           vehicle_model,
           model_year,
           displacement,

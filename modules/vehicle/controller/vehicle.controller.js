@@ -45,7 +45,7 @@ const addVehicle = async (req, res) => {
       owner_id,
       is_stolen,
       is_salvaged,
-      is_insured,
+      is_insured, 
       has_mileage,
       has_sales_history,
       has_service_history,

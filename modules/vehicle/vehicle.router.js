@@ -12,7 +12,7 @@ const validationFun = require("../../middleware/validation");
 const router = require("express").Router();
 
 router.post("/addVehicle",auth(userAPI.addVehicle),validationFun(vehicleValidation.addVehicle), addVehicle);
-router.get("/getVehicleData/:vehicle_vin",auth(userAPI.addVehicle),validationFun(vehicleValidation.getVehicleData), getVehicleData);
+router.get("/getVehicleData/:vehicle_vin",auth(userAPI.getVehicle),validationFun(vehicleValidation.getVehicleData), getVehicleData);
 router.get("/getDataToEdit/:vehicle_vin",auth(userAPI.addVehicle),validationFun(vehicleValidation.getVehicleData), getDataToEdit);
 router.patch("/updateVehicle",getVehicle(),validationFun(vehicleValidation.editVehicle), editVehicle);
 router.get("/getEvent/:eventID",auth(userAPI.getEvent), getEvent);

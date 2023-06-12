@@ -56,13 +56,10 @@ const addVehicle = async (req, res) => {
       { owned_vehicles: savedVehicle._id },
       { new: true }
     );
-    sendNotification(updatedUser._id, "Has added a new vehicle.")
-    res.json({ message: "Added.", savedVehicle, updatedUser });
-
+   return res.json({ message: "Added.", savedVehicle, updatedUser });
+    
   }
 };
-
-
 
 const getVehicleData = async (req, res) => {
   const vehicleData = await vehicleModel.findOne({
@@ -93,8 +90,6 @@ const getVehicleData = async (req, res) => {
   }
 };
 
-
-
 const getDataToEdit = async (req, res) => {
   const vehicleData = await vehicleModel.findOne({
     vehicle_vin: req.params.vehicle_vin,
@@ -107,15 +102,13 @@ const getDataToEdit = async (req, res) => {
     var token = jwt.sign(
       { vehicle: vehicleData },
       process.env.verifyTokenKey
-    );
+    ); 
     res.json({ message: "Edit This Shit.", token, vehicleData });
  }
 };
 
-
-
-const editVehicle = async (req, res) => {
-  const { vehicle_make,
+const editVehicle = async (req, res) => { 
+  const { vehicle_make, 
           vehicle_model,
           model_year,
           displacement,
@@ -154,77 +147,12 @@ const editVehicle = async (req, res) => {
         has_service_history },
       { new: true }
     );
-    sendNotification(req.userid, "Has updated a vehicle.")
+    
   res.status(200).json({message: "Vehicle Updated.", updatedVehicle});
   }else{
     res.json({message: "Create Vehicle First."})
   }
 };
-
-
-
-const updatePic = async (req, res) => {
-  try {
-    // console.log(req.files);
-    const vehicle_vin = req.body.VIN;
-    const vehicle = await vehicleModel.findOne({ vehicle_vin });
-    //  console.log(vehicle);
-    if (vehicle) {
-      console.log(req.fileURL);
-      let imagesURL = [];
-      for (let i = 0; i < req.files; i++) {
-        let imgURL = `${req.protocol}://${req.headers.host}/${req.fileURL}/${req.files[i].filename}`;
-        imagesURL.push(imgURL);
-      }
-      let updatedVehicle = await vehicleModel.findOneAndUpdate(
-        { vehicle_vin },
-        { pictures: imagesURL },
-        { new: true }
-      );
-      console.log("done", updatedVehicle);
-      res.json(updatedVehicle);
-    } else {
-      res
-        .status(404)
-        .json({ message: "Vehicle not found or VIN is incorrect." });
-    }
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
-
-
-
-const getimage = async (req, res) => {
-  try {
-    const yarabngeebelimages = await vehicleModel.find({});
-    res.json({ yarabngeebelimages });
-    // vehicleModel.find({}, (err, items) => {
-    //   if (err) {
-    //     console.log(err);
-    //     res.status(500).send("An error occurred", err);
-    //   } else {
-    //     res.render("imagesPage", { items: items });
-    //   }
-    // });
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
-
-
-
-
-module.exports = {
-  addVehicle,
-  getVehicleData,
-  updatePic,
-  editVehicle,
-  getimage,
-  getDataToEdit,
-};
-
-
 
 // const updatePic = async (req, res) => {
 //   try {
@@ -256,6 +184,52 @@ module.exports = {
 //   }
 // };
 
+const updatePic = async (req, res) => {
+  try {
+    // console.log(req.files);
+    const vehicle_vin = req.body.VIN;
+    const vehicle = await vehicleModel.findOne({ vehicle_vin });
+    //  console.log(vehicle);
+    if (vehicle) {
+      console.log(req.fileURL);
+      let imagesURL = [];
+      for (let i = 0; i < req.files; i++) {
+        let imgURL = `${req.protocol}://${req.headers.host}/${req.fileURL}/${req.files[i].filename}`;
+        imagesURL.push(imgURL);
+      }
+      let updatedVehicle = await vehicleModel.findOneAndUpdate(
+        { vehicle_vin },
+        { pictures: imagesURL },
+        { new: true }
+      );
+      console.log("done", updatedVehicle);
+      res.json(updatedVehicle);
+    } else {
+      res
+        .status(404)
+        .json({ message: "Vehicle not found or VIN is incorrect." });
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+const getimage = async (req, res) => {
+  try {
+    const yarabngeebelimages = await vehicleModel.find({});
+    res.json({ yarabngeebelimages });
+    // vehicleModel.find({}, (err, items) => {
+    //   if (err) {
+    //     console.log(err);
+    //     res.status(500).send("An error occurred", err);
+    //   } else {
+    //     res.render("imagesPage", { items: items });
+    //   }
+    // });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
 
 // app.get("/articles", async (req, res) => {
 //   try {
@@ -266,3 +240,14 @@ module.exports = {
 //     console.log(err);
 //   }
 // });
+
+
+
+module.exports = {
+  addVehicle,
+  getVehicleData,
+  updatePic,
+  editVehicle,
+  getimage,
+  getDataToEdit,
+};

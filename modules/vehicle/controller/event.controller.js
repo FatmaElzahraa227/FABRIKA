@@ -6,7 +6,7 @@ const { sendNotification } = require("../../../service/notification");
 
 const sendEventReq = async (req, res) => {
   try {
-    console.log(req.files, req.body);
+    // console.log(req.files, req.body);
     if (req.fileUploadError) {
       res.json({ message: "Invalid file type." });
     } else {
@@ -31,7 +31,7 @@ const sendEventReq = async (req, res) => {
         fileName = `${req.protocol}://${req.headers.host}/uploads/eventmedia/VINpics/${req.files.VIN[i].filename}`;
         VINfileUrls.push(fileName);
       }
-      console.log(VfileUrls, NPfileUrls, WAfileUrls, VINfileUrls);
+      // console.log(VfileUrls, NPfileUrls, WAfileUrls, VINfileUrls);
       // const event_type = req.event_type;
       // const event_desc = req.event_desc;
       const { event_type, event_desc } = req.body;

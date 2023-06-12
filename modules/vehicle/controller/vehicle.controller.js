@@ -144,7 +144,7 @@ const editVehicle = async (req, res) => {
         is_insured,
         has_mileage,
         has_sales_history,
-        has_service_history },
+        has_service_history }, 
       { new: true }
     );
     

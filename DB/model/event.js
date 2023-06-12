@@ -5,14 +5,15 @@ const mongoose = require('mongoose');
 const eventSchema = new mongoose.Schema({
    
    // event_id: {type: Number, required:true, unique:true}, 
+   sent_by: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true },
    event_type: { type: String, required: true },
-   event_title: { type: String, required: true },
+   event_title: { type: String, },
    vehicle_pics: [{ type: String, required: true }],
    numplate_pics: [{ type: String, required: true }],
    walkaround_vid: [{ type: String, required: true }],
    vin_pics: [{type: String, required: true }],
    event_desc: { type: String, required: false },
-   event_date: { type: String, required: true },
+   event_date: { type: String, },
    // event_media: [ String ],
    event_damages: { type: String }, 
    affected_vehicle: { type: mongoose.Schema.Types.ObjectId, ref: 'vehicle' },

@@ -1,4 +1,4 @@
-const { signUp,signUpMobile, signIn, forgotPassword,  resetPassword, codeVerification , confirmEmail, changePassword, /*verifyCode, updateEmail*/ } = require('./controller/auth.controller');
+const { signUp,signUpMobile, signIn, forgotPassword, resetPassword, codeVerification , confirmEmail, changePassword, /*verifyCode, updateEmail*/ } = require('./controller/auth.controller');
 const router = require('express').Router();
 const authValidation = require("./auth.validator");
 const validationFun = require('../../middleware/validation');

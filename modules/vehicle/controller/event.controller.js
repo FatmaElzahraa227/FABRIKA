@@ -2,35 +2,49 @@ const vehicleModel = require("../../../DB/model/vehicle");
 const userModel = require("../../../DB/model/user");
 const eventModel = require("../../../DB/model/event");
 var jwt = require("jsonwebtoken");
+const { sendNotification } = require("../../../service/notification");
 
 const sendEventReq = async (req, res) => {
   try {
-    // console.log(req.files.walkaround[0].filename);
+    console.log(req.files, req.body);
     if (req.fileUploadError) {
       res.json({ message: "Invalid file type." });
     } else {
       let fileName = "";
-      const fileUrls = [];
+      const VfileUrls = [];
+      const NPfileUrls = [];
+      const WAfileUrls = [];
+      const VINfileUrls = [];
       for (let i = 0; i < req.files.Images.length; i++) {
         fileName = `${req.protocol}://${req.headers.host}/uploads/eventmedia/generalimages/${req.files.Images[i].filename}`;
-        fileUrls.push(fileName);
+        VfileUrls.push(fileName);
       }
       for (let i = 0; i < req.files.numPlates.length; i++) {
         fileName = `${req.protocol}://${req.headers.host}/uploads/eventmedia/numplateimages/${req.files.numPlates[i].filename}`;
-        fileUrls.push(fileName);
+        NPfileUrls.push(fileName);
       }
       for (let i = 0; i < req.files.walkaround.length; i++) {
         fileName = `${req.protocol}://${req.headers.host}/uploads/eventmedia/walkaroundvideos/${req.files.walkaround[i].filename}`;
-        fileUrls.push(fileName);
+        WAfileUrls.push(fileName);
       }
       for (let i = 0; i < req.files.VIN.length; i++) {
         fileName = `${req.protocol}://${req.headers.host}/uploads/eventmedia/VINpics/${req.files.VIN[i].filename}`;
-        fileUrls.push(fileName);
+        VINfileUrls.push(fileName);
       }
-      // console.log(fileName); // This should now output the last generated fileName in the loop
-      // console.log(req.file);
+      console.log(VfileUrls, NPfileUrls, WAfileUrls, VINfileUrls);
+      // const event_type = req.event_type;
+      // const event_desc = req.event_desc;
+      const { event_type, event_desc } = req.body;
+      const sent_by = req.userid;
+      const newEvent = new eventModel({
+        sent_by, event_type, vehicle_pics: VfileUrls, numplate_pics: NPfileUrls, walkaround_vid: WAfileUrls, vin_pics: VINfileUrls, event_desc
+      });
+      const savedEvent = await newEvent.save();
 
-      res.json({ message: "all good", fileUrls });
+      // console.log(fileName); // This should now output the last generated fileName in the loop
+      
+      sendNotification( req.userid, "Sent an event request!")
+      res.json({ message: "all good", savedEvent });
     }
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -49,6 +63,8 @@ const getEvent = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+
 
 module.exports = {
   getEvent,

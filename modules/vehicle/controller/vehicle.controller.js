@@ -2,6 +2,8 @@ const vehicleModel = require("../../../DB/model/vehicle");
 const userModel = require("../../../DB/model/user");
 const eventModel = require("../../../DB/model/event");
 var jwt = require("jsonwebtoken");
+const { sendNotification } = require("../../../service/notification");
+
 
 const addVehicle = async (req, res) => {
   const {

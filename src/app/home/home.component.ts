@@ -32,15 +32,16 @@ export class HomeComponent {
       VIN: '',
     });
   }
-  url: string = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/vehicle/getVehicleData/';
+  url: string = 'http://localhost:5000/api/v1/vehicle/getVehicleData/';
+  // url: string = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/vehicle/getVehicleData/';
   data: any;
   errorMessage: string = '';
 
   VIN(){
-    this.showPreloader=true;
+    
     const token=localStorage.getItem('userToken');
     this.data=this.VINForm.value;
-    console.log(this.data);
+    console.log(token);
     
     const headers=new HttpHeaders({
       'Content-Type': 'application/json',
@@ -61,6 +62,7 @@ export class HomeComponent {
           console.log(data.err);
           
         }else{
+          this.showPreloader=true;
           localStorage.setItem('vehicleToken',data.token);
           setTimeout(() => {
             this.showPreloader = false;

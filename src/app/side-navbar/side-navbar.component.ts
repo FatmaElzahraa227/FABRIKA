@@ -15,6 +15,9 @@ export class SideNavbarComponent{
   reportsLinkActive = false;
   mydashboardLinkActive = false;
 
+  fName=localStorage.getItem('fName');
+  lName=localStorage.getItem('lName');
+
   constructor( public myService: AuthService,private router: Router) {
     // Subscribe to router events to detect when the route changes
     this.router.events.subscribe((event) => {

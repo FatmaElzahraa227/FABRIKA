@@ -42,7 +42,7 @@
         <ul
           class="navbar-nav d-flex align-items-center justify-content-between"
         >
-          <li *ngIf="!isLogin" class="nav-item">
+          <li *ngIf="!isLogin" [ngClass]="{'d-none': isLoginPage}" class="nav-item">
             <button
               type="button"
               class="btn btn-primary lgnbtn text-center px-4"
@@ -51,7 +51,7 @@
               Login
             </button>
           </li>
-          <li *ngIf="!isLogin" class="nav-item">
+          <li *ngIf="!isLogin" [ngClass]="{'d-none': isSignupPage}"  class="nav-item">
             <button
               type="button"
               class="btn btn-primary lgnbtn text-center px-4"
@@ -69,7 +69,7 @@
                 class="btn btn-primary lgoutbtn text-center px-4"
                 routerLink=""
               >
-                Logout
+                Logout 
               </button>
             </li>
             <li *ngIf="isLogin" class="nav-item image" routerLinkActive="active">

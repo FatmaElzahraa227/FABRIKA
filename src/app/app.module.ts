@@ -28,6 +28,7 @@ import { InboxComponent } from './inbox/inbox.component';
 import { MydashboardComponent } from './mydashboard/mydashboard.component';
 import { ReportsComponent } from './reports/reports.component';
 import { UploadImageComponent } from './upload-image/upload-image.component';
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +63,7 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
     ReactiveFormsModule,
     NgApexchartsModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

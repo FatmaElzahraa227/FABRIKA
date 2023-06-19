@@ -1,5 +1,5 @@
 <app-preloader *ngIf="showPreloader"></app-preloader>
-<app-navbar></app-navbar>
+
 <html>
   <body>
     <div class="circle"></div>
@@ -7,7 +7,11 @@
       <img src="../../assets/images/car.png" alt="" />
     </div>
     <div class="intro">
-      <h1>Welcome to FABRIKA<span class="err text-danger">{{errorMessageRegister}}</span></h1>
+      <h1>
+        Welcome to FABRIKA<span class="err text-danger">{{
+          errorMessageRegister
+        }}</span>
+      </h1>
     </div>
     <form [formGroup]="loginForm" (ngSubmit)="login()">
       <div
@@ -36,7 +40,12 @@
               />
               <label for="floatingPassword" class="form-label">Password</label>
               <!-- <p class="err text-danger"></p> -->
-              <p> <span class="err text-danger">{{ errorMessagePassword }} </span> <a class="forgot" routerLink="/forgot-password"> Forgotten your Password?</a></p>
+              <p>
+                <span class="err text-danger">{{ errorMessagePassword }} </span>
+                <a class="forgot" routerLink="/forgot-password">
+                  Forgotten your Password?</a
+                >
+              </p>
             </div>
           </div>
         </div>

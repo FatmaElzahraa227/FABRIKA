@@ -1,65 +1,47 @@
+<app-preloader *ngIf="showPreloader"></app-preloader>
 <app-sidenav></app-sidenav>
 <html>
-    <body>
-        <h2 class="head-text">Inbox</h2>
-<div class="container">
-   
-    <div class="div1">
-        <div class="greyy-box">
-            <div class="img-time"><img src="assets/img/el.jpeg"><p>6:32 pm</p>
-            </div>
-            <div class="head-texts"><h4>Mahmoud Ellisy</h4> <p>New User </p> <p>Hello! ,  i Have used Fabrika  and ...</p></div></div>
-        <div class="grey-box">
-            <div class="img-time"><img src="assets/img/ahmed.png"><p>6:32 pm</p>
-            </div>
-            <div class="head-texts"><h4>Ahmed Yousry</h4> <p>New User </p> <p>Hello! ,  i Have used Fabrika  and ...</p></div>
-        </div>
-        <div class="grey-box">
-            <div class="img-time"><img src="assets/img/salma.jpeg"><p>6:32 pm</p>
-            </div>
-            <div class="head-texts"><h4>Salma Mostafa</h4> <p>New User </p> <p>Hello! ,  i Have used Fabrika  and ...</p></div>
-        </div>
-        <div class="grey-box">
-            <div class="img-time"><img src="assets/img/maya.png"><p>6:32 pm</p>
-            </div>
-            <div class="head-texts"><h4>Maya Mohamed</h4> <p>New User </p> <p>Hello! ,  i Have used Fabrika  and ...</p></div>
-        </div>
-        <div class="grey-box">
-            <div class="img-time"><img src="assets/img/am.png"><p>6:32 pm</p>
-            </div>
-            <div class="head-texts"><h4>Om Ahmed</h4> <p>New User </p> <p>Hello! ,  i Have used Fabrika  and ...</p></div>
-        </div>
-        <div class="grey-box">
-            <div class="img-time"><img src="assets/img/el.jpeg"><p>6:32 pm</p>
-            </div>
-            <div class="head-texts"><h4>Mahmoud Ellisy</h4> <p>New User </p> <p>Hello! ,  i Have used Fabrika  and ...</p></div>
-        </div>
-        <div class="grey-box">
-            <div class="img-time"><img src="assets/img/am.png"><p>6:32 pm</p>
-            </div>
-            <div class="head-texts"><h4>Om Ahmed</h4> <p>New User </p> <p>Hello! ,  i Have used Fabrika  and ...</p></div>
-        </div>
-    </div>
-    <div class="black-box">
-        <div class="div2">
-        <div class="adress">
-       <p class="time-grey">4:56 pm</p>
-       <p class="prag">Hello! ,  i Have used Fabrika  and it’s Very simple service with great information.</p>
-       <p class="from"><span>From: </span> Ahmed Yousry</p>
-    </div>
-    <div class="icons">
-        <img class = 'icon'src="assets/img/arrow.jpeg">
-        <img class = 'icon'src="assets/img/trash.png"></div></div>
-        <div class="mail-massege"><p>Hello!,</p>
-        <p>
+  <body>
+    <h2 class="head-text">Inbox</h2>
+    <div class="container d-flex justify-content-between">
+      <div class="div1 mx-5">
+        <button
+          class="grey-box btn btn-dark"
+          [ngClass]="{ 'selected': i === selectedMessageIndex }"
+          *ngFor="let msg of data?.newMsg; let i = index"
+          (click)="showMessage(i)"
+        >
+          <div class="img-time">
+            <img src="assets/img/el.jpeg" />
+            <div class="date d-flex flex-column">
 
-            i Have used Fabrika  and it’s Very simple service with great information. I registered, paid, and got my report in just a few minutes. Everything is clear and simple. Got a rollback for the car I searched. And that wasn’t the only problem that was reported by FABRIKA. For more than a reasonable price, I got the complete history of the car. Great service!"</p>
-        <p class="have-nice">Have a Nice Day.</p>
-        <p>Ahmed Yousry</p>
-        <div class="buttons">
-        <button class="btn1"><img src="assets/img/reply.png">Reply</button>
-        <button class="btn2"><img src="assets/img/forward.png">Forward</button></div></div>
+                <p class="mx-2">{{formatDate(msg.createdAt)}}</p>
+                <p>{{getFormattedTime(msg.createdAt)}}</p>
+            </div>
+          </div>
+          <div class="head-texts">
+            <h4>{{ msg.full_name }}</h4>
+            <p>
+              {{ msg.message | slice : 0 : 11
+              }}{{ msg.message.length > 15 ? "..." : "" }}
+            </p>
+          </div>
+        </button>
+      </div>
+      <div class="black-box">
+        <div class="div2">
+          <div class="adress">
+            <p class="time-grey">{{getFormattedTime(selectedMessageTime)}}</p>
+            <p class="from"><span>From: </span>{{ selectedMessageName}}</p>
+            <p class="from">{{selectedMessageEmail}}</p>
+          </div>
+        </div>
+        <div class="mail-massege">
+          <p>
+            {{ selectedMessage }}
+          </p>
+        </div>
+      </div>
     </div>
-</div>
-    </body>
+  </body>
 </html>

@@ -1,91 +1,24 @@
+<app-preloader *ngIf="showPreloader"></app-preloader>
 <app-sidenav></app-sidenav>
 <html>
-    <body>
-        <!-- <div class="items">
-
-<div class="item1"></div>
-<div class="item2"></div>
-<div class="item3"></div>
-<h3>Yesterday</h3>
-<div class="item4"></div>
-<div class="item5"></div>
-</div> -->
-<!-- <div class="user ">    <img  class = "useri"src="assets/img/useri.png"></div> -->
-<div class="container flex-column justify-content-center m-auto ">
-
-    <h3 class="head">Today</h3>
-<div class="dhn-info-div  m-auto">
-    
-<img src="assets/img/maya.png" alt="Devonshire House Network Directors">
-<span class="name ">Maya Mohamed</span>
- <span class="notification">Changed her password</span> 
-   <div class="timee">
-    <span class="time">10:30pm</span></div>
-   </div>
-<div class="dhn-info-div m-auto">
-   
-<img src="assets/img/salma.jpeg" alt="Devonshire House Network Directors">
-<span class="name ">Salma Mostafa</span>
- <span class="notification">Make a new car report</span> 
- <div class="timee">
-    <span class="time">10:30pm</span></div>
-</div>
-<div class="dhn-info-div m-auto">
-   
-<img src="assets/img/ahmed.png" alt="Devonshire House Network Directors">
-<span class="name ">Ahmed Yousry</span>
- <span class="notification">Login failed three times</span> 
- <div class="timee">
-    <span class="time">10:30pm</span></div>
-</div>
-</div>
-
-<h3 class="head">Yesterday</h3>
-<div class="dhn-info-div m-auto">
-    
-<img src="assets/img/el.jpeg" alt="Devonshire House Network Directors">
-<span class="name ">Mahmoud Ellisy</span>
- <span class="notification">Changed his  Profile picture</span> 
- <div class="timee">
-    <span class="time">10:30pm</span></div>
-</div>
-<div class="dhn-info-div m-auto">
-    
-    <img src="assets/img/el.jpeg" alt="Devonshire House Network Directors">
-    <span class="name ">Mahmoud Ellisy</span>
-     <span class="notification">Changed his  Profile picture</span> 
-     <div class="timee">
-        <span class="time">10:30pm</span></div>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="flex min-vh-100 align-items-center justify-content-center w-75 bg-primary m-auto">
-    <div class="flex flex-column gap-5 bg-light ">
-        <div class=" rounded-3 bg-danger overflow-hidden shadow-lg ">
-            <div class="flex">
-                <div class="flex align-items-center gap-4 p-4">
-                    <div class="dh flex-shrink-0 flex align-items-end justify-content-around align-content-center">
-                        <span class="border-4 rounded-circle bg-primary fa-bold"></span>
-                        <img src="assets/img/maya.png" alt="Devonshire House Network Directors">
-                        
-                        <span class="name  ">Maya Mohamed</span>
-                        <span class="notification">Changed her password</span> 
-                        <span class="time">10:30pm</span>
-                    </div>
-                </div>
-            </div>
+  <body>
+        <div *ngFor="let group of groupNotificationsByDay(data.newNotis)">
+          <h2>{{ group.day }}</h2>
+          <div class="container flex-column justify-content-center m-auto" *ngFor="let notification of data?.newNotis">
+              <!-- <h3 class="head">Today</h3> -->
+      <div class="dhn-info-div m-auto" *ngIf="notification.fullname!='undefined undefined'&&notification.fullname!=null">
+        <img
+        src="assets/img/maya.png"
+        alt="Devonshire House Network Directors"
+        />
+        <span class="name">{{notification.fullname}}</span>
+        <span class="notification">{{notification.action}}</span>
+        <div class="timee">
+            <span class="time">{{ getFormattedTime(notification.createdAt)}}</span>
         </div>
     </div>
-</div> -->
-    </body>
+</div>
+</div>
+
+  </body>
 </html>

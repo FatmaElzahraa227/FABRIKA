@@ -12,7 +12,8 @@ export class SignupComponent {
   showPreloader=false;
   public signUpForm!: FormGroup;
 
-  url: string = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/auth/signUp/';
+  url: string = 'http://localhost:5000/api/v1/auth/signUp/';
+  // url: string = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/auth/signUp/';
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,

@@ -1,6 +1,35 @@
 <app-sidenav></app-sidenav>
 <html>
-    <body>
-        <p>jcforf</p>
-    </body>
+  <body>
+    <div
+      class="parent d-flex flex-column justify-content-around h-100 align-items-center"
+    >
+      <div class="cards d-flex justify-content-around w-75">
+        <div class="c1">
+          <i class="fa-solid fa-users"></i>
+          <div
+            class="text d-flex flex-column justify-content-center align-items-center"
+          >
+            <p>{{ data.totalUsers }}</p>
+            <p>Members</p>
+          </div>
+        </div>
+        <div class="c1">
+         <img src="assets/img/car.png" width="60px" alt="">
+          <div
+            class="text d-flex flex-column justify-content-center align-items-center"
+          >
+            <p>{{ data.totalCars }}</p>
+            <p>Cars</p>
+          </div>
+        </div>
+      </div>
+      <div class="chart w-75">
+        <canvas
+          id="myChart"
+          style="width: 100%; background-color: rgba(87, 100, 116, 0.2)"
+        ></canvas>
+      </div>
+    </div>
+  </body>
 </html>

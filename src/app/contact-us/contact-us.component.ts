@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class ContactUsComponent {
   public messageayaForm!: FormGroup;
-  url: string = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/user/contactUs';
+  url: string = 'http://localhost:5000/api/v1/user/contactUs';
+  // url: string = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/user/contactUs';
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,

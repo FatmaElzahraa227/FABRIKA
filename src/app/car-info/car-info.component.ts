@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import jwtDecode from 'jwt-decode';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import Chart from 'chart.js/auto';
 
@@ -67,7 +67,8 @@ export class CarInfoComponent implements OnInit {
 goToEventDetails(event: any) {
   this.showPreloader=true;
   const token=localStorage.getItem('userToken');
- const url  = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/vehicle/getEvent/';
+ const url  = 'http://localhost:5000/api/v1/vehicle/getEvent/';
+//  const url  = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/vehicle/getEvent/';
  const headers=new HttpHeaders({
   'Content-Type': 'application/json',
   Authorization: `Bearer ${token}`,

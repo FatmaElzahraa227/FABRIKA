@@ -1,10 +1,8 @@
 import { Component, HostListener } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
-import { OnInit } from '@angular/core';
 import { NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-navbar',
@@ -14,44 +12,38 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class NavbarComponent {
   show = false;
   isProfilePage = false;
+  isLoginPage = false;
+  isSignupPage = false;
   isScrolled = false;
   isLogin: boolean = false;
   constructor(
     public myService: AuthService,
-    private router: Router,
-    private http: HttpClient
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.router.events
       .pipe(filter((event: any) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
         this.isProfilePage = event.url === '/profile';
+        this.isLoginPage = event.url === '/login';
+        this.isSignupPage = event.url === '/signup';
       });
+ 
+      
 
     this.myService.userData.subscribe(() => {
       if (this.myService.userData.getValue() != null) {
         this.isLogin = true;
-        let role = localStorage.getItem('role');
-        if (role != 'admin') {
-          this.show = true;
-        } else {
-          this.show = false;
-        }
-        // let token = localStorage.getItem('userToken');
-        // const headers = new HttpHeaders({
-        //   'Content-Type': 'application/json',
-        //   Authorization: `Bearer ${token}`,
-        // });
-        // this.http
-        //   .get<any>('http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/user/getProfile/', { headers: headers })
-        //   .subscribe((response) => {
-        //     const data = response;
-        //     console.log(data);
-        //     if(data.userData.role=='user'){
-        //       this.show=true;
-        //     }
-        //     else{this.show=false;}
-        //   });
+        
+        setTimeout(() => {
+          let role = localStorage.getItem('role');
+      
+          if (role != 'admin') {
+            this.show = true;
+          } else {
+            this.show = false;
+          }
+        }, 1800);
       } else {
         this.isLogin = false;
         this.show = true;
@@ -60,7 +52,6 @@ export class NavbarComponent {
   }
   logout() {
     this.myService.logout();
-    console.log('fdd');
     
   }
   @HostListener('window:scroll')
@@ -68,5 +59,6 @@ export class NavbarComponent {
     window.pageYOffset >= 50
       ? (this.isScrolled = true)
       : (this.isScrolled = false);
+    
   }
 }

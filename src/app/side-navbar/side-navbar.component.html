@@ -6,8 +6,8 @@
     <ul class="sidenav-nav">
       <li class="sidenav-nav-item1">
         <a class="sidenav-nav-link1">
-          <span class=" sidenav-link-icon1"><img src="assets/img/userimage.png" /></span>
-          <span class="sidenav-link-text1">Mohamed Khaled</span>
+          <span class=" sidenav-link-icon1"><img src="assets/images/femaleUser.png" /></span>
+          <span class="sidenav-link-text1">{{fName}}  {{lName}}</span>
         </a>
 
       </li>
@@ -27,20 +27,22 @@
                       <span class="sidenav-link-icon"><img src="assets/img/pages.png" /></span>
                       <span class="sidenav-link-text px-2">
                         <button class="btn bt2 btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#pages-collapse" aria-expanded="false">
-                          Pages
+                          Vehicles & Events
                         </button>
                       </span>
                     </a>
+                    
                     <div class="collapse" id="pages-collapse" [ngClass]="{'show': addVehicleLinkActive || editVehicleLinkActive}" [attr.aria-expanded]="(addVehicleLinkActive || editVehicleLinkActive).toString()">
-                      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small bttt">
+                      <ul class="fw-normal pb-1 small bttt">
                         <li class="sidenav-nav-item">
                           <a routerLink="/addvehicle" routerLinkActive="active" class="sidenav-nav-link"  >
-                            <span class="sidenav-link-text">Add vehicle</span>
+                            <!-- <span class=" sidenav-link-icon"><img src="assets/img/dashboard.png" /></span> -->
+                            <span class="sidenav-link-text btngan">Add vehicle</span>
                           </a>
                         </li>
                         <li class="sidenav-nav-item">
                           <a routerLink="/editvehicle" routerLinkActive="active" class="sidenav-nav-link">
-                            <span class="sidenav-link-text">Edit vehicle</span>
+                            <span class="sidenav-link-text btngan">Edit vehicle</span>
                           </a>
                         </li>
                       </ul>
@@ -75,11 +77,18 @@
                       <span class="sidenav-link-text">Inbox</span>
                     </a>
                   </li>
+                  <li class="sidenav-nav-item">
+                    <a routerLink ="/mydashboard" 
+                    routerLinkActive="active" class="sidenav-nav-link">
+                      <span class=" sidenav-link-icon"><img src="assets/img/user.png" /></span>
+                      <span class="sidenav-link-text">My Profile</span>
+                    </a>
+                  </li>
 
                   
 
         <!-- *********************myprofile********************* -->
-        <li class="sidenav-nav-item">
+        <!-- <li class="sidenav-nav-item">
           <a class="sidenav-nav-link">
             <span class="sidenav-link-icon"><img src="assets/img/user.png" /></span>
             <span class="sidenav-link-text px-3">
@@ -102,7 +111,7 @@
               </li>
             </ul>
           </div>
-        </li>
+        </li> -->
        <!-- <li>
           <a>
          <span> <button class="  btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">My Profile</button></span>

@@ -1,226 +1,354 @@
+
 <app-sidenav></app-sidenav>
 <html>
-    <body>
-        <h2 class="head-text">Add  Vehicle</h2>
-<div class="container" >
-    <tr>
-        <td>Vehicle vin :</td>
+  <body>
+    <h2 class="head-text">Add Vehicle</h2>
+    <div class="container">
+      <form [formGroup]="addVehicleForm" (ngSubmit)="addVehicle()">
+        <tr>
+          <td>
+            Vehicle vin :
+            <span class="err text-danger" style="font-size: 20px">*</span>
+          </td>
 
-        <td><input class="rectanglr" type="text" name="Vehicle vin"/>
-        </td>
-    </tr>
-
-    <tr>
-        <td>Vehicle make :</td>
-        <td><input class="rectanglr" type="text" name="Vehicle make"/>
-        </td>
-    </tr>
-    <tr>
-        <td>Vehicle Model :</td>
-        <td><input class="rectanglr" type="text" name="Vehicle Model"/>
-        </td>
+          <td>
+            <input
+              class="rectanglr"
+              formControlName="vehicle_vin"
+              type="text"
+              name="Vehicle vin"
+              #vehicleVinInput
+            />
+            <p class="err text-danger">{{ errorMessageVIN }}</p>
+          </td>
         </tr>
-    <tr>
-        <td>Vehicle year :
 
-        </td>
-        <td><input class="rectanglr" type="text" name="Vehicle year"/>
-        </td>
-    </tr>
-    <tr>
-        <td>Displacement :</td>
-        <td><input class="rectanglr" type="text" name="Displacement"/>
-        </td>
-    </tr>
-    <tr>
-        <td>Color:</td>
-        <td><input  class="color" type="color" name="Displacement"/>
-        </td>
-    </tr>
-    <tr>
-        <td>Mileage_years_x :</td>
-        <td><input class="rectanglr" type="text" name="Mileage_years_x"/>
-        </td>
-    </tr>
-    <tr>
-        <td>Mileage_years_y :</td>
-        <td><input class="rectanglr" type="text" name="Mileage_years_y"/>
-        </td>
+        <tr>
+          <td>
+            Vehicle make :<span
+              class="err text-danger"
+              style="font-size: 20px; padding-left: 5px"
+              >*</span
+            >
+          </td>
+          <td>
+            <input
+              class="rectanglr"
+              formControlName="vehicle_make"
+              type="text"
+              name="Vehicle make"
+              #vehicleMakeInput
+            />
+            <p class="err text-danger">{{ errorMessageMake }}</p>
+          </td>
         </tr>
-    <tr>
-        <td>Extra features :</td>
-        <td><input class="rectanglr" type="text" name="Extra features"/>
-        </td>
-    </tr>
-    <tr>
-        <td>Owner  id :</td>
-        <td><input class="rectanglr" type="text" name="Owner-id "/>
-        </td>
-    </tr>
-    <tr>
-        <td >Is Stolen :</td>
+        <tr>
+          <td>
+            Vehicle Model :<span
+              class="err text-danger"
+              style="font-size: 20px; padding-left: 5px"
+              >*</span
+            >
+          </td>
+          <td>
+            <input
+              class="rectanglr"
+              formControlName="vehicle_model"
+              type="text"
+              name="Vehicle Model"
+              #vehicleModelInput
+            />
+            <p class="err text-danger">{{ errorMessageModel }}</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Vehicle year :<span
+              class="err text-danger"
+              style="font-size: 20px; padding-left: 5px"
+              >*</span
+            >
+          </td>
+          <td>
+            <input
+              class="rectanglr"
+              formControlName="model_year"
+              type="text"
+              name="Vehicle year"
+              #vehicleYearInput
+            />
+            <p class="err text-danger">{{ errorMessageYear }}</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Displacement :<span
+              class="err text-danger"
+              style="font-size: 20px; padding-left: 5px"
+              >*</span
+            >
+          </td>
+          <td>
+            <input
+              class="rectanglr"
+              formControlName="displacement"
+              type="text"
+              name="Displacement"
+              #vehicleDisplacementInput
+            />
+            <p class="err text-danger">{{ errorMessageDisplacement }}</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Color:<span
+              class="err text-danger"
+              style="font-size: 20px; padding-left: 5px"
+              >*</span
+            >
+          </td>
+          <td>
+            <input
+              class="rectanglr"
+              formControlName="color"
+              type="text"
+              name="Color"
+              #vehicleColorInput
+            />
+            <p class="err text-danger">{{ errorMessageColor }}</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            Mileage Years x :<span
+              class="err text-danger"
+              style="font-size: 20px; padding-left: 5px"
+              >*</span
+            >
+          </td>
+          <td>
+            <!-- placeholder="[x1,x2,x3,x4]" -->
+            <input
+              class="rectanglr"
+              formControlName="mileage_years_x"
+              type="text"
+              name="Mileage_years_x"
+              #vehicleMileageXInput
+            />
+            <p class="err text-danger">{{ errorMessageMileageX }}</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Mileage Miles y :<span
+              class="err text-danger"
+              style="font-size: 20px; padding-left: 5px"
+              >*</span
+            >
+          </td>
+          <!-- placeholder="[y1,y2,y3,y4]" -->
+          <td>
+            <input
+              class="rectanglr"
+              formControlName="mileage_miles_y"
+              type="text"
+              name="Mileage_years_y"
+              #vehicleMileageYInput
+            />
+            <p class="err text-danger">{{ errorMessageMileageY }}</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Extra features :</td>
+          <td>
+            <input
+              class="rectanglr"
+              formControlName="extra_features"
+              type="text"
+              name="Extra features"
+            />
+          </td>
+        </tr>
+        <!-- <tr>
+        <td>Owner id :</td>
+        <td><input class="rectanglr" formControlName="oldPassword" type="text" name="Owner-id " /></td>
+      </tr> -->
+        <tr>
+          <td>Is Stolen :</td>
+          <td class="col2">
+            <label>
+              <input
+                type="radio"
+                name="is_stolen"
+                formControlName="is_stolen"
+                value="true"
+              />
+              Yes
+            </label>
+            <label>
+              <input type="radio" name="is_stolen" checked value="false" /> No
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <td>Is salvaged :</td>
+          <td class="col2">
+            <label>
+              <input
+                type="radio"
+                name="is_salvaged"
+                formControlName="is_salvaged"
+                value="true"
+              />
+              Yes
+            </label>
+            <label>
+              <input type="radio" name="is_salvaged" checked value="false" />
+              No
+            </label>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Is insured :</td>
+          <td class="col2">
+            <label>
+              <input
+                type="radio"
+                name="is_insured"
+                formControlName="is_insured"
+                value="true"
+              />
+              Yes
+            </label>
+            <label>
+              <input type="radio" name="is_insured" checked value="false" />
+              No
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <td>Has mileage :</td>
+          <td class="col2">
+            <label>
+              <input
+                type="radio"
+                name="has_mileage"
+                formControlName="has_mileage"
+                value="true"
+              />
+              Yes
+            </label>
+            <label>
+              <input type="radio" name="has_mileage" checked value="false" />
+              No
+            </label>
+          </td>
+        </tr>
+        <!-- <tr>
+        <td>Has accidents :</td>
         <td class="col2">
-            <label>
-                <input  type="radio" name="priority" id="yes" value="Yes"> Yes
-              
-
-            </label>
-            <label>
-                <input  type="radio" name="priority" id="no" value="no"> No
-                
-
-            </label>
-               
+          <label>
+            <input type="radio" name="is_stolen" formControlName="is_stolen" value="true"/> Yes
+          </label>
+          <label>
+            <input type="radio" name="is_stolen" formControlName="is_stolen" value="false" /> No
+          </label>
         </td>
-    </tr>
-    <tr>
-        <td >Is salvaged :</td>
+      </tr> -->
+        <tr>
+          <td>Has sales history :</td>
+          <td class="col2">
+            <label>
+              <input
+                type="radio"
+                name="has_sales_history"
+                formControlName="has_sales_history"
+                value="true"
+              />
+              Yes
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="has_sales_history"
+                checked
+                value="false"
+              />
+              No
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <td>Has service history :</td>
+          <td class="col2">
+            <label>
+              <input
+                type="radio"
+                name="has_service_history"
+                formControlName="has_service_history"
+                value="true"
+              />
+              Yes
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="has_service_history"
+                checked
+                value="false"
+              />
+              No
+            </label>
+          </td>
+        </tr>
+        <!-- <tr>
+        <td>Has theft history :</td>
         <td class="col2">
-            <label>
-                <input  type="radio" name="priority1" id="yes" value="Yes"> Yes
-          
-
-            </label>
-            <label>
-                <input  type="radio" name="priority1" id="no" value="no"> No
-            
-
-            </label>
+          <label>
+            <input type="radio" name="is_stolen" formControlName="is_stolen" value="true" /> Yes
+          </label>
+          <label>
+            <input type="radio" name="is_stolen" formControlName="is_stolen" value="false" /> No
+          </label>
         </td>
-    </tr>
-
-    <tr>
-        <td >Is insured :</td>
+      </tr> -->
+        <!-- <tr>
+        <td>Has theft history :</td>
         <td class="col2">
-            <label>
-                <input  type="radio" name="priority3" id="yes" value="Yes"> Yes
-              
-
-            </label>
-            <label>
-                <input  type="radio" name="priority3" id="no" value="no"> No
-                
-
-            </label> 
+          <label>
+            <input type="radio" name="is_stolen" formControlName="is_stolen" value="true" /> Yes
+          </label>
+          <label>
+            <input type="radio" name="is_stolen" formControlName="is_stolen" value="false" /> No
+          </label>
         </td>
-    </tr>
-    <tr>
-        <td >Has mileage :</td>
+      </tr> -->
+        <!-- <tr>
+        <td>Has financial history :</td>
         <td class="col2">
-            <label>
-                <input  type="radio" name="priority4" id="yes" value="Yes"> Yes
-              
-
-            </label>
-            <label>
-                <input  type="radio" name="priority4" id="no" value="no"> No
-                
-
-            </label> 
+          <label>
+            <input type="radio" name="is_stolen" formControlName="is_stolen" value="true" /> Yes
+          </label>
+          <label>
+            <input type="radio" name="is_stolen" formControlName="is_stolen" value="false" /> No
+          </label>
         </td>
-    </tr>
-    <tr>
-        <td >Has accidents :</td>
-        <td class="col2">
-            <label>
-                <input  type="radio" name="priority5" id="yes" value="Yes"> Yes
-              
-
-            </label>
-            <label>
-                <input  type="radio" name="priority5" id="no" value="no"> No
-                
-
-            </label> 
-        </td>
-    </tr>
-    <tr>
-        <td >Has sales history :</td>
-        <td class="col2">
-            <label>
-                <input  type="radio" name="priority6" id="yes" value="Yes"> Yes
-              
-
-            </label>
-            <label>
-                <input  type="radio" name="priority6" id="no" value="no"> No
-                
-
-            </label>   
-        </td>
-    </tr>
-    <tr>
-        <td >Has service history :</td>
-        <td class="col2">
-            <label>
-                <input  type="radio" name="priority7" id="yes" value="Yes"> Yes
-              
-
-            </label>
-            <label>
-                <input  type="radio" name="priority7" id="no" value="no"> No
-                
-
-            </label> 
-        </td>
-    </tr>
-    <tr>
-        <td >Has theft history :</td>
-        <td class="col2">
-            <label>
-                <input  type="radio" name="priority8" id="yes" value="Yes"> Yes
-              
-
-            </label>
-            <label>
-                <input  type="radio" name="priority8" id="no" value="no"> No
-                
-
-            </label>
-        </td>
-    </tr>
-    <tr>
-        <td >Has theft history :</td>
-        <td class="col2">
-            <label>
-                <input  type="radio" name="priority9" id="yes" value="Yes"> Yes
-              
-
-            </label>
-            <label>
-                <input  type="radio" name="priority9" id="no" value="no"> No
-                
-
-            </label>
-        </td>
-    </tr>
-    <tr>
-        <td >Has financial history :</td>
-        <td class="col2">
-            <label>
-                <input  type="radio" name="priority99" id="yes" value="Yes"> Yes
-              
-
-            </label>
-            <label>
-                <input  type="radio" name="priority99" id="no" value="no"> No
-                
-
-            </label>
-        </td>
-    </tr>   
-     <tr>
-            <td>Pic :</td>
-            <td><input type="file" id="myFile" name="filename">
-                <label class = "filee" for="file">Upload</label>
-            </td>
-    </tr>
-    <div class="button-group">
-        <button class=" button" >Confirm</button>
-        <button class=" button-reset">Reset</button>
+      </tr> -->
+        <!-- <tr>
+          <td>Pic :</td>
+          <td>
+            <input type="file" id="myFile" name="filename" />
+            <label class="filee" for="file">Upload</label>
+          </td>
+        </tr> -->
+        <p class="text-success text-center" style="font-size: 22px; font-weight: 600;">{{successMessage}}</p>
+        <div class="button-group">
+          <button class="button" type="submit">Confirm</button>
+          <button class="button-reset" type="reset">Reset</button>
+        </div>
+      </form>
     </div>
-
-
-</div>
-    </body>
+  </body>
 </html>

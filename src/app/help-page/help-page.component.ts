@@ -8,7 +8,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class HelpPageComponent {
   showPreloader=true;
-  url: string = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/admin/getFAQ/';
+  url: string = 'http://localhost:5000/api/v1/admin/getFAQ/';
+  // url: string = 'http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/admin/getFAQ/';
   constructor(private http: HttpClient) {}
 
   data:any;

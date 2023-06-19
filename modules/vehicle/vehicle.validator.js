@@ -39,7 +39,6 @@ const getEvent = {
 
 const editVehicle = {
   body: Joi.object()
-    .required()
     .keys({
       vehicle_make: Joi.string().min(2).max(20),
       vehicle_model: Joi.string(),
@@ -48,7 +47,7 @@ const editVehicle = {
       color: Joi.string(),
       mileage_years_x: Joi.array(),
       mileage_miles_y: Joi.array(),
-      extra_features: Joi.string(),
+      extra_features: Joi.string().allow(''),
       is_stolen: Joi.boolean(),
       is_salvaged: Joi.boolean(),
       is_insured: Joi.boolean(),

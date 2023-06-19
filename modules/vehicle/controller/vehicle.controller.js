@@ -148,7 +148,7 @@ const editVehicle = async (req, res) => {
       { new: true }
     );
     
-  res.status(200).json({message: "Vehicle Updated.", updatedVehicle});
+ return res.status(200).json({message: "Vehicle Updated.", updatedVehicle});
   }else{
     res.json({message: "Create Vehicle First."})
   }

@@ -14,7 +14,7 @@ const getProfile = async (req, res) => {
     const userData = await userModel.findById(req.userid);
     const searchHistory = userData.search_history; // The array of ids you're searching for.
     const vehicle = await vehicleModel.find({_id:{ $in: searchHistory }});
-    sendNotification(userData._id, "Viewed his profile.")
+    sendNotification(userData._id, "Viewed his/her profile.")
     res.json({ message: "he5a", userData, vehicle });
     // sendNotification(userData._id, "Viewed his profile.")
   } catch (error) {

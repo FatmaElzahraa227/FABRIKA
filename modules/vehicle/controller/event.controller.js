@@ -35,9 +35,9 @@ const sendEventReq = async (req, res) => {
       // const event_type = req.event_type;
       // const event_desc = req.event_desc;
       const { event_type, event_desc } = req.body;
-      // const sent_by = req.userid;
+      const {sent_by} = req.params;
       const newEvent = new eventModel({
-        /*sent_by,*/ event_type, vehicle_pics: VfileUrls, numplate_pics: NPfileUrls, walkaround_vid: WAfileUrls, vin_pics: VINfileUrls, event_desc
+        sent_by, event_type, vehicle_pics: VfileUrls, numplate_pics: NPfileUrls, walkaround_vid: WAfileUrls, vin_pics: VINfileUrls, event_desc
       });
       const savedEvent = await newEvent.save();
 

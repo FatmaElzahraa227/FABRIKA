@@ -52,8 +52,6 @@ const sendEventReq = async (req, res) => {
   }
 };
 
-const addEvent = async (req, res) => {};
-
 const getEvent = async (req, res) => {
   try {
     const eventaya = await eventModel.findById(req.params.eventID);
@@ -70,5 +68,6 @@ const getEvent = async (req, res) => {
 module.exports = {
   getEvent,
   sendEventReq,
-  addEvent,
+  // getEventtoReview,
+  // getEventReq
 };

@@ -29,6 +29,7 @@ import { MydashboardComponent } from './mydashboard/mydashboard.component';
 import { ReportsComponent } from './reports/reports.component';
 import { DatePipe } from '@angular/common';
 import { SendEventReqComponent } from './send-event-req/send-event-req.component';
+import { HandleEventReqComponent } from './handle-event-req/handle-event-req.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +54,8 @@ import { SendEventReqComponent } from './send-event-req/send-event-req.component
     InboxComponent,
     MydashboardComponent,
     ReportsComponent,
-    SendEventReqComponent
+    SendEventReqComponent,
+    HandleEventReqComponent
   ],
   imports: [
     BrowserModule,

@@ -3,15 +3,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  // z-index: -10;
 }
 body {
-  //   min-height: 100vh;
-  //   width: 100%;
-  //   overflow-x: hidden;
-  //   background-color: black;
   color: aliceblue;
-  //   width: calc(100% - 16.5rem);
   z-index: 0;
   position: relative;
   top: 0;
@@ -20,10 +14,9 @@ body {
   padding: 3rem;
   padding-left: 20rem;
 }
-input{
+input {
   padding: 2px;
   display: flex;
-  // text-align: center;
   padding-left: 5px;
 }
 
@@ -74,21 +67,6 @@ input{
   display: flex;
   justify-content: center;
   justify-content: space-around;
-}
-
-input[type="file"] {
-  display: none;
-}
-.filee {
-  background-color: #fff;
-  width: 120px;
-  height: 34px;
-  color: black;
-  border-radius: 8px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  margin-left: 60px;
 }
 
 .button {

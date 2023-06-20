@@ -14,24 +14,13 @@ export class CarInfoComponent implements OnInit {
   vehicleData2: any = {};
   vehicleData: any = {};
   events: any = {};
-  xValues = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
-  yValues = [7, 8, 8, 9, 9, 9, 10, 11, 14, 14, 15];
   constructor(private elementRef: ElementRef,private router: Router,private http: HttpClient) {
-    // if (localStorage.getItem('vehicleToken') != null) {
-    //   let encodedVehicleData = JSON.stringify(
-    //     localStorage.getItem('vehicleToken')
-    //   );
-    //   this.vehicleData2 = jwtDecode(encodedVehicleData);
-    // }
     let encodedVehicleData = JSON.stringify(
       localStorage.getItem('vehicleToken')
     );
     this.vehicleData2 = jwtDecode(encodedVehicleData);
     this.vehicleData = this.vehicleData2.vehicle;
     this.events = this.vehicleData2.event;
-    // console.log(localStorage.getItem('vehicleToken'));
-    
-    // console.log(this.events);
   }
   ngOnInit() {
     let htmlRef = this.elementRef.nativeElement.querySelector(`#myChart`);
@@ -44,7 +33,6 @@ export class CarInfoComponent implements OnInit {
             backgroundColor: '#990f02',
             borderColor: '#990f02',
             borderWidth:5,
-            // pointRadius: 1,
             fill: false,
             data: this.vehicleData.mileage_miles_y,
           },
@@ -76,7 +64,6 @@ goToEventDetails(event: any) {
 
  return this.http.get<any>(url+event,{headers:headers}).subscribe(
   (data)=>{
-    // console.log(data);
     localStorage.setItem('event', data);
     setTimeout(() => {
       this.router.navigate(['/event-details'], { fragment: 'top' });

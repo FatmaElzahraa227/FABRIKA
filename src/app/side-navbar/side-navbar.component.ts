@@ -12,8 +12,7 @@ import { AuthService } from '../auth.service';
 export class SideNavbarComponent{
   addVehicleLinkActive = false;
   editVehicleLinkActive = false;
-  reportsLinkActive = false;
-  mydashboardLinkActive = false;
+  handleEventReqLinkActive = false;
 
   fName=localStorage.getItem('fName');
   lName=localStorage.getItem('lName');
@@ -22,11 +21,9 @@ export class SideNavbarComponent{
     // Subscribe to router events to detect when the route changes
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        // Check if the "Add vehicle" link is active
         this.addVehicleLinkActive = this.router.isActive('/addvehicle', true);
         this.editVehicleLinkActive = this.router.isActive('/editvehicle', true);
-        this.reportsLinkActive = this.router.isActive('/reports', true);
-        this.mydashboardLinkActive = this.router.isActive('/mydashboard', true);
+        this.handleEventReqLinkActive = this.router.isActive('/handleEventReq', true);
       }
     });}
  

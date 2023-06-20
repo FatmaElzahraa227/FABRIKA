@@ -29,6 +29,7 @@ export class InboxComponent {
         this.selectedMessageName = this.data.newMsg[0].full_name;
         this.selectedMessageTime = this.data.newMsg[0].createdAt;
         this.selectedMessageEmail = this.data.newMsg[0].email;
+        
         setTimeout(() => {
           this.showPreloader = false;
         }, 1500);
@@ -37,7 +38,9 @@ export class InboxComponent {
         console.log(err);
       }
     );
+
   }
+  
   selectedMessageIndex: number = 0;
 
   showMessage(index: number) {
@@ -46,7 +49,6 @@ export class InboxComponent {
     this.selectedMessageName = this.data.newMsg[index].full_name;
     this.selectedMessageTime = this.data.newMsg[index].createdAt;
     this.selectedMessageEmail= this.data.newMsg[index].email;
-    // window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   getFormattedTime(dateString: string): string {

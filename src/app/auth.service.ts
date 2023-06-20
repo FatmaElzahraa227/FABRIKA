@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 import { BehaviorSubject } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router) {
     if (localStorage.getItem('userToken') != null) {
       this.saveUserData();
     }
@@ -33,25 +32,9 @@ export class AuthService {
       if (role == 'user') {
         return true;
       } else return false;
-      // const headers = new HttpHeaders({
-      //   'Content-Type': 'application/json',
-      //   Authorization: `Bearer ${token}`,
-      // });
-      // this.http
-      //   .get<any>('http://fabrika-env.eba-p22tzwhg.eu-north-1.elasticbeanstalk.com/api/v1/user/getProfile/', { headers: headers })
-      //   .subscribe((response) => {
-      //     const data = response;
-      //     console.log(data);
-      //     if(data.userData.role=='user'){
-      //       return true;
-      //     }
-      //     else{return false;}
-      //   });
-      // return false;
     }
   }
   isAdmin(): boolean {
-    // let token = localStorage.getItem('userToken');
 
     let role = localStorage.getItem('role');
     if (role == 'admin') {

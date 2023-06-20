@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-send-event-req',
@@ -7,23 +8,38 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
   styleUrls: ['./send-event-req.component.scss'],
 })
 export class SendEventReqComponent {
+  public sendEventReq!: FormGroup;
   selectedFiles!: FileList;
   readonly MAX_FILES = 10;
   readonly MIN_FILES = 4;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private formBuilder: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.sendEventReq = this.formBuilder.group({
+      event_desc: '',
+    });
+  }
+  data: any;
+  errorMessageAccident: string = '';
+  errorMessageNumberplate: string = '';
+  errorMessageWalkAround: string = '';
+  errorMessageVIN: string = '';
 
   onSelectFile(event: any) {
     this.selectedFiles = event.target.files;
   }
+
   token = localStorage.getItem('userToken');
+  boundary = Math.random().toString().substr(2);
   headers = new HttpHeaders({
-    'Content-Type': 'application/json',
+    'Content-Type': `multipart/form-data; boundary=${this.boundary}`,
     Authorization: `Bearer ${this.token}`,
   });
+
   onUpload() {
     console.log(this.token);
-    
+
     const accidentInput = document.querySelector(
       '#accidentFiles'
     ) as HTMLInputElement;
@@ -45,36 +61,54 @@ export class SendEventReqComponent {
       (accidentFiles.length < this.MIN_FILES ||
         accidentFiles.length > this.MAX_FILES)
     ) {
-      alert(
-        `Please select between ${this.MIN_FILES} and ${this.MAX_FILES} image files for the accident.`
-      );
+      this.errorMessageAccident = `Please select between ${this.MIN_FILES} and ${this.MAX_FILES} image files for the accident.`;
+      this.errorMessageNumberplate = '';
+      this.errorMessageWalkAround = '';
+      this.errorMessageVIN = '';
       return;
     }
 
     if (!accidentFiles) {
-      alert('Please select a file for the accident.');
+      this.errorMessageAccident = 'Please select a file for the accident.';
+      this.errorMessageNumberplate = '';
+      this.errorMessageWalkAround = '';
+      this.errorMessageVIN = '';
       return;
     }
 
     if (!numPlateFile) {
-      alert('Please select a file for the number plate.');
+      this.errorMessageAccident = '';
+      this.errorMessageNumberplate =
+        'Please select a file for the number plate.';
+      this.errorMessageWalkAround = '';
+      this.errorMessageVIN = '';
       return;
     }
 
     if (!vinFile) {
-      alert('Please select a file for the VIN picture.');
+      this.errorMessageAccident = '';
+      this.errorMessageNumberplate = '';
+      this.errorMessageWalkAround = '';
+      this.errorMessageVIN = 'Please select a file for the VIN picture.';
       return;
     }
 
     if (!walkAroundFile) {
-      alert('Please select a walk-around video in MP4 format.');
+      this.errorMessageAccident = '';
+      this.errorMessageNumberplate = '';
+      this.errorMessageWalkAround =
+        'Please select a walk-around video in MP4 format.';
+      this.errorMessageVIN = '';
       return;
     }
-
+    
     if (walkAroundFile.type !== 'video/mp4') {
-      alert(
-        'The selected file is not in MP4 format. Please select a walk-around video in MP4 format.'
-      );
+      this.errorMessageAccident = '';
+      this.errorMessageNumberplate = '';
+      this.errorMessageWalkAround =
+        'The selected file is not in MP4 format. Please select a walk-around video in MP4 format.';
+      this.errorMessageVIN = '';
+     
       return;
     }
 
@@ -86,24 +120,31 @@ export class SendEventReqComponent {
     }
     formData.append('numPlates', numPlateFile);
     formData.append('VIN', vinFile);
-    formData.append('walkAround', walkAroundFile);
-   
+    formData.append('walkaround', walkAroundFile);
+    formData.append('event_desc', this.sendEventReq.value.event_desc);
+
     formData.forEach((value, key) => {
       console.log(key, value);
     });
     console.log(this.headers);
     const options = {
-      headers: this.headers
+      headers: this.headers,
     };
+    // this.data=this.sendEventReq.value;
+    const sent_by = localStorage.getItem('userID');
     this.http
-      .patch('http://localhost:5000/api/v1/vehicle/sendEventReq', formData,options)
+      .post(
+        `http://localhost:5000/api/v1/vehicle/sendEventReq/${sent_by}`,
+        formData
+      )
       .subscribe(
         (response) => {
           console.log(response);
+          // if(response.message=='all good')
         },
         (error) => {
           console.log(options);
-          
+
           console.error(error);
         }
       );

@@ -1,0 +1,94 @@
+<app-sidenav></app-sidenav>
+<html>
+  <body>
+    <h2 class="head-text">Handle Event Requests</h2>
+    <div class="container d-flex justify-content-between">
+      <div class="div1 mx-5" *ngIf="allPicsGiven">
+        <button
+          class="grey-box btn btn-dark"
+          [ngClass]="{ selected: i === selectedMessageIndex }"
+          *ngFor="let req of sortedReqs; let i = index"
+          (click)="showMessage(i)"
+        >
+          <div class="img-time">
+            <div class="date d-flex flex-column">
+              <p class="mx-2">{{ formatDate(req.createdAt) }}</p>
+              <p>{{ getFormattedTime(req.createdAt) }}</p>
+            </div>
+          </div>
+          <div class="head-texts">
+            <p *ngIf="req.event_desc">
+              {{ req.event_desc | slice : 0 : 14
+              }}{{ req.event_desc.length > 15 ? "..." : "" }}
+            </p>
+            <p *ngIf="!req.event_desc">(No description)</p>
+          </div>
+        </button>
+      </div>
+      <div class="black-box">
+        <div class="div2">
+          <div class="adress">
+            <h5>Damaged vehicle Pictures</h5>
+            <div
+              class="images d-flex align-items-center justify-content-around"
+            >
+              <div class="row">
+                <ng-container
+                  *ngFor="
+                    let image of sortedReqs[selectedMessageIndex].vehicle_pics;
+                    let i = index
+                  "
+                >
+                  <ng-container *ngIf="i % 2 == 0">
+                    <div class="row">
+                      <div class="col-md-6 d-flex justify-content-center">
+                        <img width="200px" [src]="image" alt="" />
+                      </div>
+                      <div
+                        class="col-md-6 d-flex justify-content-center"
+                        *ngIf="
+                          i + 1 <
+                          sortedReqs[selectedMessageIndex].vehicle_pics.length
+                        "
+                      >
+                        <img
+                          [src]="
+                            sortedReqs[selectedMessageIndex].vehicle_pics[i + 1]
+                          "
+                          alt=""
+                          width="200px"
+                        />
+                      </div>
+                    </div>
+                  </ng-container>
+                </ng-container>
+              </div>
+            </div>
+            <h5>Numberplate Pictures</h5>
+
+            <img
+              width="200px"
+              [src]="sortedReqs[selectedMessageIndex].numplate_pics"
+              alt=""
+            />
+            <h5>Walkaround Video</h5>
+            
+            <video
+            controls
+            [src]="sortedReqs[selectedMessageIndex].walkaround_vid"
+            alt=""
+            width="200px"
+            ></video>
+            <h5>VIN Picture</h5>
+
+            <img
+              width="200px"
+              [src]="sortedReqs[selectedMessageIndex].vin_pics"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

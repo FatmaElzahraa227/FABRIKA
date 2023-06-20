@@ -1,0 +1,113 @@
+html,
+body {
+  background-color: black;
+  min-height: 100vh;
+}
+* {
+  font-family: "Manuale", serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  color: aliceblue;
+  z-index: 0;
+  position: relative;
+  top: 0;
+  transition: all 0.5 ease;
+  background-color: #000;
+  padding: 3rem;
+  padding-left: 20rem;
+}
+.img-time {
+  width: 30%;
+  height: fit-content;
+  align-items: center;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.img-time p {
+  text-align: center;
+  margin-top: 11px;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 23px;
+  letter-spacing: -0.015em;
+  color: #939393;
+}
+
+.head-texts {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.grey-box {
+  background-color: #343434;
+  width: 380px;
+  height: fit-content;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.head-text {
+  margin-left: 40px;
+  width: 345px;
+  height: 66px;
+  font-weight: 800;
+  font-size: 34px;
+  line-height: 69px;
+  letter-spacing: -0.015em;
+  background: radial-gradient(
+    137.88% 137.88% at 44.93% 50%,
+    #ffffff 0%,
+    rgba(202, 212, 225, 0) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 24px;
+}
+.container {
+  display: flex;
+  justify-content: space-evenly;
+}
+.black-box {
+  background-color: #000;
+  border: 2px solid #3a3a3a;
+  width: 80%;
+  display: flex;
+//   padding-top: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 100px;
+  // position: fixed;
+  top: 140px;
+  text-align: center;
+  right: 20px;
+  height: fit-content;
+  //    overflow: auto;
+}
+h5{
+    background-color: #3a3a3a;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: fit-content;
+    margin: auto;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+img{
+    margin: 5px;
+}

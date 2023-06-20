@@ -74,8 +74,8 @@ export class LoginComponent {
             .subscribe((response) => {
               const data = response;
               console.log(data.userData.role);
-              
-              console.log(data.userData);
+              localStorage.setItem("userID",data.userData._id)
+              // console.log(data.userData._id);
               localStorage.setItem('userEmail', data.userData.email);
               if (data.userData.role == 'user') {
                 localStorage.setItem('role', 'user');

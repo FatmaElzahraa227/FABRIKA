@@ -14,13 +14,6 @@ import { UserAuthGuard } from './user-auth.guard';
 import { LoggedInGuard } from './logged-in.guard';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-// import { EditvehicleComponent } from './editvehicle/editvehicle.component';
-// import { AddvehicleComponent } from './addvehicle/addvehicle.component';
-// import { InboxComponent } from './inbox/inbox.component';
-// import { NotificationsComponent } from './notifications/notifications.component';
-// import { ResetPasswordComponent } from './reset-password/reset-password.component';
-// import { MydashboardComponent } from './mydashboard/mydashboard.component';
-// import { ReportsComponent } from './reports/reports.component';
 import { AdminAuthGuard } from './admin-auth.guard';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 import { EditVehicleComponent } from './edit-vehicle/edit-vehicle.component';
@@ -29,6 +22,7 @@ import { InboxComponent } from './inbox/inbox.component';
 import { MydashboardComponent } from './mydashboard/mydashboard.component';
 import { ReportsComponent } from './reports/reports.component';
 import { SendEventReqComponent } from './send-event-req/send-event-req.component';
+import { HandleEventReqComponent } from './handle-event-req/handle-event-req.component';
 
 
 const routes: Routes = [
@@ -48,10 +42,10 @@ const routes: Routes = [
   {path:'editvehicle',canActivate:[AuthGuard,AdminAuthGuard], component:EditVehicleComponent},
   {path:'inbox',canActivate:[AuthGuard,AdminAuthGuard], component:InboxComponent},
   {path:'notifications',canActivate:[AuthGuard,AdminAuthGuard], component:NotificationsComponent},
-  // {path:'reset-password', component:ResetPasswordComponent},
   {path:'reports',canActivate:[AuthGuard,AdminAuthGuard],component:ReportsComponent},
   {path:'mydashboard',canActivate:[AuthGuard,AdminAuthGuard], component:MydashboardComponent},
   {path:'sendEventReq',canActivate:[AuthGuard,UserAuthGuard], component:SendEventReqComponent},
+  {path:'handleEventReq',canActivate:[AuthGuard,AdminAuthGuard], component:HandleEventReqComponent},
   {path:'**', redirectTo:'home',pathMatch:'full'},
 ];
 

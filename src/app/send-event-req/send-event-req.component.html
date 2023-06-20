@@ -1,6 +1,6 @@
 <html>
   <body>
-    <div class="container d-flex flex-column justify-content-between align-items-center m-auto">
+    <form [formGroup]="sendEventReq" class="container d-flex flex-column justify-content-between align-items-center m-auto">
       <div class="header d-flex justify-content-center align-items-center">
         <p>Event Details</p>
       </div>
@@ -10,25 +10,36 @@
       <div class="mb-3">
         <input class="form-control" type="file" id="accidentFiles" multiple (change)="onSelectFile($event)">
       </div>
+      <p class="err text-danger">{{errorMessageAccident}} </p>
       <div class="header2 d-flex justify-content-center align-items-center">
         <p>Numberplate photos</p>
       </div>
       <div class="mb-3">
         <input class="form-control" type="file" id="numPlateFile" (change)="onSelectFile($event)">
       </div>
+      <p class="err text-danger">{{errorMessageNumberplate}} </p>
       <div class="header2 d-flex justify-content-center align-items-center">
         <p>Walk-around video</p>
       </div>
       <div class="mb-3">
         <input class="form-control" type="file" id="walkAroundInput" (change)="onSelectFile($event)">
       </div>
+      <p class="err text-danger">{{errorMessageWalkAround}} </p>
       <div class="header2 d-flex justify-content-center align-items-center">
         <p>VIN picture</p>
       </div>
       <div class="mb-3">
         <input class="form-control" type="file" id="vinInput" (change)="onSelectFile($event)">
       </div>
+      <p class="err text-danger">{{errorMessageVIN}} </p>
+      <div class="header2 d-flex justify-content-center align-items-center">
+        <p>Event Description</p>
+      </div>
+      <div class="mb-3">
+       <textarea name="event_desc" id="" cols="36" placeholder="Event Description" rows="5" class="form-control p-2" formControlName="event_desc"></textarea>
+      </div>
       <button class="btn btn-dark" (click)="onUpload()">Upload</button>
-    </div>
+    </form>
+    <app-footer></app-footer>
   </body>
 </html>

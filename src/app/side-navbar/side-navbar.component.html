@@ -1,150 +1,136 @@
-
 <div class="sidenav">
-    <div class="logo-container">
-        <span class="logo "><img src="assets/img/logo.jpeg"/></span>
-    </div>
-    <ul class="sidenav-nav">
-      <li class="sidenav-nav-item1">
-        <a class="sidenav-nav-link1">
-          <span class=" sidenav-link-icon1"><img src="assets/images/femaleUser.png" /></span>
-          <span class="sidenav-link-text1">{{fName}}  {{lName}}</span>
-        </a>
+  <div class="logo-container">
+    <span class="logo"><img src="assets/img/logo.jpeg" /></span>
+  </div>
+  <ul class="sidenav-nav">
+    <li class="sidenav-nav-item1">
+      <a class="sidenav-nav-link1">
+        <span class="sidenav-link-icon1"
+          ><img src="assets/images/femaleUser.png"
+        /></span>
+        <span class="sidenav-link-text1">{{ fName }} {{ lName }}</span>
+      </a>
+    </li>
+    <li class="sidenav-nav-item">
+      <a
+        routerLink="/dash-board"
+        routerLinkActive="active"
+        class="sidenav-nav-link"
+      >
+        <span class="sidenav-link-icon"
+          ><img src="assets/img/dashboard.png"
+        /></span>
+        <span class="sidenav-link-text">DashBoard</span>
+      </a>
+    </li>
+    <li class="sidenav-nav-item">
+      <a class="sidenav-nav-link">
+        <span class="sidenav-link-icon"
+          ><img src="assets/img/pages.png"
+        /></span>
+        <span class="sidenav-link-text px-2">
+          <button
+            class="btn bt2 btn-toggle align-items-center rounded collapsed"
+            data-bs-toggle="collapse"
+            data-bs-target="#pages-collapse"
+            aria-expanded="false"
+          >
+            Vehicles & Events
+          </button>
+        </span>
+      </a>
 
-      </li>
-                   <!-- dashboard -->
-                   <li class="sidenav-nav-item">
-                    <a routerLink ="/dash-board" 
-                    routerLinkActive="active" class="sidenav-nav-link">
-                      <span class=" sidenav-link-icon"><img src="assets/img/dashboard.png" /></span>
-                      <span class="sidenav-link-text">DashBoard</span>
-                    </a>
-                  </li>
-<!-- 
-                  ********************pages************************* -->
-                  <!-- <span  class=" sidenav-link-icon"><img src="assets/img/pages.png" /></span> -->
-                  <li class="sidenav-nav-item">
-                    <a class="sidenav-nav-link">
-                      <span class="sidenav-link-icon"><img src="assets/img/pages.png" /></span>
-                      <span class="sidenav-link-text px-2">
-                        <button class="btn bt2 btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#pages-collapse" aria-expanded="false">
-                          Vehicles & Events
-                        </button>
-                      </span>
-                    </a>
-                    
-                    <div class="collapse" id="pages-collapse" [ngClass]="{'show': addVehicleLinkActive || editVehicleLinkActive}" [attr.aria-expanded]="(addVehicleLinkActive || editVehicleLinkActive).toString()">
-                      <ul class="fw-normal pb-1 small bttt">
-                        <li class="sidenav-nav-item">
-                          <a routerLink="/addvehicle" routerLinkActive="active" class="sidenav-nav-link"  >
-                            <!-- <span class=" sidenav-link-icon"><img src="assets/img/dashboard.png" /></span> -->
-                            <span class="sidenav-link-text btngan">Add vehicle</span>
-                          </a>
-                        </li>
-                        <li class="sidenav-nav-item">
-                          <a routerLink="/editvehicle" routerLinkActive="active" class="sidenav-nav-link">
-                            <span class="sidenav-link-text btngan">Edit vehicle</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </li>
-                  <!-- <li class="sidenav-nav-item">
-                    <a routerLink ="/addvehicle" 
-                    routerLinkActive="active" class="sidenav-nav-link">
-                      
-                      <span class="sidenav-link-text">Add vehicle</span>
-                    </a>
-                  </li>
-                  <li class="sidenav-nav-item">
-                    <a routerLink ="/editvehicle" 
-                    routerLinkActive="active" class="sidenav-nav-link">
-                      
-                      <span class="sidenav-link-text">Edit vehicle</span>
-                    </a>
-                  </li> -->
-                  <li class="sidenav-nav-item">
-                    <a routerLink ="/notifications" 
-                    routerLinkActive="active" class="sidenav-nav-link">
-                      <span class=" sidenav-link-icon"><img src="assets/img/notifications.png" /></span>
-                      <span class="sidenav-link-text">Notifications</span>
-                    </a>
-                  </li>
-                  
-                  <li class="sidenav-nav-item">
-                    <a routerLink ="/inbox" 
-                    routerLinkActive="active" class="sidenav-nav-link">
-                      <span class=" sidenav-link-icon"><img src="assets/img/inbox.png" /></span>
-                      <span class="sidenav-link-text">Inbox</span>
-                    </a>
-                  </li>
-                  <li class="sidenav-nav-item">
-                    <a routerLink ="/mydashboard" 
-                    routerLinkActive="active" class="sidenav-nav-link">
-                      <span class=" sidenav-link-icon"><img src="assets/img/user.png" /></span>
-                      <span class="sidenav-link-text">My Profile</span>
-                    </a>
-                  </li>
+      <div
+        class="collapse"
+        id="pages-collapse"
+        [ngClass]="{ show: addVehicleLinkActive || editVehicleLinkActive ||handleEventReqLinkActive}"
+        [attr.aria-expanded]="
+          (addVehicleLinkActive || editVehicleLinkActive||handleEventReqLinkActive).toString()
+        "
+      >
+        <ul class="fw-normal pb-1 small bttt">
+          <li class="sidenav-nav-item">
+            <a
+              routerLink="/addvehicle"
+              routerLinkActive="active"
+              class="sidenav-nav-link"
+            >
+              <span class="sidenav-link-text btngan">Add vehicle</span>
+            </a>
+          </li>
+          <li class="sidenav-nav-item">
+            <a
+              routerLink="/editvehicle"
+              routerLinkActive="active"
+              class="sidenav-nav-link"
+            >
+              <span class="sidenav-link-text btngan">Edit vehicle</span>
+            </a>
+          </li>
+          <li class="sidenav-nav-item">
+            <a
+              routerLink="/handleEventReq"
+              routerLinkActive="active"
+              class="sidenav-nav-link"
+            >
+              <span class="sidenav-link-text btngan">Event Requests</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li class="sidenav-nav-item">
+      <a
+        routerLink="/notifications"
+        routerLinkActive="active"
+        class="sidenav-nav-link"
+      >
+        <span class="sidenav-link-icon"
+          ><img src="assets/img/notifications.png"
+        /></span>
+        <span class="sidenav-link-text">Notifications</span>
+      </a>
+    </li>
 
-                  
+    <li class="sidenav-nav-item">
+      <a routerLink="/inbox" routerLinkActive="active" class="sidenav-nav-link">
+        <span class="sidenav-link-icon"
+          ><img src="assets/img/inbox.png"
+        /></span>
+        <span class="sidenav-link-text">Inbox</span>
+      </a>
+    </li>
+    <li class="sidenav-nav-item">
+      <a
+        routerLink="/mydashboard"
+        routerLinkActive="active"
+        class="sidenav-nav-link"
+      >
+        <span class="sidenav-link-icon"><img src="assets/img/user.png" /></span>
+        <span class="sidenav-link-text">My Profile</span>
+      </a>
+    </li>
+    <li class="sidenav-nav-item">
+      <a
+        routerLink="/change-password"
+        routerLinkActive="active"
+        class="sidenav-nav-link"
+      >
+        <span class="sidenav-link-icon"
+          ><img src="assets/img/resetpassword.png"
+        /></span>
+        <span class="sidenav-link-text px-3">Change Password</span>
+      </a>
+    </li>
 
-        <!-- *********************myprofile********************* -->
-        <!-- <li class="sidenav-nav-item">
-          <a class="sidenav-nav-link">
-            <span class="sidenav-link-icon"><img src="assets/img/user.png" /></span>
-            <span class="sidenav-link-text px-3">
-              <button class=" p-0 m-0 btn bt2 btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#profile-collapse" aria-expanded="false">
-                My Profile
-              </button>
-            </span>
-          </a>
-          <div class="collapse" id="profile-collapse" [ngClass]="{'show': reportsLinkActive|| mydashboardLinkActive}" [attr.aria-expanded]="(reportsLinkActive|| mydashboardLinkActive).toString()">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small bttt">
-              <li class="sidenav-nav-item">
-                <a routerLink="/mydashboard" routerLinkActive="active" class="sidenav-nav-link">
-                  <span class="sidenav-link-text">My dashboard</span>
-                </a>
-              </li>
-              <li class="sidenav-nav-item">
-                <a routerLink="/reports" routerLinkActive="active" class="sidenav-nav-link">
-                  <span class="sidenav-link-text">My Reports</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </li> -->
-       <!-- <li>
-          <a>
-         <span> <button class="  btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">My Profile</button></span>
-          <div class="collapse" id="account-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a routerLink="/mydashboard" class="link-dark rounded">My Dashboard</a></li>
-              <li><a  routerLink="/reports" class="link-dark rounded">Reports</a></li>
-            </ul>
-          </div>
-        </a>
-        </li> -->
-
-
-
-             <!-- reset password -->
-             <li class="sidenav-nav-item">
-              <a routerLink ="/change-password" 
-              routerLinkActive="active" class="sidenav-nav-link">
-                <span class=" sidenav-link-icon"><img src="assets/img/resetpassword.png" /></span>
-                <span class="sidenav-link-text px-3">Change Password</span>
-              </a>
-            </li>
-            
-             <!-- Log out -->
-             <li class="sidenav-nav-item">
-              <a (click)="logout()"
-              routerLinkActive="active"  class="sidenav-nav-link">
-                <span class=" sidenav-link-icon"><img src="assets/img/Logout.png" /></span>
-                <span class="sidenav-link-text">Log Out</span>
-              </a>
-            </li>
-    </ul>
-
+    <!-- Log out -->
+    <li class="sidenav-nav-item">
+      <a (click)="logout()" routerLinkActive="active" class="sidenav-nav-link">
+        <span class="sidenav-link-icon"
+          ><img src="assets/img/Logout.png"
+        /></span>
+        <span class="sidenav-link-text">Log Out</span>
+      </a>
+    </li>
+  </ul>
 </div>
-
-

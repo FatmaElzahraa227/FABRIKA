@@ -25,44 +25,6 @@
             {{ vehicleData.vehicle_make }} {{ vehicleData.vehicle_model }}
           </p>
           <p>Model Year : {{ vehicleData.model_year }}</p>
-
-          <!-- <p class="no-margin">Also called</p>
-          <ul>
-            <li>
-              <a>Duesenberg J</a>
-            </li>
-            <li>
-              <a>Duesenberg SJ (supercharged)</a>
-            </li>
-            <li>
-              <a>Duesenberg SSJ (short-wheelbase supercharged)</a>
-            </li>
-          </ul>
-          <p>
-            Production Date : 1928–1937 481 Total (445 Model J, 36 Model SJ)
-          </p>
-          <p>
-            Assembly :
-            <u>
-              <a
-                target="_blank"
-                href="https://en.wikipedia.org/wiki/Indianapolis"
-                >Indianapolis</a
-              ></u
-            >,
-            <u
-              ><a target="_blank" href="https://en.wikipedia.org/wiki/Indiana"
-                >Indiana</a
-              ></u
-            >,
-            <u
-              ><a
-                target="_blank"
-                href="https://en.wikipedia.org/wiki/United_States"
-                >United States</a
-              ></u
-            >
-          </p> -->
         </div>
       </div>
       <div
@@ -75,29 +37,6 @@
           <p>Displacement: {{ vehicleData.displacement }}</p>
           <p>Color: {{ vehicleData.color }}</p>
           <p>Extra Features: {{ vehicleData.extra_features }}</p>
-          <!-- <p>
-            Class : Full-size
-            <u
-              ><a
-                target="_blank"
-                href="https://en.wikipedia.org/wiki/Luxury_car"
-                >luxury car</a
-              ></u
-            >
-          </p>
-
-          <p>Body Style : Coachbuilt to owner's preference</p>
-          <p>
-            Layout :
-            <u>
-              <a
-                target="_blank"
-                href="https://en.wikipedia.org/wiki/Front-engine,_rear-wheel-drive_layout#Front_mid-engine,_rear-wheel-drive_layout"
-              >
-                Front mid-engine, rear-wheel-drive
-              </a></u
-            >
-          </p> -->
         </div>
       </div>
       <div
@@ -193,9 +132,14 @@
               class="child d-flex flex-column justify-content-center align-items-center"
             >
               <img [src]="event.cover_icon" alt="" />
-              <p class="info">{{event.event_damages}}</p>
-              <button (click)="goToEventDetails(event._id)" class="btn detailsButton d-flex justify-content-between align-items-center"><p>More Details</p>
-                <i class="fa-solid fa-caret-right"></i></button>
+              <p class="info">{{ event.event_damages }}</p>
+              <button
+                (click)="goToEventDetails(event._id)"
+                class="btn detailsButton d-flex justify-content-between align-items-center"
+              >
+                <p>More Details</p>
+                <i class="fa-solid fa-caret-right"></i>
+              </button>
             </div>
           </ng-container>
         </div>

@@ -16,7 +16,7 @@ router.get("/getVehicleData/:vehicle_vin",auth(userAPI.getVehicle),validationFun
 router.get("/getDataToEdit/:vehicle_vin",auth(userAPI.addVehicle),validationFun(vehicleValidation.getVehicleData), getDataToEdit);
 router.patch("/updateVehicle",getVehicle(),validationFun(vehicleValidation.editVehicle), editVehicle);
 router.get("/getEvent/:eventID",auth(userAPI.getEvent), getEvent);
-router.patch("/sendEventReq", multerFun('generalimages').fields([{name: 'Images', maxCount: 10},{name: 'numPlates', maxCount: 2},{name: 'VIN', maxCount: 2},{name: 'walkaround', maxCount: 2}]), auth(userAPI.getDetails), sendEventReq);
+router.post("/sendEventReq", multerFun('generalimages').fields([{name: 'Images', maxCount: 10},{name: 'numPlates', maxCount: 2},{name: 'VIN', maxCount: 2},{name: 'walkaround', maxCount: 2}]),  sendEventReq);
 
 // multerFun('generalimages').fields([{name: 'Images', maxCount: 2},{name: 'numPlates', maxCount: 2}]) 
 

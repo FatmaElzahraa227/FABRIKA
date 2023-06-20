@@ -10,7 +10,8 @@ let cors = require("cors");
 app.use(cors());
 client();
 const vehicleModel = require("./DB/model/vehicle");
-
+const bodyParser = require('body-parser')
+app.use(bodyParser.text({ type: '/' }));
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(

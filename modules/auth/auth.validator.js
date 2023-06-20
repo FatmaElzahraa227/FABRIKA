@@ -2,11 +2,10 @@ const Joi = require("joi");
 
 const signUp = {
   body: Joi.object()
-    .required()
     .keys({
       firstName: Joi.string().required().min(3).max(15),
       lastName: Joi.string().required().min(3).max(15),
-      gender: Joi.string().required(),
+      gender: Joi.string(),
       email: Joi.string().email().required(),
       phone: Joi.string().required().min(11).max(11),
       password: Joi.string().required(),
@@ -15,10 +14,9 @@ const signUp = {
 };
 const signUpMobile = {
   body: Joi.object()
-    .required()
     .keys({
       email: Joi.string().email().required(),
-      gender: Joi.string().required(),
+      gender: Joi.string(),
       password: Joi.string().required(),
       cPassword: Joi.string().valid(Joi.ref("password")).required(),
     }),

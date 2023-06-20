@@ -1,7 +1,6 @@
 
 const mongoose = require('mongoose');
 
-
 const QASchema = new mongoose.Schema({
    
    question: {type:String},

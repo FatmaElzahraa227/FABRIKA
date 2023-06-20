@@ -68,6 +68,4 @@ const getEvent = async (req, res) => {
 module.exports = {
   getEvent,
   sendEventReq,
-  // getEventtoReview,
-  // getEventReq
 };

@@ -2,9 +2,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-
 const userSchema = new mongoose.Schema({
-   
    
    firstName: {type: String}, 
    lastName: {type: String},
@@ -20,7 +18,6 @@ const userSchema = new mongoose.Schema({
    code: {type: Number,},
    search_history: [{type: mongoose.Schema.Types.ObjectId, ref: 'vehicles'}]
    
-   
 }, {  
    timestamps: true
 })
@@ -29,7 +26,6 @@ userSchema.pre("save", async function (next) {
  }, {  
    collection: 'users' // specify the collection name
  });
-
 
 const userModel = mongoose.model('user', userSchema)
 

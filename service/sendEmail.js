@@ -10,18 +10,14 @@ async function sendEmail(dest, message, subjecto, texto, perfecto) {
         pass: process.env.senderPass, // generated ethereal password
       },
     });
-   
     // send mail with defined transport object
     let info = await transporter.sendMail({
-       
       from: `"Fabrika history checker" <${process.env.senderEmail}>`, // sender address
       to: dest, // list of receivers
       subject: subjecto, // Subject line
       text: texto, // plain text body
       html: message, // html body
     });
-
-   
 }
 
 

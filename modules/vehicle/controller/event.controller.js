@@ -47,6 +47,7 @@ const sendEventReq = async (req, res) => {
       res.json({ message: "all good", savedEvent });
     }
   } catch (error) {
+    console.log(req.files)
     res.status(400).json({ message: error.message });
   }
 };

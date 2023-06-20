@@ -14,7 +14,6 @@ const eventSchema = new mongoose.Schema({
    vin_pics: [{type: String, required: true }],
    event_desc: { type: String, required: false },
    event_date: { type: String, },
-   // event_media: [ String ],
    event_damages: { type: String }, 
    affected_vehicle: { type: mongoose.Schema.Types.ObjectId, ref: 'vehicle' },
    insurance_agency: { type: mongoose.Schema.Types.ObjectId, ref: 'insurance' },

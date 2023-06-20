@@ -16,7 +16,6 @@ const addVehicle = async (req, res) => {
     mileage_years_x,
     mileage_miles_y,
     extra_features,
-    // ownerid,
     is_stolen,
     is_salvaged,
     is_insured,
@@ -26,8 +25,6 @@ const addVehicle = async (req, res) => {
   } = req.body;
   const user = await userModel.findById(req.userid);
   const owner_id = user._id;
-
-  //  console.log(owner_id);
   const foundVehicle = await vehicleModel.findOne({ vehicle_vin });
   if (foundVehicle) {
     res.status(400).json({ message: "Vehicle already exists." });

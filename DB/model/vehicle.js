@@ -11,11 +11,7 @@ const vehicleSchema = new mongoose.Schema(
     mileage_years_x: [Number],
     mileage_miles_y: [Number],
     extra_features: { type: String, required: false },
-    owner_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
-      // required: true,
-    },
+    owner_id: { type: mongoose.Schema.Types.ObjectId, ref: "user",},
     insured_by: { type: mongoose.Schema.Types.ObjectId, ref: "insurance" },
     is_stolen: { type: Boolean, default: false },
     is_salvaged: { type: Boolean, default: false },

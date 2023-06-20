@@ -8,7 +8,5 @@ const connect = async() => {
     return mongoose;
     
 };
-// console.log(res);
  
-
 module.exports = connect;

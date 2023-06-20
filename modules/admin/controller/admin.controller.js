@@ -5,8 +5,6 @@ const eventModel = require("../../../DB/model/event");
 const qaModel = require("../../../DB/model/QA");
 const notificationModel = require("../../../DB/model/notification");
 var jwt = require("jsonwebtoken");
-// const QRCode = require('qrcode');
-// const sendEmail = require("../../../service/sendEmail");
 
 const userChart = async (req, res) => {
   try {
@@ -78,9 +76,33 @@ const retrieveMessages = async (req, res) => {
   }
 };
 
+const getEventReq = async (req, res) => {
+  try {
+    console.log("hi");
+    const newReqs = await eventModel.find({status: 'Pending'}).exec();
+    res.json({ message: "New Event Requests!.", newReqs });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+};
+
+const reviewEvent = async (req, res) => {
+  const affected_vehicle = req.body;
+  const eID = req.params;
+  console.log(affected_vehicle, eID);
+  async function approve (){
+    const approved = await eventModel.findByIdAndUpdate( eID, { status: Approved, affected_vehicle });
+  }
+  async function deny (){
+    const denied = await eventModel.findByIdAndUpdate( eID, { status: Denied, affected_vehicle });
+  }
+};
+
 module.exports = {
   getQA,
   getNotifications,
   retrieveMessages,
   userChart,
+  getEventReq,
+  reviewEvent
 };

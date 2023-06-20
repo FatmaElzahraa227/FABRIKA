@@ -7,7 +7,7 @@ const accessroles = {
 }
 
 const auth = (accessroles) => {
-   return async (req, res, next) =>{
+   return async (req, res, next) => {
       if(!req.headers || req.headers == undefined || req.headers == null || !req.headers["authorization"] || 
       !req.headers["authorization"].startsWith('Bearer')){
          res.status(400).json({message: "Bad authorization key"});

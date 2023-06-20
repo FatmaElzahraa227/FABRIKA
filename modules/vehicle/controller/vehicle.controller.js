@@ -154,35 +154,7 @@ const editVehicle = async (req, res) => {
   }
 };
 
-// const updatePic = async (req, res) => {
-//   try {
-//     if (req.fileUploadError) {
-//       res.status(422).json({ message: "Invalid file" });
-//     } else {
-//       const vehicleaya = await vehicleModel.findById(req.vehicleId);
-//       if (vehicleaya) {
-//         let imagesURLS = [];
-//         for (let i = 0; i < req.files.length; i++) {
-//           let imgURL = `${req.protocol}://${req.headers.host}/${req.fileURL}/${req.files[i].filename}`;
-//           imagesURLS.push(imgURL);
-//         }
-//         let updatedUser = await vehicleModel.findByIdAndUpdate(
-//           user._id,
-//           { coverPictures: imagesURLS , $inc: { __v: 1 }},
-//           { new: true }
-//         );
-//         res.status(200).json({
-//           message: "Cover pictures updated successfully",
-//           updatedUser,
-//         });
-//       } else {
-//         res.status(404).json({ message: "Invalid user" });
-//       }
-//     }
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
+
 
 const updatePic = async (req, res) => {
   try {
@@ -214,6 +186,8 @@ const updatePic = async (req, res) => {
   }
 };
 
+
+
 const getimage = async (req, res) => {
   try {
     const yarabngeebelimages = await vehicleModel.find({});
@@ -230,16 +204,6 @@ const getimage = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
-
-// app.get("/articles", async (req, res) => {
-//   try {
-//     const articles = await Article.find({ });
-//     res.send(articles);
-//     console.log(articles);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
 
 
 

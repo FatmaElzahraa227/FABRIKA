@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 
 const eventSchema = new mongoose.Schema({
    
-   // event_id: {type: Number, required:true, unique:true}, 
+   // event_id: {type: Number, required: true, unique: true},
    sent_by: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true },
-   event_type: { type: String, required: true },
+   event_type: { type: String, default: 'accident' },
    event_title: { type: String, },
    vehicle_pics: [{ type: String, required: true }],
    numplate_pics: [{ type: String, required: true }],
@@ -19,7 +19,7 @@ const eventSchema = new mongoose.Schema({
    affected_vehicle: { type: mongoose.Schema.Types.ObjectId, ref: 'vehicle' },
    insurance_agency: { type: mongoose.Schema.Types.ObjectId, ref: 'insurance' },
    cover_icon:{ type: String },
-   status: { type: String , default: 'Pending' },
+   status: { type: String, default: 'Pending' },
    
 }, {
    timestamps: true 

@@ -6,8 +6,7 @@ require("dotenv").config();
 const vehicleModel = require("../../../DB/model/vehicle");
 const eventModel = require("../../../DB/model/event");
 const { sendNotification } = require("../../../service/notification");
-// const QRCode = require('qrcode');
-// const sendEmail = require("../../../service/sendEmail");
+const sendEmail = require("../../../service/sendEmail");
 
 const getProfile = async (req, res) => {
   try {
@@ -127,10 +126,10 @@ safeResetPassword = async (req, res) => {
     );
     const updatedUser = await userModel.findByIdAndUpdate(
       user._id,
-      { password: hashedPassword},
+      { password: hashedPassword },
       { new: true }
     );
-    res.json({ message: "Done yaba.", updatedUser});
+    res.json({ message: "Done", updatedUser});
   } catch(error){
     res.status(400).json({ message: error.message });
   }
@@ -144,52 +143,4 @@ module.exports = {
   softDelete,
   sendMessage,
   safeResetPassword,
-  // updateProfilePic,
-  // updateCoverPic,
-  // QR,
 };
-
-
-// const hashedPassword = await bcrypt.hash(
-//   newPassword,
-//   parseInt(process.env.saltRound)
-// );
-// const updatedUser = await userModel.findByIdAndUpdate(
-//   user._id,
-//   { password: hashedPassword},
-//   { new: true }
-// );
-
-
-// const updateCoverPic = async (req,res) => {
-//    console.log(req.files);
-
-//    const user = await userModel.findById(req.userid)
-//    if(user){
-//       console.log(req.fileURL);
-//       let imagesURL = []
-//       for (let i = 0; i < req.files; i++) {
-//          let imgURL = `${req.protocol}://${req.headers.host}/${req.fileURL}/${req.files[i].filename}`;
-//          imagesURL.push(imgURL);
-//       }
-//       //let imgURL = req.fileURL + '/' + req.file.filename;
-//       // let imgURL = `${req.protocol}://${req.headers.host}/${req.fileURL}/${req.file.filename}`;
-//       let updatedUser = await userModel.findByIdAndUpdate(user._id, {coverPic: imagesURL}, {new: true});
-//       console.log("done",updatedUser);
-//       res.json(updatedUser);
-
-//    }else{
-//       res.status(404).json({message: "updatedUser not found."})
-//    }
-// };
-
-// const QR = async(req,res) => {
-//    const user = await userModel.findOne({_id: req.userid}).select("email firstName lastName Confirmed");
-//    QRCode.toDataURL(`${req.protocol}://${req.headers.host}/user/${user._id}`,function (err, url){
-//       if (err) {
-//          res.json({message: "error", err})
-//       }else{
-//          res.json({message: "Okay", url})
-//       }
-//    })
-// };

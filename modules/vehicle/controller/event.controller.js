@@ -6,7 +6,7 @@ const { sendNotification } = require("../../../service/notification");
 
 const sendEventReq = async (req, res) => {
   try {
-    // console.log(req.files, req.body);
+    console.log(req.files);
     if (req.fileUploadError) {
       res.json({ message: "Invalid file type." });
     } else {

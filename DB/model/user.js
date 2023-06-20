@@ -29,6 +29,8 @@ userSchema.pre("save", async function (next) {
  }, {
    collection: 'users' // specify the collection name
  });
+
+
 const userModel = mongoose.model('user', userSchema)
 
 module.exports = userModel

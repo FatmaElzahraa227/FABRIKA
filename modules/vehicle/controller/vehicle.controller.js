@@ -45,7 +45,7 @@ const addVehicle = async (req, res) => {
       owner_id,
       is_stolen,
       is_salvaged,
-      is_insured,
+      is_insured, 
       has_mileage,
       has_sales_history,
       has_service_history,
@@ -144,11 +144,11 @@ const editVehicle = async (req, res) => {
         is_insured,
         has_mileage,
         has_sales_history,
-        has_service_history },
+        has_service_history }, 
       { new: true }
     );
     
-  res.status(200).json({message: "Vehicle Updated.", updatedVehicle});
+ return res.status(200).json({message: "Vehicle Updated.", updatedVehicle});
   }else{
     res.json({message: "Create Vehicle First."})
   }

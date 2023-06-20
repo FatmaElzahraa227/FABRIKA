@@ -6,9 +6,34 @@ const { sendNotification } = require("../../../service/notification");
 
 const signUp = async (req, res) => {
   try {
-    const { firstName, lastName, email, password, phone } = req.body;
+    const { firstName, lastName, gender, email, password, phone } = req.body;
     const foundedUser = await userModel.findOne({ email });
     const foundedUser2 = await userModel.findOne({ phone });
+    function randomIntFromInterval(min, max) { // min and max included 
+      return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+    const rndInt = randomIntFromInterval(1, 2)
+    console.log(rndInt)
+    let avatar = "";
+    if( gender == "male" ){
+      switch (rndInt){
+        case 1:
+          avatar = "../../../uploads/avatars/male1.png";
+          break;
+        case 2:
+          avatar = "../../../uploads/avatars/male2.png";
+          break;
+      }
+    } else if (gender == "female"){
+      switch (rndInt){
+        case 1:
+          avatar = "../../../uploads/avatars/female1.png";
+          break;
+        case 2:
+          avatar = "../../../uploads/avatars/female2.png";
+          break;
+      }
+    }
     if (foundedUser) {
       res.status(400).json({ message: "Email already exists" });
     } else if (foundedUser2) {
@@ -17,6 +42,8 @@ const signUp = async (req, res) => {
       const user = new userModel({
         firstName,
         lastName,
+        gender,
+        avatar,
         email,
         password,
         phone,
@@ -28,10 +55,67 @@ const signUp = async (req, res) => {
           email,
           `<a href=${URL}>Please click here to confirm your email</a>`
         );
-        sendNotification(savedUser._id, "is new to fabrika!.")
+        sendNotification(savedUser._id, "is new to FABRIKA!.")
       res
         //.status(StatusCodes.CREATED)
         .json({ message: "Added Done", savedUser, token });
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+
+
+const signUpMobile = async (req, res) => {
+  try {
+    const { email, password, gender } = req.body;
+    const foundedUser = await userModel.findOne({ email }, { maxTimeMS: 30000 });
+    if (foundedUser) {
+      res.status(400).json({ message: "Email already exists" });
+    } else {
+      function randomIntFromInterval(min, max) { // min and max included 
+        return Math.floor(Math.random() * (max - min + 1) + min)
+      }
+      const rndInt = randomIntFromInterval(1, 2)
+      console.log(rndInt)
+      let avatar = "";
+      if( gender == "male" ){
+        switch (rndInt){
+          case 1:
+            avatar = "../../../uploads/avatars/male1.png";
+            break;
+          case 2:
+            avatar = "../../../uploads/avatars/male2.png";
+            break;
+        }
+      } else if (gender == "female"){
+        switch (rndInt){
+          case 1:
+            avatar = "../../../uploads/avatars/female1.png";
+            break;
+          case 2:
+            avatar = "../../../uploads/avatars/female2.png";
+            break;
+        }
+      }
+      const user = new userModel({
+        email,
+        password,
+        gender,
+        avatar
+      });
+      const savedUser = await user.save();
+       var token = jwt.sign({ id: savedUser._id }, process.env.verifyTokenKey);
+       let URL = `${req.protocol}://${req.headers.host}/api/v1/auth/confirm/${token}`;
+       await sendEmail(
+         email,
+         `<a href=${URL}>Please click here to confirm your email</a>`
+       );
+       sendNotification(savedUser._id, "is new to FABRIKA!.")
+      res
+        //.status(StatusCodes.CREATED)
+        .json({ message: "Added Done", savedUser });
     }
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -78,38 +162,8 @@ const confirmEmail = async (req, res) => {
 
 
 
-const signUpMobile = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    const foundedUser = await userModel.findOne({ email }, { maxTimeMS: 30000 });
-    if (foundedUser) {
-      res.status(400).json({ message: "Email already exists" });
-    } else {
-      const user = new userModel({
-        email,
-        password,
-      });
-      const savedUser = await user.save();
-       var token = jwt.sign({ id: savedUser._id }, process.env.verifyTokenKey);
-       let URL = `${req.protocol}://${req.headers.host}/api/v1/auth/confirm/${token}`;
-       await sendEmail(
-         email,
-         `<a href=${URL}>Please click here to confirm your email</a>`
-       );
-       sendNotification(savedUser._id, "is new to fabrika!.")
-      res
-        //.status(StatusCodes.CREATED)
-        .json({ message: "Added Done", savedUser });
-    }
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
-
-
-
 const signIn = async (req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
   const { email, password } = req.body;
   const foundedUser = await userModel.findOne({ email });
   if (foundedUser) {

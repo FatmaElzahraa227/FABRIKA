@@ -18,9 +18,15 @@ export class NotificationsComponent {
     this.showPreloader=true
     this.http.get<any>(this.url).subscribe(
       (data) => {
-        console.log(data);
+        // console.log(data);
         this.data = data;
         this.data.newNotis.reverse();
+        if(data.newNotis){
+          console.log('ko');
+          
+        }
+        console.log(this.data.newNotis);
+        
         let i = 0;
         while (i < this.data.newNotis.length - 1) {
           if (

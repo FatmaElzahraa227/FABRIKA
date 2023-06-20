@@ -27,8 +27,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { InboxComponent } from './inbox/inbox.component';
 import { MydashboardComponent } from './mydashboard/mydashboard.component';
 import { ReportsComponent } from './reports/reports.component';
-import { UploadImageComponent } from './upload-image/upload-image.component';
 import { DatePipe } from '@angular/common';
+import { SendEventReqComponent } from './send-event-req/send-event-req.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +53,7 @@ import { DatePipe } from '@angular/common';
     InboxComponent,
     MydashboardComponent,
     ReportsComponent,
-    UploadImageComponent
+    SendEventReqComponent
   ],
   imports: [
     BrowserModule,

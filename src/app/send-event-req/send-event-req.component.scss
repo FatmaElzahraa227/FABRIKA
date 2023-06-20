@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    padding: 0;
+    margin: 0;
+  }
+  html,
+  body {
+    padding-top: 60px;
+    background-color: black;
+    min-height: 91.9vh;
+  }
+  .header{
+    width: 180px;
+    height: 40px;
+    background-color: #242526;
+    border-color: #242526;
+    border-radius: 50px;
+    // box-shadow:#242526 2px 2px 5px ;
+    color: rgba(255, 255, 255, 0.827);
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  .header2{
+    width: fit-content;
+    height: 30px;
+    background-color: #242526;
+    border-color: #242526;
+    border-radius: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: rgba(255, 255, 255, 0.827);
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    margin-top: 40px;
+  }
+  .btn{
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 20px;
+
+  }
+  // .file-input {
+  //   display: none;
+  // }
+  
+  // .file-input-label {
+  //   display: block;
+  //   width: 500px;
+  //   height: 200px;
+  //   cursor: pointer;
+  // }
+  
+  // .file-input-container {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   width: 100%;
+  //   height: 100%;
+  //   border: 2px solid #ccc;
+  //   border-radius: 40px;
+  //   background-color: rgba(255, 255, 255, 0.99);
+  // }
+  
+  // .file-input-icon {
+  //   width: 50px;
+  //   height: 50px;
+  //   margin-right: 5px;
+  // }
+  
+  // .file-input-text {
+  //   margin: 16px 0;
+  //   font-size: 1rem;
+  //   font-weight: 500;
+  //   color: #333;
+  // }
+  
+  // .file-input-link {
+  //   color: #007bff;
+  //   text-decoration: none;
+  //   margin-left: 2px;
+  // }
+  
+  // .file-input-link:hover {
+  //   color: #0056b3;
+  //   text-decoration: underline;
+  // }

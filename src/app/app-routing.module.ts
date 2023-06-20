@@ -28,6 +28,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { InboxComponent } from './inbox/inbox.component';
 import { MydashboardComponent } from './mydashboard/mydashboard.component';
 import { ReportsComponent } from './reports/reports.component';
+import { SendEventReqComponent } from './send-event-req/send-event-req.component';
+
 
 const routes: Routes = [
   {path:'', redirectTo:'home',pathMatch:'full'},
@@ -49,6 +51,7 @@ const routes: Routes = [
   // {path:'reset-password', component:ResetPasswordComponent},
   {path:'reports',canActivate:[AuthGuard,AdminAuthGuard],component:ReportsComponent},
   {path:'mydashboard',canActivate:[AuthGuard,AdminAuthGuard], component:MydashboardComponent},
+  {path:'sendEventReq',canActivate:[AuthGuard,UserAuthGuard], component:SendEventReqComponent},
   {path:'**', redirectTo:'home',pathMatch:'full'},
 ];
 

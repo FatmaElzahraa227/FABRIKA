@@ -1,0 +1,34 @@
+<html>
+  <body>
+    <div class="container d-flex flex-column justify-content-between align-items-center m-auto">
+      <div class="header d-flex justify-content-center align-items-center">
+        <p>Event Details</p>
+      </div>
+      <div class="header2 d-flex justify-content-center align-items-center">
+        <p>Upload pictures of accident (min 4, max 10)</p>
+      </div>
+      <div class="mb-3">
+        <input class="form-control" type="file" id="accidentFiles" multiple (change)="onSelectFile($event)">
+      </div>
+      <div class="header2 d-flex justify-content-center align-items-center">
+        <p>Numberplate photos</p>
+      </div>
+      <div class="mb-3">
+        <input class="form-control" type="file" id="numPlateFile" (change)="onSelectFile($event)">
+      </div>
+      <div class="header2 d-flex justify-content-center align-items-center">
+        <p>Walk-around video</p>
+      </div>
+      <div class="mb-3">
+        <input class="form-control" type="file" id="walkAroundInput" (change)="onSelectFile($event)">
+      </div>
+      <div class="header2 d-flex justify-content-center align-items-center">
+        <p>VIN picture</p>
+      </div>
+      <div class="mb-3">
+        <input class="form-control" type="file" id="vinInput" (change)="onSelectFile($event)">
+      </div>
+      <button class="btn btn-dark" (click)="onUpload()">Upload</button>
+    </div>
+  </body>
+</html>

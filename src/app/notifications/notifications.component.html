@@ -2,23 +2,36 @@
 <app-sidenav></app-sidenav>
 <html>
   <body>
-        <div *ngFor="let group of groupNotificationsByDay(data.newNotis)">
-          <h2>{{ group.day }}</h2>
-          <div class="container flex-column justify-content-center m-auto" *ngFor="let notification of data?.newNotis">
-              <!-- <h3 class="head">Today</h3> -->
-      <div class="dhn-info-div m-auto" *ngIf="notification.fullname!='undefined undefined'&&notification.fullname!=null">
-        <img
-        src="assets/img/maya.png"
-        alt="Devonshire House Network Directors"
-        />
-        <span class="name">{{notification.fullname}}</span>
-        <span class="notification">{{notification.action}}</span>
-        <div class="timee">
-            <span class="time">{{ getFormattedTime(notification.createdAt)}}</span>
+    <div *ngIf="data?.newNotis"
+    >
+    <div *ngFor="let group of groupNotificationsByDay(data.newNotis)">
+      <h2>{{ group.day }}</h2>
+      <div
+        class="container flex-column justify-content-center m-auto"
+        *ngFor="let notification of data?.newNotis"
+      >
+        <!-- <h3 class="head">Today</h3> -->
+        <div
+          class="dhn-info-div m-auto"
+          *ngIf="
+            notification.fullname != 'undefined undefined' &&
+            notification.fullname != null
+          "
+        >
+          <img
+            src="assets/img/maya.png"
+            alt="Devonshire House Network Directors"
+            />
+          <span class="name">{{ notification.fullname }}</span>
+          <span class="notification">{{ notification.action }}</span>
+          <div class="timee">
+            <span class="time">{{
+              getFormattedTime(notification.createdAt)
+            }}</span>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-</div>
-
+  </div>
   </body>
 </html>

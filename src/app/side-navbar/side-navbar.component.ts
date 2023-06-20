@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 import { AuthService } from '../auth.service';
-
+ 
 @Component({ 
   selector: 'app-sidenav',
   templateUrl: './side-navbar.component.html',

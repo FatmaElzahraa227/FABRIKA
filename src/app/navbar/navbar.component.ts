@@ -43,7 +43,7 @@ export class NavbarComponent {
           } else {
             this.show = false;
           }
-        }, 1800);
+        }, 600);
       } else {
         this.isLogin = false;
         this.show = true;

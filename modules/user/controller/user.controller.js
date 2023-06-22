@@ -106,8 +106,10 @@ const softDelete = async (req, res) => {
 
 const sendMessage = async (req, res) => {
   try {
+    const senderid = req.userid;
+    console.log(senderid);
     const { full_name, email, message } = req.body;
-    const messageaya = new messageModel({ full_name, email, message });
+    const messageaya = new messageModel({ full_name, email, message, senderid });
     const savedMessage = await messageaya.save();
     return res.json({ message: "Sender:", full_name, email });
   } catch (error) {

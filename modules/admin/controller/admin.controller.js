@@ -70,7 +70,10 @@ const retrieveMessages = async (req, res) => {
   try {
     console.log("hi");
     const newMsg = await messageModel.find().exec();
-    res.json({ message: "New Messages!.", newMsg });
+    const sender = await userModel.find(newMsg.senderid);
+    const avatars = sender.avatar;
+    console.log(sender, avatars)
+    res.json({ message: "New Messages!.", newMsg, sender, avatars });
   } catch (error) {
     res.json({ message: error.message });
   }

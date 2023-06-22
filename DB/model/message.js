@@ -6,6 +6,7 @@ const messageSchema = new mongoose.Schema({
    full_name: {type:String, required:true},
    email: {type:String, required:true},
    message: {type:String, required:true},
+   senderid: { type: mongoose.Schema.Types.ObjectId, ref: "user",},
    view_status: {type: Boolean, default: false},
    
 }, {

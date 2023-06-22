@@ -12,10 +12,11 @@ const signUp = async (req, res) => {
     function randomIntFromInterval(min, max) { // min and max included 
       return Math.floor(Math.random() * (max - min + 1) + min)
     }
-    const rndInt = randomIntFromInterval(1, 2)
-    console.log(rndInt)
+    
+    // console.log(rndInt)
     let avatar = "";
     if( gender == "male" ){
+      const rndInt = randomIntFromInterval(1, 3)
       switch (rndInt){
         case 1:
           avatar = "../../../uploads/avatars/male1.png";
@@ -23,8 +24,12 @@ const signUp = async (req, res) => {
         case 2:
           avatar = "../../../uploads/avatars/male2.png";
           break;
+        case 3:
+          avatar = "../../../uploads/avatars/male3.png";
+          break;
       }
     } else if (gender == "female"){
+      const rndInt = randomIntFromInterval(1, 2)
       switch (rndInt){
         case 1:
           avatar = "../../../uploads/avatars/female1.png";

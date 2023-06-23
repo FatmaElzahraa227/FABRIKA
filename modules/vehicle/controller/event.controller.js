@@ -31,19 +31,14 @@ const sendEventReq = async (req, res) => {
         fileName = `${req.protocol}://${req.headers.host}/uploads/eventmedia/VINpics/${req.files.VIN[i].filename}`;
         VINfileUrls.push(fileName);
       }
-      // console.log(VfileUrls, NPfileUrls, WAfileUrls, VINfileUrls);
-      // const event_type = req.event_type;
-      // const event_desc = req.event_desc;
+      
       const { event_type, event_desc } = req.body;
       const {sent_by} = req.params;
       const newEvent = new eventModel({
         sent_by, event_type, vehicle_pics: VfileUrls, numplate_pics: NPfileUrls, walkaround_vid: WAfileUrls, vin_pics: VINfileUrls, event_desc
       });
-      const savedEvent = await newEvent.save();
 
-      // console.log(fileName); // This should now output the last generated fileName in the loop
-      
-      // sendNotification( req.userid, "Sent an event request!" )
+      const savedEvent = await newEvent.save();
       res.json({ message: "all good", savedEvent });
     }
   } catch (error) {

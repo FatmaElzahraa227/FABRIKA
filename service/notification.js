@@ -4,7 +4,7 @@ const notificationModel = require("../DB/model/notification");
 const sendNotification = async (userID, action) => {
    try{
       var fullname=''
-      // console.log(userID, action);
+      // console.log(userID, action); 
       console.log('moj')
       const eluser = await userModel.findById(userID);
       const email=eluser.email;

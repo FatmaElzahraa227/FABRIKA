@@ -6,7 +6,7 @@ const { sendNotification } = require("../../../service/notification");
 
 const signUp = async (req, res) => {
   try {
-    const { firstName, lastName, gender, email, password, phone } = req.body;
+    const { firstName, lastName, /*gender,*/ email, password, phone } = req.body;
     const foundedUser = await userModel.findOne({ email });
     const foundedUser2 = await userModel.findOne({ phone });
     function randomIntFromInterval(min, max) { // min and max included 
@@ -15,30 +15,30 @@ const signUp = async (req, res) => {
     
     // console.log(rndInt)
     let avatar = "";
-    if( gender == "male" ){
-      const rndInt = randomIntFromInterval(1, 3)
-      switch (rndInt){
-        case 1:
-          avatar = "../../../uploads/avatars/male1.png";
-          break;
-        case 2:
-          avatar = "../../../uploads/avatars/male2.png";
-          break;
-        case 3:
-          avatar = "../../../uploads/avatars/male3.png";
-          break;
-      }
-    } else if (gender == "female"){
-      const rndInt = randomIntFromInterval(1, 2)
-      switch (rndInt){
-        case 1:
-          avatar = "../../../uploads/avatars/female1.png";
-          break;
-        case 2:
-          avatar = "../../../uploads/avatars/female2.png";
-          break;
-      }
-    }
+    // if( gender == "male" ){
+    //   const rndInt = randomIntFromInterval(1, 3)
+    //   switch (rndInt){
+    //     case 1:
+    //       avatar = "../../../uploads/avatars/male1.png";
+    //       break;
+    //     case 2:
+    //       avatar = "../../../uploads/avatars/male2.png";
+    //       break;
+    //     case 3:
+    //       avatar = "../../../uploads/avatars/male3.png";
+    //       break;
+    //   }
+    // } else if (gender == "female"){
+    //   const rndInt = randomIntFromInterval(1, 2)
+    //   switch (rndInt){
+    //     case 1:
+    //       avatar = "../../../uploads/avatars/female1.png";
+    //       break;
+    //     case 2:
+    //       avatar = "../../../uploads/avatars/female2.png";
+    //       break;
+    //   }
+    // }
     if (foundedUser) {
       res.status(400).json({ message: "Email already exists" });
     } else if (foundedUser2) {
@@ -47,7 +47,7 @@ const signUp = async (req, res) => {
       const user = new userModel({
         firstName,
         lastName,
-        gender,
+       /* gender,*/
         avatar,
         email,
         password,
@@ -74,7 +74,7 @@ const signUp = async (req, res) => {
 
 const signUpMobile = async (req, res) => {
   try {
-    const { email, password, gender } = req.body;
+    const { email, password, /*gender*/ } = req.body;
     const foundedUser = await userModel.findOne({ email }, { maxTimeMS: 30000 });
     if (foundedUser) {
       res.status(400).json({ message: "Email already exists" });
@@ -85,29 +85,29 @@ const signUpMobile = async (req, res) => {
       const rndInt = randomIntFromInterval(1, 2)
       console.log(rndInt)
       let avatar = "";
-      if( gender == "male" ){
-        switch (rndInt){
-          case 1:
-            avatar = "../../../uploads/avatars/male1.png";
-            break;
-          case 2:
-            avatar = "../../../uploads/avatars/male2.png";
-            break;
-        }
-      } else if (gender == "female"){
-        switch (rndInt){
-          case 1:
-            avatar = "../../../uploads/avatars/female1.png";
-            break;
-          case 2:
-            avatar = "../../../uploads/avatars/female2.png";
-            break;
-        }
-      }
+      // if( gender == "male" ){
+      //   switch (rndInt){
+      //     case 1:
+      //       avatar = "../../../uploads/avatars/male1.png";
+      //       break;
+      //     case 2:
+      //       avatar = "../../../uploads/avatars/male2.png";
+      //       break;
+      //   }
+      // } else if (gender == "female"){
+      //   switch (rndInt){
+      //     case 1:
+      //       avatar = "../../../uploads/avatars/female1.png";
+      //       break;
+      //     case 2:
+      //       avatar = "../../../uploads/avatars/female2.png";
+      //       break;
+      //   }
+      // }
       const user = new userModel({
         email,
         password,
-        gender,
+        /*gender,*/
         avatar
       });
       const savedUser = await user.save();
